@@ -8,6 +8,7 @@ public class PlayerAnimationManager : MonoBehaviour
     int horizontal;
     int vertical;
 
+    // Called right before Start() method
     private void Awake()
     {
         animator = GetComponent<Animator>(); // Get animator of object script is attached to
@@ -47,6 +48,6 @@ public class PlayerAnimationManager : MonoBehaviour
         #endregion
 
         animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime); // Set the horizontal float in the animator
-        animator.SetFloat(vertical, verticalMovement, 0.1f, Time.deltaTime); // Set the vertical float in the animator
+        animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime); // Set the vertical float in the animator
     }
 }
