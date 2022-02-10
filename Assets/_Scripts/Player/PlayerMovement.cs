@@ -10,9 +10,13 @@ public class PlayerMovement : MonoBehaviour
     Transform cameraTransform; // Transform of the camera the player sees through
     Rigidbody playerRigidBody; // Reference to player's RigidBody component
 
+    public bool isSprinting; // Check if player is sprinting
+
     [Header("Movement Stats")]
-    public float movementSpeed = 5f; // How fast the player can move
-    public float rotationSpeed = 15f;
+    public float walkingSpeed = 1.5f; // How fast the player can walk
+    public float runningSpeed = 5f; // How fast the player can run
+    public float sprintingSpeed = 8f; // How fast the player can sprint
+    public float rotationSpeed = 15f; // How fast the player can rotate on the y axis
 
     // Called right before Start() method
     private void Awake()
@@ -37,7 +41,15 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.Normalize(); // Change length of vector to 1
         moveDirection.y = 0; // Player should not move on the y axis
 
-        Vector3 movementVelocity = moveDirection * movementSpeed; // Velocity of player movement
+        Vector3 movementVelocity; // Determines how fast and in what direction the player is moving
+        // Set the movemenet velocity based on if the player is walking, running, or sprinting
+        if (isSprinting) movementVelocity = moveDirection * sprintingSpeed; // Velocity of player sprinting
+        else
+        {
+            if (inputManager.moveAmount >= 0.5f) movementVelocity = moveDirection * runningSpeed; // Velocity of player running
+            else movementVelocity = moveDirection * walkingSpeed; // Velocity of player walking
+        }
+
         playerRigidBody.velocity = movementVelocity; // Change the RigidBody attached to the player to match the movementVelocity variable
     }
 
@@ -46,8 +58,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetDirection = Vector3.zero; // Start out at (0, 0, 0)
         targetDirection = cameraTransform.forward * inputManager.verticalInput; // Face player in direction of vertical movement
         targetDirection = targetDirection + cameraTransform.right * inputManager.horizontalInput; // Face player in direction of horizontal movement
-        targetDirection.Normalize();
-        targetDirection.y = 0;
+        targetDirection.Normalize(); // Set magnitude to 1
+        targetDirection.y = 0; // Set value on y axis to 0
 
         if (targetDirection == Vector3.zero) targetDirection = transform.forward; // Keep rotation at position last specified by the player
 

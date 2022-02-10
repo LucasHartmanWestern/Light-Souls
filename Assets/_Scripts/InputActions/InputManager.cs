@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls; // Reference to the Input System PlayerControls
+    PlayerMovement playerMovement; // Reference to the PlayerMovement script
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script
     
     [Header("Input from the Input Controller")]
@@ -17,12 +18,14 @@ public class InputManager : MonoBehaviour
     public float cameraInputX; // Track camera input on the x axes
     public float cameraInputY; // Track the camera input on the y axes
 
-    private float _moveAmount; // Determine the amount to move
+    public float moveAmount; // Determine the amount to move
+    public bool sprintInput; // Check if player is trying to sprint
 
     // Called right before Start() method
     private void Awake()
     {
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Get the PlayerAnimationManager script attached to player
+        playerMovement = GetComponent<PlayerMovement>(); // Get the PlayerMovement script attached to player
     }
 
     // Run when object script is attached to becomes enabled
@@ -36,6 +39,9 @@ public class InputManager : MonoBehaviour
             // Record player input into the Vector2 movementInput and cameraInput
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+
+            playerControls.PlayerActions.SprintButton.performed += i => sprintInput = true; // Set sprintInput to true when the SprintButton is pressed
+            playerControls.PlayerActions.SprintButton.canceled += i => sprintInput = false; // Set sprintInput to false when the SprintButton is no longer pressed
         }
 
         // Enable the PlayerControls instance
@@ -53,8 +59,7 @@ public class InputManager : MonoBehaviour
     public void HandleAllInputs()
     {
         HandleMovementInput(); // Handle movement inputs
-        // Handle Jumping Input
-        // Handle Action Input
+        HandleActionInput(); // Handle the action inputs
     }
 
     // Handles all of the movement inputs
@@ -68,7 +73,15 @@ public class InputManager : MonoBehaviour
         cameraInputX = cameraInput.x;
         cameraInputY = cameraInput.y;
 
-        _moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput)); // Clamp movement between 0 and 1
-        playerAnimationManager.UpdateAnimatorValues(0, _moveAmount); // Update the player's movement animation
+        moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput)); // Clamp movement between 0 and 1
+        playerAnimationManager.UpdateAnimatorValues(0, moveAmount, sprintInput); // Update the player's movement animation
+    }
+
+    // Handles all of the inputs related to actions
+    private void HandleActionInput()
+    {
+        // Set whether or not the player is sprinting in the PlayerMovement script
+        if (sprintInput && moveAmount > 0.5f) playerMovement.isSprinting = true;
+        else playerMovement.isSprinting = false;
     }
 }

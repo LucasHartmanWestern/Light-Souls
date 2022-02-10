@@ -17,7 +17,7 @@ public class PlayerAnimationManager : MonoBehaviour
     }
 
     // Get the values from the input handler and pass them into the animation controller
-    public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement)
+    public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement, bool isSprinting)
     {
         // Add animation snapping
         #region Snapped Horizontal
@@ -46,6 +46,8 @@ public class PlayerAnimationManager : MonoBehaviour
         else
             snappedVertical = 0;
         #endregion
+
+        if (isSprinting) { snappedVertical = 2; } // Set vertical to 2 if player is sprinting to change the animation
 
         animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime); // Set the horizontal float in the animator
         animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime); // Set the vertical float in the animator
