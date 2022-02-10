@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         if(Physics.SphereCast(rayCastOrigin, 0.2f, -Vector3.up, out hit, groundLayer))
         {
             // Make sure player is not on the ground and not interacting
-            if(!isGrounded && !playerManager.isInteracting)
+            if(!isGrounded && playerManager.isInteracting)
             {
                 playerAnimationManager.PlayTargetAnimation("Land", true); // Call the landing animation and don't allow the player to break out of it
             }
