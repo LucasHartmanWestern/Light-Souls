@@ -52,4 +52,12 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime); // Set the horizontal float in the animator
         animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime); // Set the vertical float in the animator
     }
+
+    // Play any animation sent via the targetAnimation parameter
+    public void PlayTargetAnimation(string targetAnimation, bool isInteracting)
+    {
+        animator.SetBool("isInteracting", isInteracting); // Set the isInteracting variable on the Animator to match the parameter
+        animator.CrossFade(targetAnimation, 0.2f); // Play animation specified by parameter
+    }
+
 }

@@ -6,7 +6,10 @@ public class PlayerManager : MonoBehaviour
 {
     InputManager inputManager; // Input Manager instance
     PlayerMovement playerMovement; // PlayerMovement instance
-    CameraManager cameraManager;
+    CameraManager cameraManager; // CameraManager instance
+    Animator animator; // Animator instance
+
+    public bool isInteracting; // Track whether or not the player is interacting with something
 
     // Called right before Start() method
     private void Awake()
@@ -14,6 +17,7 @@ public class PlayerManager : MonoBehaviour
         inputManager = GetComponent<InputManager>(); // Reference to InputManager attached to player
         playerMovement = GetComponent<PlayerMovement>(); // Reference to PlayerMovement script attached to player
         cameraManager = FindObjectOfType<CameraManager>(); // Reference to the object with the CameraManager script attached to it
+        animator = GetComponent<Animator>(); // Reference to Animator attached to player
     }
 
     // Runs once every frame
@@ -32,5 +36,7 @@ public class PlayerManager : MonoBehaviour
     private void LateUpdate()
     {
         cameraManager.HandleAllCameraMovement(); // Make the camera follow the target
+
+        isInteracting = animator.GetBool("isInteracting"); // Set this bool to whatever it is on the animator
     }
 }

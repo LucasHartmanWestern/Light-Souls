@@ -9,7 +9,18 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection; // Direction player moves
     Transform cameraTransform; // Transform of the camera the player sees through
     Rigidbody playerRigidBody; // Reference to player's RigidBody component
+    PlayerManager playerManager; // Reference to PlayerManager script attached to this object
+    PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script attached to this object
 
+    [Header("Falling Settings")]
+    public float inAirTimer; // Track how long player is in the air for
+    public float leapingVelocity; // Specify how much the player should move forward when they begin to fall
+    public float fallingVelocity; // Specify how fast the player falls
+    public float rayCastHeightOffset; // Specify how much to offset the height of the origin of the raycast
+    public LayerMask groundLayer; // Specify what the player wont fall through
+
+    [Header("Movement Flags")]
+    public bool isGrounded; // Check if the player is on the ground
     public bool isSprinting; // Check if player is sprinting
 
     [Header("Movement Stats")]
@@ -24,16 +35,22 @@ public class PlayerMovement : MonoBehaviour
         inputManager = GetComponent<InputManager>(); // Reference to InputManager attached to player
         playerRigidBody = GetComponent<Rigidbody>(); // Reference to RigidBody attached to player
         cameraTransform = Camera.main.transform; // Get transform of the main camera
+        playerManager = GetComponent<PlayerManager>(); // Reference to PlayerManager script attached to player
+        playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Reference to PlayerAnimation script attached to player
     }
 
     // Public method to call the other movement functions
     public void HandleAllPlayerMovement()
     {
+        HandleFallingAndLanding(); // Handles the falling/landing of the player
+
+        if (playerManager.isInteracting) return; // Disable movement if player is interacting with anything
+
         HandlePlayerMovement(); // Handles the movement on the x and z axes
         HandlePlayerRotation(); // Handles the rotation of the player
     }
 
-    // Handles the movement for the player ni the x and z axes
+    // Handles the movement for the player in the x and z axes
     private void HandlePlayerMovement()
     {
         moveDirection = cameraTransform.forward * inputManager.verticalInput; // Get direction of vertical movement
@@ -53,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         playerRigidBody.velocity = movementVelocity; // Change the RigidBody attached to the player to match the movementVelocity variable
     }
 
+    // Handles the rotation for the player
     private void HandlePlayerRotation()
     {
         Vector3 targetDirection = Vector3.zero; // Start out at (0, 0, 0)
@@ -67,5 +85,40 @@ public class PlayerMovement : MonoBehaviour
         Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime); // Get quaternion of the player's roation
 
         transform.rotation = playerRotation; // Rotate the transform of the player
+    }
+
+    // Handles the falling and landing animation and physics for the player
+    private void HandleFallingAndLanding()
+    {
+        RaycastHit hit; // Make a Raycast
+        Vector3 rayCastOrigin = transform.position; // Initiate the raycast at the feet of the player
+        rayCastOrigin.y += rayCastHeightOffset; // Offset the starting height of the raycast
+
+        if (!isGrounded)
+        {
+            if (!playerManager.isInteracting)
+            {
+                playerAnimationManager.PlayTargetAnimation("Falling", true); // Call the falling animation and don't allow player to break out of it
+            }
+
+            inAirTimer += Time.deltaTime; // Increase the timer tracking air time
+            playerRigidBody.AddForce(transform.forward * leapingVelocity); // Add a slight forward force to the player
+            playerRigidBody.AddForce(-Vector3.up * fallingVelocity * inAirTimer); // Add falling force to player
+        }
+        
+        // Check if player is on top of an object in the groundLayer
+        if(Physics.SphereCast(rayCastOrigin, 0.2f, -Vector3.up, out hit, groundLayer))
+        {
+            // Make sure player is not on the ground and not interacting
+            if(!isGrounded && !playerManager.isInteracting)
+            {
+                playerAnimationManager.PlayTargetAnimation("Land", true); // Call the landing animation and don't allow the player to break out of it
+            }
+
+            inAirTimer = 0; // Reset the air time tracker
+            isGrounded = true; // Specify that the player is now on the ground
+        }
+        else { isGrounded = false; } // If raycast doesn't detect the ground then the player is not grounded
+
     }
 }
