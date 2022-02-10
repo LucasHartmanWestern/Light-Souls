@@ -38,5 +38,8 @@ public class PlayerManager : MonoBehaviour
         cameraManager.HandleAllCameraMovement(); // Make the camera follow the target
 
         isInteracting = animator.GetBool("isInteracting"); // Set this bool to whatever it is on the animator
+        playerMovement.isJumping = animator.GetBool("isJumping"); // Set the PlayerMovement isJumping bool to match the one found in the animator
+
+        animator.SetBool("isGrounded", playerMovement.isGrounded); // Set the isGrounded bool to match the one found in the PlayerMovement script
     }
 }

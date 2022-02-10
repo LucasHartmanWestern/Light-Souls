@@ -22,12 +22,17 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Flags")]
     public bool isGrounded; // Check if the player is on the ground
     public bool isSprinting; // Check if player is sprinting
+    public bool isJumping; // Check if the player is trying to jump
 
     [Header("Movement Stats")]
     public float walkingSpeed = 1.5f; // How fast the player can walk
     public float runningSpeed = 5f; // How fast the player can run
     public float sprintingSpeed = 8f; // How fast the player can sprint
     public float rotationSpeed = 15f; // How fast the player can rotate on the y axis
+
+    [Header("Jumping Stats")]
+    public float jumpHeight = 3; // Height the player can jump
+    public float gravityIntensity = -15; // Speed at which gravity acts on player's jump
 
     // Called right before Start() method
     private void Awake()
@@ -53,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
     // Handles the movement for the player in the x and z axes
     private void HandlePlayerMovement()
     {
+        if (isJumping) return; // Don't move in the air while jumping
+
         moveDirection = cameraTransform.forward * inputManager.verticalInput; // Get direction of vertical movement
         moveDirection = moveDirection + cameraTransform.right * inputManager.horizontalInput; // Get direction of horizontal movement
         moveDirection.Normalize(); // Change length of vector to 1
@@ -73,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
     // Handles the rotation for the player
     private void HandlePlayerRotation()
     {
+        if (isJumping) return; // Don't rotate in the air while jumping
+
         Vector3 targetDirection = Vector3.zero; // Start out at (0, 0, 0)
         targetDirection = cameraTransform.forward * inputManager.verticalInput; // Face player in direction of vertical movement
         targetDirection = targetDirection + cameraTransform.right * inputManager.horizontalInput; // Face player in direction of horizontal movement
@@ -94,7 +103,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 rayCastOrigin = transform.position; // Initiate the raycast at the feet of the player
         rayCastOrigin.y += rayCastHeightOffset; // Offset the starting height of the raycast
 
-        if (!isGrounded)
+        // Only play falling animation if player is not on the ground and not jumping
+        if (!isGrounded && !isJumping)
         {
             if (!playerManager.isInteracting)
             {
@@ -119,6 +129,21 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true; // Specify that the player is now on the ground
         }
         else { isGrounded = false; } // If raycast doesn't detect the ground then the player is not grounded
+    }
 
+    // Handles jumping animation and physics for the player
+    public void HandleJumping()
+    {
+        // Only let player jump if they're on the ground
+        if (isGrounded)
+        {
+            playerAnimationManager.animator.SetBool("isJumping", true); // Set the bool in the animator
+            playerAnimationManager.PlayTargetAnimation("Jumping", false); // Play animation in the animator
+
+            float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight); // Get the velocity for the jump
+            Vector3 playerVelocity = moveDirection; // Get the moveDirection variable and set it to the playerVelocity (to keep player movement pre-jump)
+            playerVelocity.y = jumpingVelocity; // Add the jumpingVelocity as the velocity in the y axis
+            playerRigidBody.velocity += playerVelocity; // Apply the newly calcualted velocity to the RigidBody of the player
+        }
     }
 }

@@ -87,5 +87,12 @@ public class InputManager : MonoBehaviour
         // Set whether or not the player is sprinting in the PlayerMovement script
         if (sprintInput && moveAmount > 0.5f) playerMovement.isSprinting = true;
         else playerMovement.isSprinting = false;
+
+        // If player tries to jump, set the input to false (to only jump once) then call the HandleJump method
+        if (jumpInput)
+        {
+            jumpInput = false;
+            playerMovement.HandleJumping();
+        }
     }
 }
