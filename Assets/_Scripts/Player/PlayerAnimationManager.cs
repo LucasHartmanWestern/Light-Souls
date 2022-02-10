@@ -47,7 +47,7 @@ public class PlayerAnimationManager : MonoBehaviour
             snappedVertical = 0;
         #endregion
 
-        if (isSprinting) { snappedVertical = 2; } // Set vertical to 2 if player is sprinting to change the animation
+        if (isSprinting && Mathf.Abs(verticalMovement) > 0.55f) { snappedVertical = 2; } // Set vertical to 2 if player is sprinting to change the animation
 
         animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime); // Set the horizontal float in the animator
         animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime); // Set the vertical float in the animator

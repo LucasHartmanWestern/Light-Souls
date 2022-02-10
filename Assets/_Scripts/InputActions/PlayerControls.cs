@@ -292,6 +292,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JumpButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""334ea586-1caa-4212-ba1f-a874b4a0ca90"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -316,6 +325,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""SprintButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""254dcf01-8785-4b42-9cc0-d5cead6ba4eb"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JumpButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb9f6644-158f-4613-bd36-84bdd1438ae6"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JumpButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -329,6 +360,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // PlayerActions
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_SprintButton = m_PlayerActions.FindAction("SprintButton", throwIfNotFound: true);
+        m_PlayerActions_JumpButton = m_PlayerActions.FindAction("JumpButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -430,11 +462,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerActions;
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_SprintButton;
+    private readonly InputAction m_PlayerActions_JumpButton;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @SprintButton => m_Wrapper.m_PlayerActions_SprintButton;
+        public InputAction @JumpButton => m_Wrapper.m_PlayerActions_JumpButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -447,6 +481,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SprintButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSprintButton;
                 @SprintButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSprintButton;
                 @SprintButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSprintButton;
+                @JumpButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJumpButton;
+                @JumpButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJumpButton;
+                @JumpButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJumpButton;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -454,6 +491,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SprintButton.started += instance.OnSprintButton;
                 @SprintButton.performed += instance.OnSprintButton;
                 @SprintButton.canceled += instance.OnSprintButton;
+                @JumpButton.started += instance.OnJumpButton;
+                @JumpButton.performed += instance.OnJumpButton;
+                @JumpButton.canceled += instance.OnJumpButton;
             }
         }
     }
@@ -466,5 +506,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPlayerActionsActions
     {
         void OnSprintButton(InputAction.CallbackContext context);
+        void OnJumpButton(InputAction.CallbackContext context);
     }
 }
