@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
     public bool sprintInput; // Check if player is trying to sprint
     public bool jumpInput; // Check if player is trying to jump
     public bool aimInput; // Check if player is trying to aim
+    public bool attackInput; // Check if player is trying to attack
 
     // Called right before Start() method
     private void Awake()
@@ -42,6 +43,7 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
 
+            #region Action Input Setting
             playerControls.PlayerActions.SprintButton.performed += i => sprintInput = true; // Set sprintInput to true when the SprintButton is pressed
             playerControls.PlayerActions.SprintButton.canceled += i => sprintInput = false; // Set sprintInput to false when the SprintButton is no longer pressed
 
@@ -50,6 +52,10 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.AimButton.performed += i => aimInput = true; // Set aimInput to true when the AimButton is pressed
             playerControls.PlayerActions.AimButton.canceled += i => aimInput = false; // Set aimInput to false when the AimButton is no longer pressed
+
+            playerControls.PlayerActions.AttackButton.performed += i => attackInput = true; // Set attackInput to true when the AttackButton is pressed
+            playerControls.PlayerActions.AttackButton.canceled += i => attackInput = false; // Set attackInput to false when the AttackButton is no longer pressed
+            #endregion
         }
 
         // Enable the PlayerControls instance

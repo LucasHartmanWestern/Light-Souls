@@ -81,11 +81,24 @@ public class PlayerMovement : MonoBehaviour
     // Handles the rotation for the player
     private void HandlePlayerRotation()
     {
-        if (isJumping && !isAiming) return; // Don't rotate in the air while jumping
+        if (isJumping && !isAiming) return; // Don't rotate in the air while jumping and not aiming
 
         Vector3 targetDirection = Vector3.zero; // Start out at (0, 0, 0)
 
-        if (isAiming) { targetDirection = cameraTransform.forward; } // Face player forward if they're aiming
+        // Face player at what they're aiming if they're aiming
+        if (isAiming)
+        {
+            Vector3 worldAimTarget = Vector3.zero; // Set the mouseWorldPosition
+            Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f); // Get position of the center of the screen
+            Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); // Cast ray from center of the screen forwards
+
+            // Triggers if Raycast hits something
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f))
+                worldAimTarget = raycastHit.point; // Find where the mouse is aiming at
+            
+            Vector3 aimDirection = (worldAimTarget - transform.position).normalized; // Determine where the user is aiming relative to the player
+            targetDirection = aimDirection; // Have player look towards where they're aiming
+        }
         else
         {
             targetDirection = cameraTransform.forward * inputManager.verticalInput; // Face player in direction of vertical movement
