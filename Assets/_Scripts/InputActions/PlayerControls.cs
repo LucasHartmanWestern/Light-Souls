@@ -337,6 +337,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0721ebd2-85e6-4b4f-83b9-819717802a44"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""254dcf01-8785-4b42-9cc0-d5cead6ba4eb"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
