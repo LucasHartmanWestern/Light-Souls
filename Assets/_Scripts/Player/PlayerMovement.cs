@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     // Handles the movement for the player in the x and z axes
     private void HandlePlayerMovement()
     {
-        if (isJumping) return; // Don't move in the air while jumping
+        if (isJumping || !isGrounded) return; // Don't move in the air while jumping
 
         moveDirection = cameraTransform.forward * inputManager.verticalInput; // Get direction of vertical movement
         moveDirection = moveDirection + cameraTransform.right * inputManager.horizontalInput; // Get direction of horizontal movement
@@ -108,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit hit; // Make a Raycast
         Vector3 rayCastOrigin = transform.position; // Initiate the raycast at the feet of the player
+        Vector3 targetPosition = transform.position; // Position player should be
         rayCastOrigin.y += rayCastHeightOffset; // Offset the starting height of the raycast
 
         // Only play falling animation if player is not on the ground and not jumping
@@ -132,10 +133,21 @@ public class PlayerMovement : MonoBehaviour
                 playerAnimationManager.PlayTargetAnimation("Land", true); // Call the landing animation and don't allow the player to break out of it
             }
 
+            Vector3 rayCastHitPoint = hit.point; // Store where raycast is hitting the ground
+            targetPosition.y = rayCastHitPoint.y; // Set the target to be the ground
+
             inAirTimer = 0; // Reset the air time tracker
             isGrounded = true; // Specify that the player is now on the ground
         }
         else { isGrounded = false; } // If raycast doesn't detect the ground then the player is not grounded
+
+        if (isGrounded && !isJumping)
+        {
+            if (playerManager.isInteracting || inputManager.moveAmount > 0)
+                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f); // Smoothly move player if they are moving or interacting
+            else
+                transform.position = targetPosition; // If not moving or interacting, immediately move the player
+        }
     }
 
     // Handles jumping animation and physics for the player
