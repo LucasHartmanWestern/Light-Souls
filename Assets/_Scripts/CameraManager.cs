@@ -109,14 +109,18 @@ public class CameraManager : MonoBehaviour
         // Player is aiming
         if (inputManager.aimInput)
         {
-            cameraPivot.transform.localPosition = new Vector3(1, 1.25f, 2); // Set new position for camera
+            cameraPivot.transform.localPosition = new Vector3(1, 1.25f, 2); // Set new position for 
             cameraFollowSpeed = 0; // Make camera more responsive
+            cameraLookSpeed = 0.1f; // Make camera move slower
+            cameraPivotSpeed = 0.1f; // Make camera move slower
         }
         // Player is not aiming
         else if (!inputManager.aimInput)
         {
             cameraPivot.transform.localPosition = new Vector3(0, 2, 0); // Set new position for camer
             cameraFollowSpeed = 0.2f; // Make camera more smooth
+            cameraLookSpeed = 0.25f; // Make camera move faster
+            cameraPivotSpeed = 0.25f; // Make camera move faster
         }
     }
 }
