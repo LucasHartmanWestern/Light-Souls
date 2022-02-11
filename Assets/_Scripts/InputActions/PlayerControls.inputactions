@@ -279,6 +279,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AimButton",
+                    "type": "Button",
+                    "id": "3233d14f-5a39-4522-8245-9260bf3de5ce",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -323,6 +332,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "JumpButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83059b07-9eb7-4e86-9f25-ed27a81dd8bc",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3688d4cd-e4bd-4749-a822-ba689a85e7ec",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

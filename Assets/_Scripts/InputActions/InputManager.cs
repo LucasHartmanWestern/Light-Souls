@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     public float moveAmount; // Determine the amount to move
     public bool sprintInput; // Check if player is trying to sprint
     public bool jumpInput; // Check if player is trying to jump
+    public bool aimInput; // Check if player is trying to aim
 
     // Called right before Start() method
     private void Awake()
@@ -46,6 +47,9 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.JumpButton.performed += i => jumpInput = true; // Set jumpInput to true when the JumpButton is pressed
             playerControls.PlayerActions.JumpButton.canceled += i => jumpInput = false; // Set jumpInput to false when the JumpButton is no longer pressed
+
+            playerControls.PlayerActions.AimButton.performed += i => aimInput = true; // Set aimInput to true when the AimButton is pressed
+            playerControls.PlayerActions.AimButton.canceled += i => aimInput = false; // Set aimInput to false when the AimButton is no longer pressed
         }
 
         // Enable the PlayerControls instance
@@ -94,5 +98,7 @@ public class InputManager : MonoBehaviour
             jumpInput = false;
             playerMovement.HandleJumping();
         }
+
+        playerMovement.isAiming = aimInput; // Make player face where they're aiming
     }
 }

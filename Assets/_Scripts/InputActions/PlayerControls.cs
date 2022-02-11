@@ -301,6 +301,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""3233d14f-5a39-4522-8245-9260bf3de5ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -347,6 +356,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""JumpButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83059b07-9eb7-4e86-9f25-ed27a81dd8bc"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3688d4cd-e4bd-4749-a822-ba689a85e7ec"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -361,6 +392,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_SprintButton = m_PlayerActions.FindAction("SprintButton", throwIfNotFound: true);
         m_PlayerActions_JumpButton = m_PlayerActions.FindAction("JumpButton", throwIfNotFound: true);
+        m_PlayerActions_AimButton = m_PlayerActions.FindAction("AimButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -463,12 +495,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_SprintButton;
     private readonly InputAction m_PlayerActions_JumpButton;
+    private readonly InputAction m_PlayerActions_AimButton;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @SprintButton => m_Wrapper.m_PlayerActions_SprintButton;
         public InputAction @JumpButton => m_Wrapper.m_PlayerActions_JumpButton;
+        public InputAction @AimButton => m_Wrapper.m_PlayerActions_AimButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -484,6 +518,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @JumpButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJumpButton;
                 @JumpButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJumpButton;
                 @JumpButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJumpButton;
+                @AimButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAimButton;
+                @AimButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAimButton;
+                @AimButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnAimButton;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -494,6 +531,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @JumpButton.started += instance.OnJumpButton;
                 @JumpButton.performed += instance.OnJumpButton;
                 @JumpButton.canceled += instance.OnJumpButton;
+                @AimButton.started += instance.OnAimButton;
+                @AimButton.performed += instance.OnAimButton;
+                @AimButton.canceled += instance.OnAimButton;
             }
         }
     }
@@ -507,5 +547,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnSprintButton(InputAction.CallbackContext context);
         void OnJumpButton(InputAction.CallbackContext context);
+        void OnAimButton(InputAction.CallbackContext context);
     }
 }

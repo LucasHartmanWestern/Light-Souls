@@ -46,6 +46,7 @@ public class CameraManager : MonoBehaviour
         FollowTarget(); // Move the camera with the player
         RotateCamera(); // Rotate the camera according to the player input
         HandleCameraCollisions(); // Adjust the camera if it collides with an object
+        HandleCameraAim(); // Adjust the camera if player is aiming
     }
 
     // Make camera follow a specified target
@@ -102,4 +103,20 @@ public class CameraManager : MonoBehaviour
         cameraTransform.localPosition = cameraVectorPosition; // Set the camera's transform
     }
 
+    // Adjust the camera when aiming
+    private void HandleCameraAim()
+    {
+        // Player is aiming
+        if (inputManager.aimInput)
+        {
+            cameraPivot.transform.localPosition = new Vector3(1, 1.25f, 2); // Set new position for camera
+            cameraFollowSpeed = 0; // Make camera more responsive
+        }
+        // Player is not aiming
+        else if (!inputManager.aimInput)
+        {
+            cameraPivot.transform.localPosition = new Vector3(0, 2, 0); // Set new position for camer
+            cameraFollowSpeed = 0.2f; // Make camera more smooth
+        }
+    }
 }

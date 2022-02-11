@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded; // Check if the player is on the ground
     public bool isSprinting; // Check if player is sprinting
     public bool isJumping; // Check if the player is trying to jump
+    public bool isAiming; // Check if the player is aiming
 
     [Header("Movement Stats")]
     public float walkingSpeed = 1.5f; // How fast the player can walk
@@ -80,11 +81,17 @@ public class PlayerMovement : MonoBehaviour
     // Handles the rotation for the player
     private void HandlePlayerRotation()
     {
-        if (isJumping) return; // Don't rotate in the air while jumping
+        if (isJumping && !isAiming) return; // Don't rotate in the air while jumping
 
         Vector3 targetDirection = Vector3.zero; // Start out at (0, 0, 0)
-        targetDirection = cameraTransform.forward * inputManager.verticalInput; // Face player in direction of vertical movement
-        targetDirection = targetDirection + cameraTransform.right * inputManager.horizontalInput; // Face player in direction of horizontal movement
+
+        if (isAiming) { targetDirection = cameraTransform.forward; } // Face player forward if they're aiming
+        else
+        {
+            targetDirection = cameraTransform.forward * inputManager.verticalInput; // Face player in direction of vertical movement
+            targetDirection = targetDirection + cameraTransform.right * inputManager.horizontalInput; // Face player in direction of horizontal movement
+        }
+
         targetDirection.Normalize(); // Set magnitude to 1
         targetDirection.y = 0; // Set value on y axis to 0
 
