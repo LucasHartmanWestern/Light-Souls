@@ -8,6 +8,9 @@ public class PlayerAttack : MonoBehaviour
     InputManager inputManager; // Reference to InputManager class
     [SerializeField] private LayerMask _aimColliderMask; // All layers that player can aim at
 
+    public GameObject projectilePrefab; // Get reference to the projectile prefab
+    public Transform spawnBulletPosition; // Point where bullet spawns when fired
+
     // Called before Start()
     private void Awake()
     {
@@ -31,7 +34,13 @@ public class PlayerAttack : MonoBehaviour
         // Triggers if Raycast hits something
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, _aimColliderMask))
         {
-            //transform.position = raycastHit.point;
+            // Player is attacking
+            if (inputManager.attackInput)
+            { 
+                Vector3 aimDirection = (raycastHit.point - spawnBulletPosition.position).normalized; // Determine where the user is aiming relative to the player
+                Instantiate(projectilePrefab, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Spawn in a bullet
+                inputManager.attackInput = false; // Make it so player must press the attack button each time (semi-automatic)
+            }  
         }
     }
 

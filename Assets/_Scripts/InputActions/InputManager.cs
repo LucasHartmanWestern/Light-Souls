@@ -106,5 +106,9 @@ public class InputManager : MonoBehaviour
         }
 
         playerMovement.isAiming = aimInput; // Make player face where they're aiming
+
+        // Make the player animate to aim if player is aiming
+        if (aimInput) playerAnimationManager.PlayerAim(1f);
+        else playerAnimationManager.PlayerAim(0f);
     }
 }

@@ -60,4 +60,9 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.CrossFade(targetAnimation, 0.2f); // Play animation specified by parameter
     }
 
+    // Change the weight of the animation layer for aiming
+    public void PlayerAim(float layerWeight)
+    {
+        animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), layerWeight, Time.deltaTime * 10f)); // Smoothly transition animation to aiming or not aiming
+    }
 }
