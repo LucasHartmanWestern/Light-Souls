@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody playerRigidBody; // Reference to player's RigidBody component
     PlayerManager playerManager; // Reference to PlayerManager script attached to this object
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script attached to this object
+    PlayerGeneral playerGeneral; // Reference to PlayerGeneral script
 
     [Header("Falling Settings")]
     public float inAirTimer; // Track how long player is in the air for
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         cameraTransform = Camera.main.transform; // Get transform of the main camera
         playerManager = GetComponent<PlayerManager>(); // Reference to PlayerManager script attached to player
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Reference to PlayerAnimation script attached to player
+        playerGeneral = GetComponent<PlayerGeneral>(); // Reference to PlayerGeneral script attached to player
     }
 
     // Public method to call the other movement functions
@@ -75,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
             else movementVelocity = moveDirection * walkingSpeed; // Velocity of player walking
         }
 
-        playerRigidBody.velocity = movementVelocity; // Change the RigidBody attached to the player to match the movementVelocity variable
+        playerRigidBody.velocity = movementVelocity * playerGeneral.playerMoveSpeed; // Change the RigidBody attached to the player to match the movementVelocity variable
     }
 
     // Handles the rotation for the player

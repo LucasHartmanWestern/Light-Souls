@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04ecd5390aa17747a760056c57a8085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isProjectile: 1
   projectileSpeed: 40
   psHitGreen: {fileID: 613433886817584985, guid: b20cfbe8ee679ee45b9b0e862a56d344, type: 3}
   psHitRed: {fileID: 613433886817584985, guid: 9c7b4aa2e3f077a448e66cf5ffe9ec12, type: 3}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     InputManager inputManager; // Reference to the InputManager
+    PlayerGeneral playerGeneral; // Reference to PlayerGeneral
 
     private Vector3 _cameraFollowVelocity = Vector3.zero; // Vector3 to track the current velocity
 
@@ -38,6 +39,7 @@ public class CameraManager : MonoBehaviour
         inputManager = FindObjectOfType<InputManager>(); // Get the InputManager
         cameraTransform = Camera.main.transform; // Get the transform of the main camera
         defaultPosition = cameraTransform.localPosition.z; // Get z axis position of the camera's transform
+        playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to PlayerGeneral script
     }
 
     // Public method to handle the camera movement
@@ -63,7 +65,7 @@ public class CameraManager : MonoBehaviour
         Vector3 rotation; // Specify the rotation of the camera
         Quaternion targetRotation; // Target rotation in a Quaterion form
 
-        lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed); // Set the look angle based on player input
+        lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed * playerGeneral.playerLookSpeed); // Set the look angle based on player input
         pivotAngle = pivotAngle - (inputManager.cameraInputY * cameraPivotSpeed); // Set the pivot angle based on player input
         pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle); // Make it so you cannot rotate the pivotAngle forever
 

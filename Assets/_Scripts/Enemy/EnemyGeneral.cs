@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class EnemyGeneral : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Enemy Stats")]
+    public float enemyHealth; // Track health of enemy
 
-    // Update is called once per frame
-    void Update()
+    // Damage the enemy
+    public void TakeDamage(float damageAmount)
     {
-        
+        enemyHealth -= damageAmount; // Decrease health
     }
 }
