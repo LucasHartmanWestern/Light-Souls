@@ -121,6 +121,8 @@ public class PlayerMovement : MonoBehaviour
     // Handles the falling and landing animation and physics for the player
     private void HandleFallingAndLanding()
     {
+        if (!playerGeneral.isAlive) return; // Don't run if player dies
+
         RaycastHit hit; // Make a Raycast
         Vector3 rayCastOrigin = transform.position; // Initiate the raycast at the feet of the player
         Vector3 targetPosition = transform.position; // Position player should be

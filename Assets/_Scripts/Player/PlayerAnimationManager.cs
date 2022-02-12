@@ -66,6 +66,12 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), layerWeight, Time.deltaTime * 10f)); // Smoothly transition animation to aiming or not aiming
     }
 
+    // Apply root motion of animation (only triggered for certain animations)
+    public void AplpyRootMotion()
+    {
+        animator.applyRootMotion = true;
+    }
+
     public bool AnimationPlaying(string animationName)
     {
         return animator.GetCurrentAnimatorStateInfo(1).IsName(animationName);
