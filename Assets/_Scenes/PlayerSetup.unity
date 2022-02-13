@@ -2250,7 +2250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1cb950e8d684047ae8b5868deafb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlive: 0
+  isAlive: 1
   playerMoveSpeed: 1
   playerLookSpeed: 1
   playerHealth: 100
