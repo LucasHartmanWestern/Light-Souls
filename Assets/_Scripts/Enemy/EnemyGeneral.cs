@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyGeneral : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class EnemyGeneral : MonoBehaviour
 
     [Header("Enemy Stats")]
     public float enemyHealth; // Track health of enemy
+    public float enemyDamage; // Track damage enemy does to player
 
     // Called before Start()
     private void Awake()
@@ -24,6 +26,8 @@ public class EnemyGeneral : MonoBehaviour
 
         if (enemyHealth <= 0)
         {
+            GetComponent<NavMeshAgent>().enabled = false;
+
             animator.CrossFade("Death", 0.2f); // Play death animation
             StartCoroutine(DestroyEnemyObject()); // Destroy enemy game obejct
         }

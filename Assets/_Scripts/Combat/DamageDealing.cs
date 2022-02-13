@@ -44,6 +44,14 @@ public class DamageDealing : MonoBehaviour
             if (isProjectile) other.GetComponent<EnemyGeneral>().TakeDamage(playerGeneral.rangedDamage); // Damage enemy the ranged amount
             else other.GetComponent<EnemyGeneral>().TakeDamage(playerGeneral.meleeDamage); // Damage enemy the melee amount
         }
+        // Check if hit player
+        else if (other.GetComponent<PlayerGeneral>() != null)
+        {
+            Instantiate(psHitRed, transform.position, Quaternion.identity); // Create a red particle system
+
+            if (transform.parent.GetComponent<EnemyGeneral>() != null)
+                other.GetComponent<PlayerGeneral>().TakeDamage(transform.parent.GetComponent<EnemyGeneral>().enemyDamage); // Damage player the correct amount
+        }
         else // Tiggers if a non-enemy object was hit
         {
             if (isProjectile)
