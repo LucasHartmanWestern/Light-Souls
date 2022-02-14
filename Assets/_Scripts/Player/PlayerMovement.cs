@@ -50,12 +50,16 @@ public class PlayerMovement : MonoBehaviour
     // Public method to call the other movement functions
     public void HandleAllPlayerMovement()
     {
-        HandleFallingAndLanding(); // Handles the falling/landing of the player
+        // Only move if player is alive
+        if (playerGeneral.isAlive)
+        {
+            HandleFallingAndLanding(); // Handles the falling/landing of the player
 
-        if (playerManager.isInteracting) return; // Disable movement if player is interacting with anything
+            if (playerManager.isInteracting) return; // Disable movement if player is interacting with anything
 
-        HandlePlayerMovement(); // Handles the movement on the x and z axes
-        HandlePlayerRotation(); // Handles the rotation of the player
+            HandlePlayerMovement(); // Handles the movement on the x and z axes
+            HandlePlayerRotation(); // Handles the rotation of the player
+        }    
     }
 
     // Handles the movement for the player in the x and z axes
@@ -90,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         // Face player at what they're aiming if they're aiming
         if (isAiming)
         {
-            Vector3 worldAimTarget = Vector3.zero; // Set the mouseWorldPosition
+            Vector3 worldAimTarget = Vector3.zero; // Set the worldAimTarget
             Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f); // Get position of the center of the screen
             Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); // Cast ray from center of the screen forwards
 

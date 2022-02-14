@@ -6,9 +6,8 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     EnemyGeneral enemyGeneral; // Reference to EnemyGeneral class
-    Transform playerTransform; // Reference to where the player is
+    Transform playerTargetTransform; // Reference to where the player is
     Animator animator; // Reference to the animator of the enemy
-    int isMoving; // Reference to the isMoving parameter in the animator
 
     [Header("Game Objects/Transforms")]
     public GameObject projectilePrefab; // Get reference to the projectile prefab
@@ -38,10 +37,8 @@ public class EnemyAI : MonoBehaviour
     {
         enemyGeneral = GetComponent<EnemyGeneral>(); // Get EnemyGeneral script attached to the same object as this
         animator = GetComponent<Animator>(); // Get reference of animator attached to enemy
-        playerTransform = FindObjectOfType<PlayerGeneral>().transform; // Get reference to player instance transform
+        playerTargetTransform = GameObject.Find("PlayerTarget").transform; // Get reference to player instance transform
         agent = GetComponent<NavMeshAgent>(); // Get reference to the NavMeshAgent attached to this enemy instance
-
-        isMoving = Animator.StringToHash("isMoving"); // Set int to be the value of horizontal in the animator
     }
 
     // Called after Awake()
@@ -55,6 +52,12 @@ public class EnemyAI : MonoBehaviour
         // Check if player is in the sight or attack range using a physics sphere
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (enemyGeneral.isAlive && playerInAttackRange)
+            animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 1f, Time.deltaTime * 10f)); // Make enemy not aim
+        else
+            animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0, Time.deltaTime * 10f)); // Make enemy not aim
+
 
         if (GetComponent<NavMeshAgent>().enabled == true) // Only perform if the NavMeshAgent is on
         {
@@ -79,8 +82,7 @@ public class EnemyAI : MonoBehaviour
     // Make enemy wander around the arena
     private void Patrolling()
     {
-        animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0, Time.deltaTime * 10f)); // Make enemy not aim
-        animator.SetFloat(isMoving, 0.5f, 0.1f, Time.deltaTime); // Set the isMoving float in the animator
+        animator.SetFloat("MovingAmount", 0.5f); // Set the isMoving float in the animator
 
         if (!walkPointSet) SearchWalkPoint(); // Search for a walkPoint until one is found
         if (walkPointSet)
@@ -95,25 +97,43 @@ public class EnemyAI : MonoBehaviour
     // Make enemy chase the player
     private void Chasing()
     {
-        animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0, Time.deltaTime * 10f)); // Make enemy not aim
-        animator.SetFloat(isMoving, 1, 0.1f, Time.deltaTime); // Set the isMoving float in the animator
+        animator.SetFloat("MovingAmount", 0.5f); // Set the isMoving float in the animator
 
-        agent.SetDestination(playerTransform.position); // Move agent towards player
+        agent.SetDestination(playerTargetTransform.position); // Move agent towards player
     }
 
     // Make enemy attack the player
     private void Attacking()
     {
         agent.SetDestination(transform.position); // Don't move enemy when they are attacking
-        animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 1f, Time.deltaTime * 10f)); // Smoothly transition animation to aiming or not aiming
+        animator.SetFloat("MovingAmount", 0); // Set the isMoving float in the animator
 
+        Vector3 targetDirection = Vector3.zero; // Start out at (0, 0, 0)
 
-        transform.LookAt(playerTransform); // Look at the player while attacking
+        Vector3 worldAimTarget = Vector3.zero; // Set the worldAimTarget
+
+        worldAimTarget = playerTargetTransform.position; // Find where the player is
+
+        Vector3 lookAimTarget = (worldAimTarget - transform.position).normalized; // Determine where the user is aiming relative to the player
+        targetDirection = lookAimTarget; // Have player look towards where they're aiming
+
+        targetDirection.Normalize(); // Set magnitude to 1
+        targetDirection.y = 0; // Set value on y axis to 0
+
+        if (targetDirection == Vector3.zero) targetDirection = transform.forward; // Keep rotation at position last specified by the player
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection); // Look towards the target direction defined above
+        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, 15f * Time.deltaTime); // Get quaternion of the player's roation
+
+        transform.rotation = playerRotation; // Rotate the transform of the player
 
         // Check if enemy already attacked
         if (!alreadyAttacked)
         {
-            Instantiate(projectilePrefab, spawnBulletPosition.position, Quaternion.LookRotation(playerTransform.position, Vector3.up), transform); // Spawn in a bullet
+            Vector3 aimDirection = (playerTargetTransform.position - spawnBulletPosition.position).normalized; // Determine where the user is aiming relative to the player
+
+            if (animator.GetLayerWeight(2) >= 0.8f)
+                Instantiate(projectilePrefab, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Spawn in a bullet
 
             alreadyAttacked = true; // Set that they attacked
             Invoke(nameof(ResetAttack), timeBetweenAttacks); // Reset attack after specified cooldown

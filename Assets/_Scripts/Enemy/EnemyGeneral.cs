@@ -10,6 +10,7 @@ public class EnemyGeneral : MonoBehaviour
     public Transform deathPS; // Death particle system reference
 
     [Header("Enemy Stats")]
+    public bool isAlive; // Track if this enemy instance is alive
     public float enemyHealth; // Track health of enemy
     public float enemyDamage; // Track damage enemy does to player
 
@@ -26,9 +27,9 @@ public class EnemyGeneral : MonoBehaviour
 
         if (enemyHealth <= 0)
         {
-            GetComponent<NavMeshAgent>().enabled = false;
-
+            animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0f, Time.deltaTime * 10f)); // Smoothly transition animation to aiming or not aiming
             animator.CrossFade("Death", 0.2f); // Play death animation
+
             StartCoroutine(DestroyEnemyObject()); // Destroy enemy game obejct
         }
     }
@@ -36,6 +37,8 @@ public class EnemyGeneral : MonoBehaviour
     // Handle the destroying of the enemy GameObject
     IEnumerator DestroyEnemyObject()
     {
+        GetComponent<NavMeshAgent>().enabled = false; // Disable the NavMeshAgent
+
         yield return new WaitForSeconds(5f); // Wait 5 seconds before destroying the object
         Instantiate(deathPS, transform.position, Quaternion.identity); // Create a death particle system
 

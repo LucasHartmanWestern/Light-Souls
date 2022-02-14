@@ -48,11 +48,9 @@ public class DamageDealing : MonoBehaviour
         else if (other.GetComponent<PlayerGeneral>() != null)
         {
             Instantiate(psHitRed, transform.position, Quaternion.identity); // Create a red particle system
-
-            if (transform.parent.GetComponent<EnemyGeneral>() != null)
-                other.GetComponent<PlayerGeneral>().TakeDamage(transform.parent.GetComponent<EnemyGeneral>().enemyDamage); // Damage player the correct amount
+            other.GetComponent<PlayerGeneral>().TakeDamage(15); // Damage player the correct amount
         }
-        else // Tiggers if a non-enemy object was hit
+        else // Tiggers if a non-enemy and non-player object was hit
         {
             if (isProjectile)
                 Instantiate(psHitGreen, transform.position, Quaternion.identity); // Create a green particle system
