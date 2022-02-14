@@ -20,6 +20,13 @@ public class EnemyGeneral : MonoBehaviour
         animator = GetComponent<Animator>(); // Get animator attached to this enemy
     }
 
+    // Called once a frame
+    private void Update()
+    {
+        if (enemyHealth <= 0)
+            isAlive = false; // Set that the enemy is dead
+    }
+
     // Damage the enemy
     public void TakeDamage(float damageAmount)
     {

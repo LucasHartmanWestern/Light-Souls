@@ -72,8 +72,9 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.applyRootMotion = true;
     }
 
+    // Check if an animation is playing
     public bool AnimationPlaying(string animationName)
     {
-        return animator.GetCurrentAnimatorStateInfo(1).IsName(animationName);
+        return animator.GetCurrentAnimatorStateInfo(1).IsName(animationName); // Check if an animation is playing
     }
 }

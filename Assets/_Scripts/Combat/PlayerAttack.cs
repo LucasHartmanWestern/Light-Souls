@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Game Objects/Transforms")]
     public GameObject projectilePrefab; // Get reference to the projectile prefab
+    public Transform muzzleFlashPS; // Get reference to the muzzle flash prefab
     public Transform spawnBulletPosition; // Point where bullet spawns when fired
     public Transform meleeWeapon; // Reference to player's melee weapon
     public Transform rangedWeapon; // Reference to player's ranged weapon
@@ -69,6 +70,7 @@ public class PlayerAttack : MonoBehaviour
             if (inputManager.attackInput)
             { 
                 Vector3 aimDirection = (raycastHit.point - spawnBulletPosition.position).normalized; // Determine where the user is aiming relative to the player
+                Instantiate(muzzleFlashPS, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Create a yellow muzzle flash
                 Instantiate(projectilePrefab, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Spawn in a bullet
                 inputManager.attackInput = false; // Make it so player must press the attack button each time (semi-automatic)
             }  

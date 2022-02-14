@@ -40,5 +40,6 @@ public class PlayerGeneral : MonoBehaviour
     {
         yield return new WaitForSeconds(5f); // Wait 5 seconds before destroying the object
         Debug.Log("You Died"); // Destroy the game object
+
     }
 }

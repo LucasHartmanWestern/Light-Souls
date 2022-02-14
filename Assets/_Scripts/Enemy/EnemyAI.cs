@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Game Objects/Transforms")]
     public GameObject projectilePrefab; // Get reference to the projectile prefab
+    public Transform muzzleFlashPS; // Get reference to the muzzle flash particle system
     public Transform spawnBulletPosition; // Point where bullet spawns when fired
     public Transform rangedWeapon; // Reference to player's ranged weapon
     public Transform handTransform; // Reference to player's hand transform
@@ -18,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     [Header("AI Parameters")]
     NavMeshAgent agent; // Reference to the NavMeshAgent script
     public LayerMask whatIsGround, whatIsPlayer; // Reference to the ground and player layers
+    public Transform spawnPoint; // Determine where AI should be centered around
 
     [Header("Wander variables")]
     public Vector3 walkPoint; // Where enemy walks to
@@ -47,6 +49,7 @@ public class EnemyAI : MonoBehaviour
         rangedWeapon.SetParent(handTransform); // Track ranged weapon to hands
     }
 
+    // Called once a frame
     private void Update()
     {
         // Check if player is in the sight or attack range using a physics sphere
@@ -76,13 +79,14 @@ public class EnemyAI : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ); // Get new position to go to
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround)) walkPointSet = true; // Make sure new walk point is in range
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround) && Vector3.Distance(spawnPoint.position, walkPoint) <= 3) walkPointSet = true; // Make sure new walk point is in range
     }
 
     // Make enemy wander around the arena
     private void Patrolling()
     {
         animator.SetFloat("MovingAmount", 0.5f); // Set the isMoving float in the animator
+        agent.speed = 2; // Decrease enemy speed
 
         if (!walkPointSet) SearchWalkPoint(); // Search for a walkPoint until one is found
         if (walkPointSet)
@@ -97,7 +101,8 @@ public class EnemyAI : MonoBehaviour
     // Make enemy chase the player
     private void Chasing()
     {
-        animator.SetFloat("MovingAmount", 0.5f); // Set the isMoving float in the animator
+        animator.SetFloat("MovingAmount", 1f); // Set the isMoving float in the animator
+        agent.speed = 8; // Increase enemy speed
 
         agent.SetDestination(playerTargetTransform.position); // Move agent towards player
     }
@@ -110,11 +115,7 @@ public class EnemyAI : MonoBehaviour
 
         Vector3 targetDirection = Vector3.zero; // Start out at (0, 0, 0)
 
-        Vector3 worldAimTarget = Vector3.zero; // Set the worldAimTarget
-
-        worldAimTarget = playerTargetTransform.position; // Find where the player is
-
-        Vector3 lookAimTarget = (worldAimTarget - transform.position).normalized; // Determine where the user is aiming relative to the player
+        Vector3 lookAimTarget = (playerTargetTransform.position - transform.position).normalized; // Determine where the user is aiming relative to the player
         targetDirection = lookAimTarget; // Have player look towards where they're aiming
 
         targetDirection.Normalize(); // Set magnitude to 1
@@ -133,7 +134,10 @@ public class EnemyAI : MonoBehaviour
             Vector3 aimDirection = (playerTargetTransform.position - spawnBulletPosition.position).normalized; // Determine where the user is aiming relative to the player
 
             if (animator.GetLayerWeight(2) >= 0.8f)
+            {
+                Instantiate(muzzleFlashPS, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Create a yellow muzzle flash
                 Instantiate(projectilePrefab, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Spawn in a bullet
+            }   
 
             alreadyAttacked = true; // Set that they attacked
             Invoke(nameof(ResetAttack), timeBetweenAttacks); // Reset attack after specified cooldown
