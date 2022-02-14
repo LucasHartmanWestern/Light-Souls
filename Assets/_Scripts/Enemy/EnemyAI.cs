@@ -19,7 +19,6 @@ public class EnemyAI : MonoBehaviour
     [Header("AI Parameters")]
     NavMeshAgent agent; // Reference to the NavMeshAgent script
     public LayerMask whatIsGround, whatIsPlayer; // Reference to the ground and player layers
-    public Transform spawnPoint; // Determine where AI should be centered around
 
     [Header("Wander variables")]
     public Vector3 walkPoint; // Where enemy walks to
@@ -79,14 +78,14 @@ public class EnemyAI : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ); // Get new position to go to
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround) && Vector3.Distance(spawnPoint.position, walkPoint) <= 3) walkPointSet = true; // Make sure new walk point is in range
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround) && Vector3.Distance(enemyGeneral.spawnPoint.position, walkPoint) <= 3) walkPointSet = true; // Make sure new walk point is in range
     }
 
     // Make enemy wander around the arena
     private void Patrolling()
     {
         animator.SetFloat("MovingAmount", 0.5f); // Set the isMoving float in the animator
-        agent.speed = 2; // Decrease enemy speed
+        agent.speed = enemyGeneral.walkSpeed; // Decrease enemy speed
 
         if (!walkPointSet) SearchWalkPoint(); // Search for a walkPoint until one is found
         if (walkPointSet)
@@ -102,7 +101,7 @@ public class EnemyAI : MonoBehaviour
     private void Chasing()
     {
         animator.SetFloat("MovingAmount", 1f); // Set the isMoving float in the animator
-        agent.speed = 8; // Increase enemy speed
+        agent.speed = enemyGeneral.chaseSpeed; // Increase enemy speed
 
         agent.SetDestination(playerTargetTransform.position); // Move agent towards player
     }
