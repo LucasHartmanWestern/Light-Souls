@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     EnemyGeneral enemyGeneral; // Reference to EnemyGeneral class
     Transform playerTargetTransform; // Reference to where the player is
     Animator animator; // Reference to the animator of the enemy
+    [SerializeField]AudioSource shootSoundEffect; // Get the audio source attached to the enemy that contains the sound effect for shooting
 
     [Header("Game Objects/Transforms")]
     public GameObject projectilePrefab; // Get reference to the projectile prefab
@@ -135,6 +136,7 @@ public class EnemyAI : MonoBehaviour
             if (animator.GetLayerWeight(2) >= 0.8f)
             {
                 Instantiate(muzzleFlashPS, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Create a yellow muzzle flash
+                shootSoundEffect.Play(); // Play the shooting sound effect
                 Instantiate(projectilePrefab, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Spawn in a bullet
             }   
 

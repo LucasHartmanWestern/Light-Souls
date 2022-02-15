@@ -8,6 +8,8 @@ public class PlayerAttack : MonoBehaviour
     InputManager inputManager; // Reference to InputManager class
     PlayerAnimationManager playerAnimationManager; // Reference to the PlayerAnimationManager class
     [SerializeField] private LayerMask _aimColliderMask; // All layers that player can aim at
+    [SerializeField] AudioSource shootSoundEffect; // Get the audio source attached to the player that contains the sound effect for shooting
+    [SerializeField] AudioSource swingSoundEffect; // Get the audio source attached to the player that contains the sound effect for swinging their melee weapon
 
     [Header("Game Objects/Transforms")]
     public GameObject projectilePrefab; // Get reference to the projectile prefab
@@ -72,6 +74,7 @@ public class PlayerAttack : MonoBehaviour
                 Vector3 aimDirection = (raycastHit.point - spawnBulletPosition.position).normalized; // Determine where the user is aiming relative to the player
                 Instantiate(muzzleFlashPS, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Create a yellow muzzle flash
                 Instantiate(projectilePrefab, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Spawn in a bullet
+                shootSoundEffect.Play(); // Play the shooting sound effect
                 inputManager.attackInput = false; // Make it so player must press the attack button each time (semi-automatic)
             }  
         }
@@ -84,6 +87,7 @@ public class PlayerAttack : MonoBehaviour
         if (inputManager.attackInput)
         {
             playerAnimationManager.PlayTargetAnimation("Sword Swing", true); // Call the landing animation and don't allow the player to break out of it
+            swingSoundEffect.Play(); // Play the sound effect for a swing
             inputManager.attackInput = false; // Make it so player must press the attack button each time
         }
     }
