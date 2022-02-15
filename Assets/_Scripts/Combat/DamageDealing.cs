@@ -10,6 +10,7 @@ public class DamageDealing : MonoBehaviour
 
     public bool isProjectile; // Check if script is attached to projectile or not
     public float projectileSpeed = 10f; // Speed projectile travels after it's fired
+    public float enemyDamage = 15; // Damage dealt if used by enemy
 
     private Rigidbody _projectileRigidBody; // Reference to RigidBody of the projectile
     [SerializeField] private Transform psHitGreen; // Red particle system reference
@@ -48,7 +49,7 @@ public class DamageDealing : MonoBehaviour
         else if (other.GetComponent<PlayerGeneral>() != null)
         {
             Instantiate(psHitRed, transform.position, Quaternion.identity); // Create a red particle system
-            other.GetComponent<PlayerGeneral>().TakeDamage(15); // Damage player the correct amount
+            other.GetComponent<PlayerGeneral>().TakeDamage(enemyDamage); // Damage player the correct amount
         }
         else // Tiggers if a non-enemy and non-player object was hit
         {
