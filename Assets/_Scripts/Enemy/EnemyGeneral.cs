@@ -10,7 +10,6 @@ public class EnemyGeneral : MonoBehaviour
 
     [Header("Required objects")]
     public Transform deathPS; // Death particle system reference
-    public Transform spawnPoint; // Determine where AI should be centered around
 
 
     [Header("Enemy Stats")]
