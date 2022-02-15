@@ -8,7 +8,11 @@ public class EnemyAI : MonoBehaviour
     EnemyGeneral enemyGeneral; // Reference to EnemyGeneral class
     Transform playerTargetTransform; // Reference to where the player is
     Animator animator; // Reference to the animator of the enemy
+<<<<<<< HEAD
     [SerializeField]AudioSource shootSoundEffect; // Get the audio source attached to the enemy that contains the sound effect for shooting
+=======
+    Vector3 spawnPoint; // Determine where AI should be centered around
+>>>>>>> level1_demo
 
     [Header("Game Objects/Transforms")]
     public GameObject projectilePrefab; // Get reference to the projectile prefab
@@ -47,6 +51,7 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         rangedWeapon.SetParent(handTransform); // Track ranged weapon to hands
+        spawnPoint = transform.position;
     }
 
     // Called once a frame
@@ -79,7 +84,7 @@ public class EnemyAI : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ); // Get new position to go to
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround) && Vector3.Distance(enemyGeneral.spawnPoint.position, walkPoint) <= 3) walkPointSet = true; // Make sure new walk point is in range
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround) && Vector3.Distance(spawnPoint, walkPoint) <= 3) walkPointSet = true; // Make sure new walk point is in range
     }
 
     // Make enemy wander around the arena
