@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerAttack : MonoBehaviour
 {
     InputManager inputManager; // Reference to InputManager class
+    PlayerGeneral playerGeneral; // Reference to the PlayerGeneral class
     PlayerAnimationManager playerAnimationManager; // Reference to the PlayerAnimationManager class
     [SerializeField] private LayerMask _aimColliderMask; // All layers that player can aim at
     [SerializeField] AudioSource shootSoundEffect; // Get the audio source attached to the player that contains the sound effect for shooting
@@ -23,7 +24,8 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         inputManager = FindObjectOfType<InputManager>(); // Get reference to instance of InputManager
-        playerAnimationManager = FindObjectOfType<PlayerAnimationManager>(); // Get reference to instance of PlayerAnimationManager
+        playerGeneral = GetComponent<PlayerGeneral>(); // Get refernce to instance of PlayerGeneral attached to player
+        playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Get reference to instance of PlayerAnimationManager
     }
 
     // Called after Awake()
@@ -36,9 +38,13 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Handle the combat depending on whether or not character is aiming
-        if (inputManager.aimInput) HandleRangedCombat();
-        else HandleMeleeCombat();
+        // Only handle combat if player is alive
+        if (playerGeneral.isAlive)
+        {
+            // Handle the combat depending on whether or not character is aiming
+            if (inputManager.aimInput) HandleRangedCombat();
+            else HandleMeleeCombat();
+        }
 
         HandleWeaponModels(); // Move and select weapons appropriately
     }
