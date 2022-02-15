@@ -7,6 +7,7 @@ public class EnemyGeneral : MonoBehaviour
 {
     Animator animator; // Reference to enemy animator
     PlayerGeneral playerGeneral; // Reference to PlayerGeneral script
+    [SerializeField] AudioSource deathSound; // Reference to the audio that plays when the enemy dies
 
     [Header("Required objects")]
     public Transform deathPS; // Death particle system reference
@@ -53,6 +54,7 @@ public class EnemyGeneral : MonoBehaviour
     IEnumerator DestroyEnemyObject()
     {
         GetComponent<NavMeshAgent>().enabled = false; // Disable the NavMeshAgent
+        deathSound.Play(); // Play the death sound
 
         yield return new WaitForSeconds(5f); // Wait 5 seconds before destroying the object
         Instantiate(deathPS, transform.position, Quaternion.identity); // Create a death particle system

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerGeneral : MonoBehaviour
 {
     PlayerAnimationManager playerAnimationManager; // Reference to enemy animator
+    [SerializeField] AudioSource deathSound; // Reference to the audio that plays when the player dies
 
     [Header("Player Stats")]
     public bool isAlive; // Track if player is alive
@@ -39,8 +40,8 @@ public class PlayerGeneral : MonoBehaviour
     // Handle the destroying of the enemy GameObject
     IEnumerator DestroyPlayer()
     {
+        deathSound.Play(); // Play the death sound
         yield return new WaitForSeconds(5f); // Wait 5 seconds before destroying the object
         Debug.Log("You Died"); // Destroy the game object
-
     }
 }
