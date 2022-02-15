@@ -8,11 +8,10 @@ public class EnemyAI : MonoBehaviour
     EnemyGeneral enemyGeneral; // Reference to EnemyGeneral class
     Transform playerTargetTransform; // Reference to where the player is
     Animator animator; // Reference to the animator of the enemy
-<<<<<<< HEAD
-    [SerializeField]AudioSource shootSoundEffect; // Get the audio source attached to the enemy that contains the sound effect for shooting
-=======
     Vector3 spawnPoint; // Determine where AI should be centered around
->>>>>>> level1_demo
+
+    [SerializeField]
+    AudioSource shootSoundEffect; // Get the audio source attached to the enemy that contains the sound effect for shooting
 
     [Header("Game Objects/Transforms")]
     public GameObject projectilePrefab; // Get reference to the projectile prefab
