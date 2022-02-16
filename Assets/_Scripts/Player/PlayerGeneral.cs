@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerGeneral : MonoBehaviour
 {
@@ -43,5 +43,7 @@ public class PlayerGeneral : MonoBehaviour
         deathSound.Play(); // Play the death sound
         yield return new WaitForSeconds(5f); // Wait 5 seconds before destroying the object
         Debug.Log("You Died"); // Destroy the game object
+        yield return new WaitForSeconds(2f); // Wait 2 seconds before respawning
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //loads the current scene again
     }
 }
