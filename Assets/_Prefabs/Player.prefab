@@ -1623,6 +1623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isProjectile: 0
   projectileSpeed: 10
+  enemyDamage: 15
   psHitGreen: {fileID: 613433886817584985, guid: b20cfbe8ee679ee45b9b0e862a56d344, type: 3}
   psHitRed: {fileID: 613433886817584985, guid: 9c7b4aa2e3f077a448e66cf5ffe9ec12, type: 3}
 --- !u!1 &3801148557223803192
@@ -1871,6 +1872,7 @@ GameObject:
   - component: {fileID: 3801148558023270429}
   - component: {fileID: 3801148558023270430}
   - component: {fileID: 3801148558023270431}
+  - component: {fileID: -6842684631545232281}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -2354,6 +2356,18 @@ MonoBehaviour:
   playerExperience: 0
   rangedDamage: 20
   meleeDamage: 50
+--- !u!114 &-6842684631545232281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3801148558023270421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5932ef2964258914da1c9725be051eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3801148558347807994
 GameObject:
   m_ObjectHideFlags: 0
