@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     public bool jumpInput; // Check if player is trying to jump
     public bool aimInput; // Check if player is trying to aim
     public bool attackInput; // Check if player is trying to attack
+    public bool specialMoveInput; // Check if player is trying to use their special moving abilitiy
 
     // Called right before Start() method
     private void Awake()
@@ -53,6 +54,9 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.AttackButton.performed += i => attackInput = true; // Set attackInput to true when the AttackButton is pressed
             playerControls.PlayerActions.AttackButton.canceled += i => attackInput = false; // Set attackInput to false when the AttackButton is no longer pressed
+
+            playerControls.PlayerActions.SpecialMoveButton.performed += i => specialMoveInput = true; // Set specialMoveInput to true when the SpecialMoveButton is pressed
+            playerControls.PlayerActions.SpecialMoveButton.canceled += i => specialMoveInput = false; // Set specialMoveInput to false when the SpecialMoveButton is no longer pressed
             #endregion
         }
 

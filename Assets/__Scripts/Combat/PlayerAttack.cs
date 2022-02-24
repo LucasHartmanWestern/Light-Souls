@@ -92,6 +92,8 @@ public class PlayerAttack : MonoBehaviour
             playerAnimationManager.PlayTargetAnimation("Sword Swing", true); // Call the landing animation and don't allow the player to break out of it
             swingSoundEffect.Play(); // Play the sound effect for a swing
             inputManager.attackInput = false; // Make it so player must press the attack button each time
+
+            gameObject.GetComponent<Rigidbody>().velocity = transform.forward * 3;
         }
     }
 }

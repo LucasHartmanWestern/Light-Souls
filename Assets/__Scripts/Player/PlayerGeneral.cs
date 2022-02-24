@@ -6,9 +6,12 @@ public class PlayerGeneral : MonoBehaviour
 {
     PlayerAnimationManager playerAnimationManager; // Reference to enemy animator
     [SerializeField] AudioSource deathSound; // Reference to the audio that plays when the player dies
+    protected InputManager inputManager; // InputManager reference
+    protected Rigidbody rigidBody; // RigidBody reference
+    protected Transform cameraTransform; // Transform of the camera the player sees through
 
     [Header("Player Stats")]
-    public bool isAlive; // Track if player is alive
+    public bool isAlive = true; // Track if player is alive
     public float playerMoveSpeed = 1f; // Track how fast player moves
     public float playerLookSpeed = 1f;
     public float playerHealth; // Track player's health
@@ -20,6 +23,15 @@ public class PlayerGeneral : MonoBehaviour
     private void Awake()
     {
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Get PlayerAnimationManager attached to player
+        inputManager = GetComponent<InputManager>(); // Get InputManager attached to player
+        rigidBody = GetComponent<Rigidbody>(); // Get RigidBody attached to player
+        cameraTransform = Camera.main.transform; // Get transform of the main camera
+    }
+
+    // Called once a frame
+    private void Update()
+    {
+        if (isAlive && GetComponent<PlayerMovement>().isGrounded) HandleMovementAbility(); // Handles the movement ability of the player
     }
 
     // Called to damage the player
@@ -36,6 +48,8 @@ public class PlayerGeneral : MonoBehaviour
             StartCoroutine(DestroyPlayer()); // Destroy enemy game obejct
         }
     }
+
+    protected virtual void HandleMovementAbility() { } // Handles the special ability of the player
 
     // Handle the destroying of the enemy GameObject
     IEnumerator DestroyPlayer()
