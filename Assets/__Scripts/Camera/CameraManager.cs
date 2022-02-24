@@ -33,7 +33,7 @@ public class CameraManager : MonoBehaviour
     // Called right before Start() method
     private void Awake()
     {
-        targetTransform = FindObjectOfType<PlayerManager>().transform; // Get the transform of the player
+        targetTransform = FindObjectOfType<PlayerGeneral>().transform; // Get the transform of the player
         inputManager = FindObjectOfType<InputManager>(); // Get the InputManager
         cameraTransform = Camera.main.transform; // Get the transform of the main camera
         defaultPosition = cameraTransform.localPosition.z; // Get z axis position of the camera's transform

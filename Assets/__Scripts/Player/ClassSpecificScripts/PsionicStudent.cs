@@ -18,7 +18,7 @@ public class PsionicStudent : PlayerGeneral
                 dashDirection += cameraTransform.forward * inputManager.verticalInput;
             }
 
-            inputManager.specialMoveInput = false; // Reset back to false
+            inputManager.specialMoveInput = false; // Reset back to 
 
             rigidBody.AddForce(dashDirection * 15, ForceMode.Impulse); // Apply impulse force on player
         }

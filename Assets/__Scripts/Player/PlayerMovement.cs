@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection; // Direction player moves
     Transform cameraTransform; // Transform of the camera the player sees through
     Rigidbody playerRigidBody; // Reference to player's RigidBody component
-    PlayerManager playerManager; // Reference to PlayerManager script attached to this object
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script attached to this object
     PlayerGeneral playerGeneral; // Reference to PlayerGeneral script
 
@@ -40,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
         inputManager = GetComponent<InputManager>(); // Reference to InputManager attached to player
         playerRigidBody = GetComponent<Rigidbody>(); // Reference to RigidBody attached to player
         cameraTransform = Camera.main.transform; // Get transform of the main camera
-        playerManager = GetComponent<PlayerManager>(); // Reference to PlayerManager script attached to player
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Reference to PlayerAnimation script attached to player
         playerGeneral = GetComponent<PlayerGeneral>(); // Reference to PlayerGeneral script attached to player
     }
@@ -53,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleFallingAndLanding(); // Handles the falling/landing of the player
 
-            if (playerManager.isInteracting) return; // Disable movement if player is interacting with anything
+            if (playerGeneral.isInteracting) return; // Disable movement if player is interacting with anything
 
             HandlePlayerMovement(); // Handles the movement on the x and z axes
             HandlePlayerRotation(); // Handles the rotation of the player
@@ -133,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         // Only play falling animation if player is not on the ground and not jumping
         if (!isGrounded && !isJumping)
         {
-            if (!playerManager.isInteracting)
+            if (!playerGeneral.isInteracting)
             {
                 playerAnimationManager.PlayTargetAnimation("Falling", true); // Call the falling animation and don't allow player to break out of it
             }
@@ -147,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
         if(Physics.SphereCast(rayCastOrigin, 0.2f, -Vector3.up, out hit, groundLayer))
         {
             // Make sure player is not on the ground and not interacting
-            if(!isGrounded && playerManager.isInteracting)
+            if(!isGrounded && playerGeneral.isInteracting)
             {
                 playerAnimationManager.PlayTargetAnimation("Land", true); // Call the landing animation and don't allow the player to break out of it
             }
@@ -162,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && !isJumping)
         {
-            if (playerManager.isInteracting || inputManager.moveAmount > 0)
+            if (playerGeneral.isInteracting || inputManager.moveAmount > 0)
                 transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f); // Smoothly move player if they are moving or interacting
             else
                 transform.position = targetPosition; // If not moving or interacting, immediately move the player

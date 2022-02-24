@@ -9,6 +9,10 @@ public class PlayerGeneral : MonoBehaviour
     protected InputManager inputManager; // InputManager reference
     protected Rigidbody rigidBody; // RigidBody reference
     protected Transform cameraTransform; // Transform of the camera the player sees through
+    protected PlayerMovement playerMovement; // PlayerMovement reference
+    CameraManager cameraManager; // CameraManager instance
+    Animator animator; // Animator instance
+    public bool isInteracting; // Track whether or not the player is interacting with something
 
     [Header("Player Stats")]
     public bool isAlive = true; // Track if player is alive
@@ -25,13 +29,34 @@ public class PlayerGeneral : MonoBehaviour
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Get PlayerAnimationManager attached to player
         inputManager = GetComponent<InputManager>(); // Get InputManager attached to player
         rigidBody = GetComponent<Rigidbody>(); // Get RigidBody attached to player
+        playerMovement = GetComponent<PlayerMovement>(); // Get PlayerMovement script attached to player
         cameraTransform = Camera.main.transform; // Get transform of the main camera
+        cameraManager = FindObjectOfType<CameraManager>(); // Reference to the object with the CameraManager script attached to it
+        animator = GetComponent<Animator>(); // Reference to Animator attached to player
     }
 
     // Called once a frame
     private void Update()
     {
+        inputManager.HandleAllInputs(); // Call the HandleAllInputs method in the InputManager
         if (isAlive && GetComponent<PlayerMovement>().isGrounded) HandleMovementAbility(); // Handles the movement ability of the player
+    }
+
+    // Used for physics updates
+    private void FixedUpdate()
+    {
+        playerMovement.HandleAllPlayerMovement(); // Call the HandleAllPlayerMovement method in the PlayerMovement script
+    }
+
+    // Called after all the other updates
+    private void LateUpdate()
+    {
+        cameraManager.HandleAllCameraMovement(); // Make the camera follow the target
+
+        isInteracting = animator.GetBool("isInteracting"); // Set this bool to whatever it is on the animator
+        playerMovement.isJumping = animator.GetBool("isJumping"); // Set the PlayerMovement isJumping bool to match the one found in the animator
+
+        animator.SetBool("isGrounded", playerMovement.isGrounded); // Set the isGrounded bool to match the one found in the PlayerMovement script
     }
 
     // Called to damage the player
