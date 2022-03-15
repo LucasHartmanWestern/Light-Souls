@@ -20,7 +20,18 @@ public class PsionicStudent : PlayerGeneral
 
             inputManager.specialMoveInput = false; // Reset back to 
 
-            rigidBody.AddForce(dashDirection * 15, ForceMode.Impulse); // Apply impulse force on player
+            this.GetComponent<CapsuleCollider>().enabled = false; // Set to isTrigger
+            playerAnimationManager.AplpyRootMotion(true); // Apply the root motion of the animation
+            playerAnimationManager.PlayTargetAnimation("Dash Forwards", true); // Play the dash animation
+            StartCoroutine("finishDash"); // Start the coroutine to reset the variables after the animation finishes
         }
+    }
+
+    IEnumerator finishDash()
+    {
+        yield return new WaitForSeconds(0.29f); // Wait duration of animation
+        this.GetComponent<CapsuleCollider>().enabled = true; // Set back to normal
+        playerAnimationManager.AplpyRootMotion(false); // Set Root Motion back to false
+        yield return null;
     }
 }

@@ -608,11 +608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d963f18891a9f4149805d4730bd7e187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
-  playerMovement: {fileID: 0}
-  cameraManager: {fileID: 0}
-  animator: {fileID: 0}
-  isInteracting: 0
 --- !u!114 &42905419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8629,7 +8624,6 @@ GameObject:
   - component: {fileID: 7104327926670130720}
   - component: {fileID: 1364114284}
   - component: {fileID: 1364114278}
-  - component: {fileID: 1364114281}
   - component: {fileID: 1364114280}
   - component: {fileID: 1364114285}
   - component: {fileID: 1364114286}
@@ -8713,23 +8707,6 @@ MonoBehaviour:
   rotationSpeed: 15
   jumpHeight: 2
   gravityIntensity: -15
---- !u!114 &1364114281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364114277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d963f18891a9f4149805d4730bd7e187, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
-  playerMovement: {fileID: 0}
-  cameraManager: {fileID: 0}
-  animator: {fileID: 0}
-  isInteracting: 0
 --- !u!136 &1364114282
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13044,11 +13021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d963f18891a9f4149805d4730bd7e187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
-  playerMovement: {fileID: 0}
-  cameraManager: {fileID: 0}
-  animator: {fileID: 0}
-  isInteracting: 0
 --- !u!114 &2074875809
 MonoBehaviour:
   m_ObjectHideFlags: 0

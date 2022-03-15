@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerGeneral : MonoBehaviour
 {
-    PlayerAnimationManager playerAnimationManager; // Reference to enemy animator
+    protected PlayerAnimationManager playerAnimationManager; // Reference to enemy animator
     [SerializeField] AudioSource deathSound; // Reference to the audio that plays when the player dies
     protected InputManager inputManager; // InputManager reference
     protected Rigidbody rigidBody; // RigidBody reference
@@ -68,7 +68,7 @@ public class PlayerGeneral : MonoBehaviour
         {
             isAlive = false; // Show player as no longer alive
             GetComponent<CapsuleCollider>().enabled = false; // Remove capsule collider to avoid player floating
-            playerAnimationManager.AplpyRootMotion(); // Apply root motion for death animation only
+            playerAnimationManager.AplpyRootMotion(true); // Apply root motion for death animation only
             playerAnimationManager.PlayTargetAnimation("Death", true); // Play death animation
             StartCoroutine(DestroyPlayer()); // Destroy enemy game obejct
         }

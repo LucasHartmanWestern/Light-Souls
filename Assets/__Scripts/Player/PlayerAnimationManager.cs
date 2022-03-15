@@ -65,9 +65,9 @@ public class PlayerAnimationManager : MonoBehaviour
     }
 
     // Apply root motion of animation (only triggered for certain animations)
-    public void AplpyRootMotion()
+    public void AplpyRootMotion(bool applyState)
     {
-        animator.applyRootMotion = true;
+        animator.applyRootMotion = applyState;
     }
 
     // Check if an animation is playing
