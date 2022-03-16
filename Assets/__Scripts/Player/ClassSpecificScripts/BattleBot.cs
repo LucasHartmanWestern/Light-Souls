@@ -15,4 +15,7 @@ public class BattleBot : PlayerGeneral
             GetComponent<InputManager>().specialMoveInput = false; // Reset back to false
         }
     }
+
+    // Handles the special combat ability of the BattleBot
+    protected override void HandleCombatAbility() { }
 }

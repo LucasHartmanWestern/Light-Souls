@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
     public bool lockOnInput; // Check if player is trying to lock onto an enemy
     public bool lockOnLeftInput; // Check if player is trying to lock onto a different enemy
     public bool lockOnRightInput; // Check if player is trying to lock onto a different enemy
+    public bool specialAbilityInput; // Check if player is trying to use their special ability
 
     [Header("Toggled flags for certain inputs")]
     public bool lockOnFlag; // Check if player should be locked on
@@ -66,6 +67,9 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.SpecialMoveButton.performed += i => specialMoveInput = true; // Set specialMoveInput to true when the SpecialMoveButton is pressed
             playerControls.PlayerActions.SpecialMoveButton.canceled += i => specialMoveInput = false; // Set specialMoveInput to false when the SpecialMoveButton is no longer pressed
+
+            playerControls.PlayerActions.SpecialAbilityButton.performed += i => specialAbilityInput = true; // Set specialAbilityInput to true when the SpecialAbilityButton is pressed
+            playerControls.PlayerActions.SpecialAbilityButton.performed += i => specialAbilityInput = false; // Set specialAbilityInput to false when the SpecialAbilityButton is no longer pressed
 
             playerControls.PlayerActions.LockOnButton.performed += i => lockOnInput = true; // Set lockOnInput to true when the lockOnButton is pressed
             playerControls.PlayerActions.LockOnTargetLeft.performed += i => lockOnLeftInput = true; // Set lockOnLeftInput to true when the LockOnTargetLeft is pressed
@@ -109,17 +113,22 @@ public class InputManager : MonoBehaviour
     // Handles all of the inputs related to actions
     private void HandleActionInput()
     {
+        #region Sprint Input
         // Set whether or not the player is sprinting in the PlayerMovement script
         if (sprintInput && moveAmount > 0.5f) playerMovement.isSprinting = true;
         else playerMovement.isSprinting = false;
+        #endregion
 
+        #region Jump Input
         // If player tries to jump, set the input to false (to only jump once) then call the HandleJump method
         if (jumpInput)
         {
             jumpInput = false;
             playerMovement.HandleJumping();
         }
+        #endregion
 
+        #region Aim Input
         playerMovement.isAiming = aimInput; // Make player face where they're aiming
         if (aimInput)
         {
@@ -129,7 +138,9 @@ public class InputManager : MonoBehaviour
             lockOnFlag = false;
         }
         else playerAnimationManager.PlayerAim(0f);
+        #endregion
 
+        #region Lock On Input and Lock On Flag
         if (lockOnInput && !lockOnFlag) // If player tries to lock on and they aren't currently locked on, set the input to false then call the HandleLockOn method
         {
             lockOnInput = false;
@@ -160,5 +171,6 @@ public class InputManager : MonoBehaviour
             if (cameraManager.rightLockTarget != null)
                 cameraManager.currentLockOnTarget = cameraManager.rightLockTarget;
         }
+        #endregion
     }
 }

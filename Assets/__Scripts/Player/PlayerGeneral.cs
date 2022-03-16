@@ -39,7 +39,11 @@ public class PlayerGeneral : MonoBehaviour
     private void Update()
     {
         inputManager.HandleAllInputs(); // Call the HandleAllInputs method in the InputManager
-        if (isAlive && GetComponent<PlayerMovement>().isGrounded) HandleMovementAbility(); // Handles the movement ability of the player
+        if (isAlive && GetComponent<PlayerMovement>().isGrounded)
+        {
+            HandleMovementAbility(); // Handles the movement ability of the player
+            HandleCombatAbility(); // Handles the combat ability of the player
+        }
     }
 
     // Used for physics updates
@@ -74,7 +78,9 @@ public class PlayerGeneral : MonoBehaviour
         }
     }
 
-    protected virtual void HandleMovementAbility() { } // Handles the special ability of the player
+    protected virtual void HandleMovementAbility() {} // Handles the special movement ability of the player
+
+    protected virtual void HandleCombatAbility() {} // Handles the special combat ability of the player
 
     // Handle the destroying of the enemy GameObject
     IEnumerator DestroyPlayer()

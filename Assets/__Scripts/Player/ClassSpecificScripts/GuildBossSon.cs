@@ -15,4 +15,7 @@ public class GuildBossSon : PlayerGeneral
             GetComponent<InputManager>().specialMoveInput = false; // Reset back to false
         }
     }
+
+    // Handles the special combat ability of the GuildBossSon
+    protected override void HandleCombatAbility() { }
 }

@@ -18,7 +18,7 @@ public class PsionicStudent : PlayerGeneral
                 dashDirection += cameraTransform.forward * inputManager.verticalInput;
             }
 
-            inputManager.specialMoveInput = false; // Reset back to 
+            inputManager.specialMoveInput = false; // Reset back to false
 
             playerAnimationManager.AplpyRootMotion(true); // Apply the root motion of the animation
             // Shrink collider
@@ -26,6 +26,16 @@ public class PsionicStudent : PlayerGeneral
             this.GetComponent<CapsuleCollider>().radius = 0.1f;
             playerAnimationManager.PlayTargetAnimation("Dash Forwards", true); // Play the dash animation
             StartCoroutine("finishDash"); // Start the coroutine to reset the variables after the animation finishes
+        }
+    }
+
+    // Handles the special movement the player can perform
+    protected override void HandleCombatAbility()
+    {
+        if (inputManager.specialAbilityInput) // Check if player is using the special move input
+        {
+            print("Test");
+            inputManager.specialAbilityInput = false; // Reset back to false
         }
     }
 

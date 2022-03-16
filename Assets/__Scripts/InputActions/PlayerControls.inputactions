@@ -333,20 +333,18 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SpecialAbilityButton",
+                    "type": "Button",
+                    "id": "a3ad236c-a457-4e1b-9bc6-5bdad0461837",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "7bd745b5-2c61-418a-97f2-99f6d724670a",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SprintButton",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "6ed989aa-986c-4d6f-ad9e-e7a7c34e3b43",
@@ -504,7 +502,7 @@
                 {
                     "name": "",
                     "id": "2a34e390-02b4-4969-af2f-539af518bfad",
-                    "path": "<Gamepad>/rightStick/left",
+                    "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -520,6 +518,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "LockOnTargetRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fcd5cce7-c82f-4690-a52b-7142e1148091",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialAbilityButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "360497d5-4851-4fb9-9eec-42239c40fd65",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialAbilityButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
