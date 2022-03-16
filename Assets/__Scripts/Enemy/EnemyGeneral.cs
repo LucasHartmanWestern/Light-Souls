@@ -9,6 +9,7 @@ public class EnemyGeneral : MonoBehaviour
     [SerializeField] AudioSource deathSound; // Reference to the audio that plays when the enemy dies
     CameraManager cameraManager; // Reference to the CameraManager
     InputManager inputManager; // Reference to the InputManager
+    NavMeshAgent navMeshAgent; // Reference to the NavMeshAgent class
 
     [Header("Required objects")]
     public Transform deathPS; // Death particle system reference
@@ -23,6 +24,8 @@ public class EnemyGeneral : MonoBehaviour
     public float walkSpeed = 1f; // How fast enemy patrols
     public float chaseSpeed = 8f; // How fast enemy chases
 
+    public bool isInAir; // Checks if enemy is in the air or not
+
     // Called before Start()
     private void Awake()
     {
@@ -30,6 +33,7 @@ public class EnemyGeneral : MonoBehaviour
         playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to Player General instance
         cameraManager = FindObjectOfType<CameraManager>(); // Get reference to Camera Manager instance
         inputManager = FindObjectOfType<InputManager>(); // Get reference to Input Manager instance
+        navMeshAgent = GetComponent<NavMeshAgent>(); // Get reference to the NavMeshAgent instance attached to this enemy
     }
 
     // Called once a frame
@@ -68,5 +72,31 @@ public class EnemyGeneral : MonoBehaviour
 
         playerGeneral.playerExperience += expOnDeath; // Increase player exp
         Destroy(gameObject); // Destroy the game object
+    }
+
+    // Fling enemy towards target
+    public void FlingForwards(Transform target)
+    {
+        GetComponent<EnemyAI>().enabled = false;
+        navMeshAgent.enabled = false;
+
+        Vector3 lookDirection = new Vector3(target.position.x, transform.position.y, target.position.z); // Get directino of player
+        transform.LookAt(lookDirection); // Make enemy look at the player
+
+        animator.SetLayerWeight(2, 0); // Make it so aiming layer weight is 0
+        animator.CrossFade("FlingForwards", 0.2f); // Play fling animation
+    }
+
+    // Fling the enemy backwards from the target
+    public void FlingBackwards(Transform target)
+    {
+        GetComponent<EnemyAI>().enabled = false;
+        navMeshAgent.enabled = false;
+
+        Vector3 lookDirection = new Vector3(target.position.x, 0, target.position.z); // Get directino of player
+        transform.LookAt(lookDirection); // Make enemy look at the player
+
+        animator.SetLayerWeight(2, 0); // Make it so aiming layer weight is 0
+        animator.CrossFade("FlingBackwards", 0.2f); // Play death animation
     }
 }

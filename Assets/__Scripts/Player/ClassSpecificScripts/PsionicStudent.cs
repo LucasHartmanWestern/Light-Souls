@@ -25,7 +25,7 @@ public class PsionicStudent : PlayerGeneral
             this.GetComponent<CapsuleCollider>().height = 0.1f;
             this.GetComponent<CapsuleCollider>().radius = 0.1f;
             playerAnimationManager.PlayTargetAnimation("Dash Forwards", true); // Play the dash animation
-            StartCoroutine("finishDash"); // Start the coroutine to reset the variables after the animation finishes
+            StartCoroutine("FinishDash"); // Start the coroutine to reset the variables after the animation finishes
         }
     }
 
@@ -36,16 +36,44 @@ public class PsionicStudent : PlayerGeneral
         {
             inputManager.specialAbilityInput = false; // Reset back to false
 
+            StartCoroutine("DelayAbility"); // Start the coroutine related to the abilities
         }
     }
 
-    IEnumerator finishDash()
+    IEnumerator FinishDash()
     {
         yield return new WaitForSeconds(0.7f); // Wait duration of animation
         playerAnimationManager.AplpyRootMotion(false); // Set Root Motion back to false
         // Set collider back to normal
         this.GetComponent<CapsuleCollider>().height = 1.6f;
         this.GetComponent<CapsuleCollider>().radius = 0.28f;
+        yield return null;
+    }
+
+    // Allows user to delay start of certain animations related to the ability
+    IEnumerator DelayAbility()
+    {
+        // Check if player is locked onto a target
+        if (cameraManager.currentLockOnTarget != null)
+        {
+            animator.CrossFade("PsionicPull", 0.2f); // Play fling animation
+            yield return new WaitForSeconds(0.1f); // Wait for animation
+            cameraManager.currentLockOnTarget.parent.GetComponent<EnemyGeneral>().FlingForwards(transform); // Fling enemy towards player
+        }
+        else
+        {
+            animator.CrossFade("PsionicPush", 0.2f); // Play fling animation
+            yield return new WaitForSeconds(0.27f); // Wait for animation
+
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, 3, transform.forward); // Get all objects in a certain area around player
+
+            foreach (RaycastHit hit in hits) // Loop through everything hit
+            {
+                if (hit.transform.GetComponent<EnemyGeneral>() != null) // Check if hit object is an enemy
+                    hit.transform.GetComponent<EnemyGeneral>().FlingBackwards(transform); // Fling enemy backwards
+            }
+        }
+
         yield return null;
     }
 }

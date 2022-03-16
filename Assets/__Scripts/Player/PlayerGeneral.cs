@@ -10,8 +10,8 @@ public class PlayerGeneral : MonoBehaviour
     protected Rigidbody rigidBody; // RigidBody reference
     protected Transform cameraTransform; // Transform of the camera the player sees through
     protected PlayerMovement playerMovement; // PlayerMovement reference
-    CameraManager cameraManager; // CameraManager instance
-    Animator animator; // Animator instance
+    protected CameraManager cameraManager; // CameraManager instance
+    protected Animator animator; // Animator instance
     public bool isInteracting; // Track whether or not the player is interacting with something
 
     [Header("Player Stats")]
@@ -72,6 +72,7 @@ public class PlayerGeneral : MonoBehaviour
         {
             isAlive = false; // Show player as no longer alive
             GetComponent<CapsuleCollider>().enabled = false; // Remove capsule collider to avoid player floating
+            GetComponent<Rigidbody>().isKinematic = true; // Make rigid body kinematic
             playerAnimationManager.AplpyRootMotion(true); // Apply root motion for death animation only
             playerAnimationManager.PlayTargetAnimation("Death", true); // Play death animation
             StartCoroutine(DestroyPlayer()); // Destroy enemy game obejct

@@ -4129,8 +4129,9 @@ MonoBehaviour:
   enemyHealth: 50
   expOnDeath: 0
   enemyDamage: 20
-  walkSpeed: 1
-  chaseSpeed: 8
+  walkSpeed: 5
+  chaseSpeed: 15
+  isInAir: 0
 --- !u!114 &7826937546502880158
 MonoBehaviour:
   m_ObjectHideFlags: 0

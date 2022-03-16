@@ -635,6 +635,7 @@ MonoBehaviour:
   lockOnInput: 0
   lockOnLeftInput: 0
   lockOnRightInput: 0
+  specialAbilityInput: 0
   lockOnFlag: 0
 --- !u!95 &42905420
 Animator:
@@ -4082,6 +4083,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 656862189}
     m_Modifications:
+    - target: {fileID: 7102089545922426666, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7481902394709172513, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -8819,6 +8824,7 @@ MonoBehaviour:
   lockOnInput: 0
   lockOnLeftInput: 0
   lockOnRightInput: 0
+  specialAbilityInput: 0
   lockOnFlag: 0
 --- !u!4 &1364114279
 Transform:
@@ -9155,6 +9161,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 656862189}
     m_Modifications:
+    - target: {fileID: 7102089545922426666, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7481902394709172513, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -9438,6 +9448,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 656862189}
     m_Modifications:
+    - target: {fileID: 7102089545922426666, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7481902394709172513, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -9502,7 +9516,8 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7102089545922426666, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
 --- !u!1 &1441402594
 GameObject:
@@ -13209,6 +13224,7 @@ MonoBehaviour:
   lockOnInput: 0
   lockOnLeftInput: 0
   lockOnRightInput: 0
+  specialAbilityInput: 0
   lockOnFlag: 0
 --- !u!95 &2074875810
 Animator:

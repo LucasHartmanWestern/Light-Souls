@@ -117,18 +117,18 @@ public class EnemyAI : MonoBehaviour
 
         Vector3 targetDirection = Vector3.zero; // Start out at (0, 0, 0)
 
-        Vector3 lookAimTarget = (playerTargetTransform.position - transform.position).normalized; // Determine where the user is aiming relative to the player
-        targetDirection = lookAimTarget; // Have player look towards where they're aiming
+        Vector3 lookAimTarget = (playerTargetTransform.position - transform.position).normalized; // Determine where the enemy should aim
+        targetDirection = lookAimTarget; // Have enemy look towards where they're aiming
 
         targetDirection.Normalize(); // Set magnitude to 1
         targetDirection.y = 0; // Set value on y axis to 0
 
-        if (targetDirection == Vector3.zero) targetDirection = transform.forward; // Keep rotation at position last specified by the player
+        if (targetDirection == Vector3.zero) targetDirection = transform.forward; // Keep rotation at previous position
 
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection); // Look towards the target direction defined above
-        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, 15f * Time.deltaTime); // Get quaternion of the player's roation
+        Quaternion enemyRotation = Quaternion.Slerp(transform.rotation, targetRotation, 15f * Time.deltaTime); // Get quaternion of the enemy's roation
 
-        transform.rotation = playerRotation; // Rotate the transform of the player
+        transform.rotation = enemyRotation; // Rotate the transform of the enemy
 
         // Check if enemy already attacked
         if (!alreadyAttacked)
