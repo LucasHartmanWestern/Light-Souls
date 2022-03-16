@@ -7,6 +7,8 @@ public class EnemyGeneral : MonoBehaviour
     Animator animator; // Reference to enemy animator
     PlayerGeneral playerGeneral; // Reference to PlayerGeneral script
     [SerializeField] AudioSource deathSound; // Reference to the audio that plays when the enemy dies
+    CameraManager cameraManager; // Reference to the CameraManager
+    InputManager inputManager; // Reference to the InputManager
 
     [Header("Required objects")]
     public Transform deathPS; // Death particle system reference
@@ -26,6 +28,8 @@ public class EnemyGeneral : MonoBehaviour
     {
         animator = GetComponent<Animator>(); // Get animator attached to this enemy
         playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to Player General instance
+        cameraManager = FindObjectOfType<CameraManager>(); // Get reference to Camera Manager instance
+        inputManager = FindObjectOfType<InputManager>(); // Get reference to Input Manager instance
     }
 
     // Called once a frame
@@ -44,6 +48,24 @@ public class EnemyGeneral : MonoBehaviour
         {
             animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0f, Time.deltaTime * 10f)); // Smoothly transition animation to aiming or not aiming
             animator.CrossFade("Death", 0.2f); // Play death animation
+
+            // Change what the player is locked on to
+            
+            if (cameraManager.rightLockTarget != null)
+            {
+                cameraManager.HandleLockOn();
+                cameraManager.currentLockOnTarget = cameraManager.rightLockTarget;
+            }
+            else if (cameraManager.leftLockTarget != null)
+            {
+                cameraManager.HandleLockOn();
+                cameraManager.currentLockOnTarget = cameraManager.leftLockTarget;
+            }
+            else
+            {
+                inputManager.lockOnFlag = false;
+                cameraManager.ClearLockOnTargets();
+            }
 
             StartCoroutine(DestroyEnemyObject()); // Destroy enemy game obejct
         }

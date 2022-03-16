@@ -22,6 +22,8 @@ public class CameraManager : MonoBehaviour
     List<EnemyGeneral> availableTargets = new List<EnemyGeneral>(); // List to hold all possible targets the player can lock on to
     public Transform nearestLockOnTarget; // Find nearest target to lock on to
     public Transform currentLockOnTarget; // Holds transform of enemy player is locked on to
+    public Transform leftLockTarget; // Holds target transform of enemy to the left of the current target
+    public Transform rightLockTarget; // Holds target transform of enemy to the right of the current target
 
     [Header("Camera Roation Variables")]
     public float lookAngle; // Make camera look up and down
@@ -155,6 +157,8 @@ public class CameraManager : MonoBehaviour
     public void HandleLockOn()
     {
         float shortestDistance = Mathf.Infinity; // Measure distance between targets and player and pick the shortest one
+        float shortestDistanceOfLeftTarget = Mathf.Infinity; // Measure distance between targets and current target and pick the shortest one on the left
+        float shortestDistanceOfRightTarget = Mathf.Infinity; // Measure distance between targets and current target and pick the shortest one on the right
 
         Collider[] colliders = Physics.OverlapSphere(targetTransform.position, 26); // Search around the player a distance of 26 units for colliders
 
@@ -169,7 +173,7 @@ public class CameraManager : MonoBehaviour
                 float viewableAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward); // Detect angle between the target and the current forward of the camera
 
                 // Check that the enemy is on screen and within an acceptable distance
-                if (enemy.transform.root != targetTransform.transform.root && viewableAngle > -50 && viewableAngle < 50 && distanceFromTarget <= maximumLockOnDistance)
+                if (enemy.transform.root != targetTransform.transform.root && viewableAngle > -50 && viewableAngle < 50 && distanceFromTarget <= maximumLockOnDistance && enemy.isAlive)
                     availableTargets.Add(enemy); // Add enemy as potential target
             }
         }
@@ -183,7 +187,28 @@ public class CameraManager : MonoBehaviour
             if (distanceFromTarget < shortestDistance)
             {
                 shortestDistance = distanceFromTarget; // Find closest distance
-                nearestLockOnTarget = availableTargets[j].lockOnTransform;
+                nearestLockOnTarget = availableTargets[j].lockOnTransform; // Set enemy as closest target
+            }
+
+            if (inputManager.lockOnFlag)
+            {
+                Vector3 relativeEnemyPosition = currentLockOnTarget.InverseTransformPoint(availableTargets[j].transform.position); // Find position of enemies relative to the current lock on target
+                var distanceFromLeftTarget = currentLockOnTarget.transform.position.x - availableTargets[j].transform.position.x; // Find distance from the target on the left side
+                var distanceFromRightTarget = currentLockOnTarget.transform.position.x + availableTargets[j].transform.position.x; // Find distance from the target on the right side
+
+                // Find closest enemy to left of current enemy
+                if (relativeEnemyPosition.x > 0.00 && distanceFromLeftTarget < shortestDistanceOfLeftTarget)
+                {
+                    shortestDistanceOfLeftTarget = distanceFromLeftTarget;
+                    leftLockTarget = availableTargets[j].lockOnTransform;
+                }
+
+                // Find closest enemy to right of current enemy
+                if (relativeEnemyPosition.x < 0.00 && distanceFromRightTarget < shortestDistanceOfRightTarget)
+                {
+                    shortestDistanceOfRightTarget = distanceFromRightTarget;
+                    rightLockTarget = availableTargets[j].lockOnTransform;
+                }
             }
         }
     }

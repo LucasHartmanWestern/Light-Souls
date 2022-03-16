@@ -25,6 +25,8 @@ public class InputManager : MonoBehaviour
     public bool attackInput; // Check if player is trying to attack
     public bool specialMoveInput; // Check if player is trying to use their special moving abilitiy
     public bool lockOnInput; // Check if player is trying to lock onto an enemy
+    public bool lockOnLeftInput; // Check if player is trying to lock onto a different enemy
+    public bool lockOnRightInput; // Check if player is trying to lock onto a different enemy
 
     [Header("Toggled flags for certain inputs")]
     public bool lockOnFlag; // Check if player should be locked on
@@ -66,6 +68,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.SpecialMoveButton.canceled += i => specialMoveInput = false; // Set specialMoveInput to false when the SpecialMoveButton is no longer pressed
 
             playerControls.PlayerActions.LockOnButton.performed += i => lockOnInput = true; // Set lockOnInput to true when the lockOnButton is pressed
+            playerControls.PlayerActions.LockOnTargetLeft.performed += i => lockOnLeftInput = true; // Set lockOnLeftInput to true when the LockOnTargetLeft is pressed
+            playerControls.PlayerActions.LockOnTargetRight.performed += i => lockOnRightInput = true; // Set lockOnRightInput to true when the LockOnTargetRight is pressed
             #endregion
         }
 
@@ -130,7 +134,6 @@ public class InputManager : MonoBehaviour
 
         if (lockOnInput && !lockOnFlag) // If player tries to lock on and they aren't currently locked on, set the input to false then call the HandleLockOn method
         {
-            cameraManager.ClearLockOnTargets(); // Clear the possible lock on targets
             lockOnInput = false;
             cameraManager.HandleLockOn();
             if (cameraManager.nearestLockOnTarget != null)
@@ -144,6 +147,20 @@ public class InputManager : MonoBehaviour
             lockOnInput = false;
             lockOnFlag = false;
             cameraManager.ClearLockOnTargets(); // Clear the possible lock on targets
+        }
+        if (lockOnFlag && lockOnLeftInput) // Lock onto the target left to the current target
+        {
+            lockOnLeftInput = false;
+            cameraManager.HandleLockOn();
+            if (cameraManager.leftLockTarget != null)
+                cameraManager.currentLockOnTarget = cameraManager.leftLockTarget;
+        }
+        if (lockOnFlag && lockOnRightInput) // Lock onto the target right to the current target
+        {
+            lockOnRightInput = false;
+            cameraManager.HandleLockOn();
+            if (cameraManager.rightLockTarget != null)
+                cameraManager.currentLockOnTarget = cameraManager.rightLockTarget;
         }
     }
 }

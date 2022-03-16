@@ -337,6 +337,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockOnTargetLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5981cad-e2bf-465c-880c-7d91bf304727"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockOnTargetRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""efdd8728-70c9-4837-b724-2f51cc9699f7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -482,6 +500,50 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""LockOnButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c347418-4d8b-4019-8a76-bafb03139047"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOnTargetLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6bc2d67-9ab1-452c-8c5c-2932532bd9af"",
+                    ""path"": ""<Mouse>/forwardButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOnTargetLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a34e390-02b4-4969-af2f-539af518bfad"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOnTargetRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c3312ad-47d8-4af5-a2fd-48f18c59b648"",
+                    ""path"": ""<Mouse>/backButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockOnTargetRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -500,6 +562,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_AttackButton = m_PlayerActions.FindAction("AttackButton", throwIfNotFound: true);
         m_PlayerActions_SpecialMoveButton = m_PlayerActions.FindAction("SpecialMoveButton", throwIfNotFound: true);
         m_PlayerActions_LockOnButton = m_PlayerActions.FindAction("LockOnButton", throwIfNotFound: true);
+        m_PlayerActions_LockOnTargetLeft = m_PlayerActions.FindAction("LockOnTargetLeft", throwIfNotFound: true);
+        m_PlayerActions_LockOnTargetRight = m_PlayerActions.FindAction("LockOnTargetRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -606,6 +670,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_AttackButton;
     private readonly InputAction m_PlayerActions_SpecialMoveButton;
     private readonly InputAction m_PlayerActions_LockOnButton;
+    private readonly InputAction m_PlayerActions_LockOnTargetLeft;
+    private readonly InputAction m_PlayerActions_LockOnTargetRight;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -616,6 +682,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @AttackButton => m_Wrapper.m_PlayerActions_AttackButton;
         public InputAction @SpecialMoveButton => m_Wrapper.m_PlayerActions_SpecialMoveButton;
         public InputAction @LockOnButton => m_Wrapper.m_PlayerActions_LockOnButton;
+        public InputAction @LockOnTargetLeft => m_Wrapper.m_PlayerActions_LockOnTargetLeft;
+        public InputAction @LockOnTargetRight => m_Wrapper.m_PlayerActions_LockOnTargetRight;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -643,6 +711,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LockOnButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnButton;
                 @LockOnButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnButton;
                 @LockOnButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnButton;
+                @LockOnTargetLeft.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetLeft;
+                @LockOnTargetLeft.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetLeft;
+                @LockOnTargetLeft.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetLeft;
+                @LockOnTargetRight.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetRight;
+                @LockOnTargetRight.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetRight;
+                @LockOnTargetRight.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetRight;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -665,6 +739,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LockOnButton.started += instance.OnLockOnButton;
                 @LockOnButton.performed += instance.OnLockOnButton;
                 @LockOnButton.canceled += instance.OnLockOnButton;
+                @LockOnTargetLeft.started += instance.OnLockOnTargetLeft;
+                @LockOnTargetLeft.performed += instance.OnLockOnTargetLeft;
+                @LockOnTargetLeft.canceled += instance.OnLockOnTargetLeft;
+                @LockOnTargetRight.started += instance.OnLockOnTargetRight;
+                @LockOnTargetRight.performed += instance.OnLockOnTargetRight;
+                @LockOnTargetRight.canceled += instance.OnLockOnTargetRight;
             }
         }
     }
@@ -682,5 +762,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAttackButton(InputAction.CallbackContext context);
         void OnSpecialMoveButton(InputAction.CallbackContext context);
         void OnLockOnButton(InputAction.CallbackContext context);
+        void OnLockOnTargetLeft(InputAction.CallbackContext context);
+        void OnLockOnTargetRight(InputAction.CallbackContext context);
     }
 }
