@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -15,6 +16,12 @@ public class CameraManager : MonoBehaviour
     public Transform cameraTransform; // The transform of the main camera object in the scene
     public float cameraFollowSpeed = 0.2f; // How fast the camera will move when following the player
     private Vector3 cameraVectorPosition;
+
+    [Header("Camera Lock On Varaibles")]
+    public float maximumLockOnDistance = 30; // Max distance enemy can be from player to lock on
+    List<EnemyGeneral> availableTargets = new List<EnemyGeneral>(); // List to hold all possible targets the player can lock on to
+    public Transform nearestLockOnTarget; // Find nearest target to lock on to
+    public Transform currentLockOnTarget; // Holds transform of enemy player is locked on to
 
     [Header("Camera Roation Variables")]
     public float lookAngle; // Make camera look up and down
@@ -60,25 +67,45 @@ public class CameraManager : MonoBehaviour
     // Make the camera rotate according to the player's input
     private void RotateCamera()
     {
-        Vector3 rotation; // Specify the rotation of the camera
-        Quaternion targetRotation; // Target rotation in a Quaterion form
+        if (!inputManager.lockOnFlag && currentLockOnTarget == null) // Check player is not locked on
+        {
+            Vector3 rotation; // Specify the rotation of the camera
+            Quaternion targetRotation; // Target rotation in a Quaterion form
 
-        lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed * playerGeneral.playerLookSpeed); // Set the look angle based on player input
-        pivotAngle = pivotAngle - (inputManager.cameraInputY * cameraPivotSpeed); // Set the pivot angle based on player input
-        pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle); // Make it so you cannot rotate the pivotAngle forever
+            lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed * playerGeneral.playerLookSpeed); // Set the look angle based on player input
+            pivotAngle = pivotAngle - (inputManager.cameraInputY * cameraPivotSpeed); // Set the pivot angle based on player input
+            pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle); // Make it so you cannot rotate the pivotAngle forever
 
-        #region Y axis Camera Movement
-        rotation = Vector3.zero; // Starting rotation should be (0,0,0)
-        rotation.y = lookAngle; // Set the rotation on the y axis to the look angle
-        targetRotation = Quaternion.Euler(rotation); // Set the targetRotation variable to match the rotation Vector3 in Euler form
-        transform.rotation = targetRotation; // Set the camera's transform to match the target rotation
-        #endregion
-        #region X axis Camera movment
-        rotation = Vector3.zero; // Reset the rotation Vector3 to (0,0,0)
-        rotation.x = pivotAngle; // Set the rotation on the x axis to the pivot angle
-        targetRotation = Quaternion.Euler(rotation); // Set the targetRotation variable to match the rotation Vector3 in Euler form
-        cameraPivot.localRotation = targetRotation; // Set the transform of the camera's pivot to match the target rotation
-        #endregion
+            #region Y axis Camera Movement
+            rotation = Vector3.zero; // Starting rotation should be (0,0,0)
+            rotation.y = lookAngle; // Set the rotation on the y axis to the look angle
+            targetRotation = Quaternion.Euler(rotation); // Set the targetRotation variable to match the rotation Vector3 in Euler form
+            transform.rotation = targetRotation; // Set the camera's transform to match the target rotation
+            #endregion
+            #region X axis Camera movment
+            rotation = Vector3.zero; // Reset the rotation Vector3 to (0,0,0)
+            rotation.x = pivotAngle; // Set the rotation on the x axis to the pivot angle
+            targetRotation = Quaternion.Euler(rotation); // Set the targetRotation variable to match the rotation Vector3 in Euler form
+            cameraPivot.localRotation = targetRotation; // Set the transform of the camera's pivot to match the target rotation
+            #endregion
+        }
+        else // Player is locked on
+        {
+            float velocity = 0;
+
+            Vector3 direction = currentLockOnTarget.position - transform.position; // Get direction to point camera
+            direction.Normalize(); // Normalize direction
+            direction.y = 0; // Set y value to 0
+            Quaternion targetRotation = Quaternion.LookRotation(direction); // Get look rotation to face the direction of the target
+            transform.rotation = targetRotation; // Set the rotation of the camera's transform to look at the target
+
+            direction = currentLockOnTarget.position - cameraPivot.position; // Get direction from camera pivot
+            direction.Normalize(); // Normalize direction
+            targetRotation = Quaternion.LookRotation(direction); // Get a new look rotation to face the target
+            Vector3 eulerAngles = targetRotation.eulerAngles; // Get the euler angles of the new rotation
+            eulerAngles.y = 0; // Set y to 0
+            cameraPivot.localEulerAngles = eulerAngles; // Rotate camera pivot towards target
+        }
     }
 
     private void HandleCameraCollisions()
@@ -122,5 +149,50 @@ public class CameraManager : MonoBehaviour
             cameraLookSpeed = 0.25f; // Make camera move faster
             cameraPivotSpeed = 0.25f; // Make camera move faster
         }
+    }
+
+    // Adjust the camera to lock onto a specific enemy
+    public void HandleLockOn()
+    {
+        float shortestDistance = Mathf.Infinity; // Measure distance between targets and player and pick the shortest one
+
+        Collider[] colliders = Physics.OverlapSphere(targetTransform.position, 26); // Search around the player a distance of 26 units for colliders
+
+        // Loop through everything detected in the sphere
+        for(int i = 0; i < colliders.Length; i++)
+        {
+            EnemyGeneral enemy = colliders[i].GetComponent<EnemyGeneral>(); // Search through colliders for an EnemyGeneral script
+            if (enemy != null)
+            {
+                Vector3 lockTargetDirection = enemy.transform.position - targetTransform.position; // Get Vector3 to hold the direction of the target compared to the player
+                float distanceFromTarget = Vector3.Distance(targetTransform.position, enemy.transform.position); // Get distance from player to target
+                float viewableAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward); // Detect angle between the target and the current forward of the camera
+
+                // Check that the enemy is on screen and within an acceptable distance
+                if (enemy.transform.root != targetTransform.transform.root && viewableAngle > -50 && viewableAngle < 50 && distanceFromTarget <= maximumLockOnDistance)
+                    availableTargets.Add(enemy); // Add enemy as potential target
+            }
+        }
+
+        // Loop through available targets for player to lock on to
+        for (int j = 0; j < availableTargets.Count; j++)
+        {
+            // Get distacne from player
+            float distanceFromTarget = Vector3.Distance(targetTransform.position, availableTargets[j].transform.position);
+
+            if (distanceFromTarget < shortestDistance)
+            {
+                shortestDistance = distanceFromTarget; // Find closest distance
+                nearestLockOnTarget = availableTargets[j].lockOnTransform;
+            }
+        }
+    }
+
+    // Clear the possible lock on target
+    public void ClearLockOnTargets()
+    {
+        availableTargets.Clear();
+        nearestLockOnTarget = null;
+        currentLockOnTarget = null;
     }
 }

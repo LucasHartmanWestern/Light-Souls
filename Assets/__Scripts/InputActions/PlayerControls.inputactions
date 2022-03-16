@@ -306,6 +306,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LockOnButton",
+                    "type": "Button",
+                    "id": "d548ee20-944b-45d6-bd12-b07a1d86144c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -427,6 +436,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpecialMoveButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e480bd16-e815-4988-9367-8e9b3ca9a182",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LockOnButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3e165254-26e6-48b9-88b0-b7f2affe0a7c",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LockOnButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

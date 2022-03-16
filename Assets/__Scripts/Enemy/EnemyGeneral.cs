@@ -10,6 +10,7 @@ public class EnemyGeneral : MonoBehaviour
 
     [Header("Required objects")]
     public Transform deathPS; // Death particle system reference
+    public Transform lockOnTransform; // Transform that the player can lock on to
 
 
     [Header("Enemy Stats")]

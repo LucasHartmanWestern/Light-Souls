@@ -5,6 +5,7 @@ public class InputManager : MonoBehaviour
     PlayerControls playerControls; // Reference to the Input System PlayerControls
     PlayerMovement playerMovement; // Reference to the PlayerMovement script
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script
+    CameraManager cameraManager; // Reference to the CameraManager script
     
     [Header("Input from the Input Controller")]
     public Vector2 movementInput; // 2D vector tracking where the player is trying to move
@@ -16,18 +17,24 @@ public class InputManager : MonoBehaviour
     public float cameraInputX; // Track camera input on the x axes
     public float cameraInputY; // Track the camera input on the y axes
 
+    [Header("Boolean variables to track inputs")]
     public float moveAmount; // Determine the amount to move
     public bool sprintInput; // Check if player is trying to sprint
     public bool jumpInput; // Check if player is trying to jump
     public bool aimInput; // Check if player is trying to aim
     public bool attackInput; // Check if player is trying to attack
     public bool specialMoveInput; // Check if player is trying to use their special moving abilitiy
+    public bool lockOnInput; // Check if player is trying to lock onto an enemy
+
+    [Header("Toggled flags for certain inputs")]
+    public bool lockOnFlag; // Check if player should be locked on
 
     // Called right before Start() method
     private void Awake()
     {
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Get the PlayerAnimationManager script attached to player
         playerMovement = GetComponent<PlayerMovement>(); // Get the PlayerMovement script attached to player
+        cameraManager = FindObjectOfType<CameraManager>(); // Get the CameraManager script
     }
 
     // Run when object script is attached to becomes enabled
@@ -57,6 +64,8 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.SpecialMoveButton.performed += i => specialMoveInput = true; // Set specialMoveInput to true when the SpecialMoveButton is pressed
             playerControls.PlayerActions.SpecialMoveButton.canceled += i => specialMoveInput = false; // Set specialMoveInput to false when the SpecialMoveButton is no longer pressed
+
+            playerControls.PlayerActions.LockOnButton.performed += i => lockOnInput = true; // Set lockOnInput to true when the lockOnButton is pressed
             #endregion
         }
 
@@ -109,8 +118,32 @@ public class InputManager : MonoBehaviour
 
         playerMovement.isAiming = aimInput; // Make player face where they're aiming
 
-        // Make the player animate to aim if player is aiming
-        if (aimInput) playerAnimationManager.PlayerAim(1f);
+        
+        if (aimInput)
+        {
+            playerAnimationManager.PlayerAim(1f); // Make the player animate to aim if player is aiming
+            cameraManager.ClearLockOnTargets(); // Don't let player aim and lock on
+            lockOnInput = false;
+            lockOnFlag = false;
+        }
         else playerAnimationManager.PlayerAim(0f);
+
+        if (lockOnInput && !lockOnFlag) // If player tries to lock on and they aren't currently locked on, set the input to false then call the HandleLockOn method
+        {
+            cameraManager.ClearLockOnTargets(); // Clear the possible lock on targets
+            lockOnInput = false;
+            cameraManager.HandleLockOn();
+            if (cameraManager.nearestLockOnTarget != null)
+            {
+                cameraManager.currentLockOnTarget = cameraManager.nearestLockOnTarget; // By default, lock onto closest target
+                lockOnFlag = true; // Flag that player is locked on
+            }
+        }
+        else if (lockOnInput && lockOnFlag) // If player tries to lock on and they are currently locked on, set the input to false then call the HandleLockOff method
+        {
+            lockOnInput = false;
+            lockOnFlag = false;
+            cameraManager.ClearLockOnTargets(); // Clear the possible lock on targets
+        }
     }
 }
