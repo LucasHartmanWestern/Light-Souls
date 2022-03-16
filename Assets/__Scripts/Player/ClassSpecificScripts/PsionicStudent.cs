@@ -21,6 +21,9 @@ public class PsionicStudent : PlayerGeneral
             inputManager.specialMoveInput = false; // Reset back to 
 
             playerAnimationManager.AplpyRootMotion(true); // Apply the root motion of the animation
+            // Shrink collider
+            this.GetComponent<CapsuleCollider>().height = 0.1f;
+            this.GetComponent<CapsuleCollider>().radius = 0.1f;
             playerAnimationManager.PlayTargetAnimation("Dash Forwards", true); // Play the dash animation
             StartCoroutine("finishDash"); // Start the coroutine to reset the variables after the animation finishes
         }
@@ -28,8 +31,11 @@ public class PsionicStudent : PlayerGeneral
 
     IEnumerator finishDash()
     {
-        yield return new WaitForSeconds(0.29f); // Wait duration of animation
+        yield return new WaitForSeconds(0.7f); // Wait duration of animation
         playerAnimationManager.AplpyRootMotion(false); // Set Root Motion back to false
+        // Set collider back to normal
+        this.GetComponent<CapsuleCollider>().height = 1.6f;
+        this.GetComponent<CapsuleCollider>().radius = 0.28f;
         yield return null;
     }
 }

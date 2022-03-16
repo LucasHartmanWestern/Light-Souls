@@ -395,7 +395,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dash Forwards
-  m_Speed: 2
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7133137895313250181}
@@ -408,7 +408,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 930748aa864f6a94a9f6bce82f859e7e, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: e834801f55a781c46a6a5ed30711180b, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
