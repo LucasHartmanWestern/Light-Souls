@@ -50,22 +50,8 @@ public class EnemyGeneral : MonoBehaviour
             animator.CrossFade("Death", 0.2f); // Play death animation
 
             // Change what the player is locked on to
-            
-            if (cameraManager.rightLockTarget != null)
-            {
-                cameraManager.HandleLockOn();
-                cameraManager.currentLockOnTarget = cameraManager.rightLockTarget;
-            }
-            else if (cameraManager.leftLockTarget != null)
-            {
-                cameraManager.HandleLockOn();
-                cameraManager.currentLockOnTarget = cameraManager.leftLockTarget;
-            }
-            else
-            {
-                inputManager.lockOnFlag = false;
-                cameraManager.ClearLockOnTargets();
-            }
+            inputManager.lockOnFlag = false;
+            cameraManager.ClearLockOnTargets();
 
             StartCoroutine(DestroyEnemyObject()); // Destroy enemy game obejct
         }
