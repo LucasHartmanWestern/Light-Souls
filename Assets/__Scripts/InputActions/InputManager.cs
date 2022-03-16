@@ -69,7 +69,7 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.SpecialMoveButton.canceled += i => specialMoveInput = false; // Set specialMoveInput to false when the SpecialMoveButton is no longer pressed
 
             playerControls.PlayerActions.SpecialAbilityButton.performed += i => specialAbilityInput = true; // Set specialAbilityInput to true when the SpecialAbilityButton is pressed
-            playerControls.PlayerActions.SpecialAbilityButton.performed += i => specialAbilityInput = false; // Set specialAbilityInput to false when the SpecialAbilityButton is no longer pressed
+            playerControls.PlayerActions.SpecialAbilityButton.canceled += i => specialAbilityInput = false; // Set specialAbilityInput to false when the SpecialAbilityButton is no longer pressed
 
             playerControls.PlayerActions.LockOnButton.performed += i => lockOnInput = true; // Set lockOnInput to true when the lockOnButton is pressed
             playerControls.PlayerActions.LockOnTargetLeft.performed += i => lockOnLeftInput = true; // Set lockOnLeftInput to true when the LockOnTargetLeft is pressed

@@ -330,6 +330,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SpecialAbilityButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3ad236c-a457-4e1b-9bc6-5bdad0461837"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""LockOnButton"",
                     ""type"": ""Button"",
                     ""id"": ""d548ee20-944b-45d6-bd12-b07a1d86144c"",
@@ -351,15 +360,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""LockOnTargetRight"",
                     ""type"": ""Button"",
                     ""id"": ""efdd8728-70c9-4837-b724-2f51cc9699f7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SpecialAbilityButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""a3ad236c-a457-4e1b-9bc6-5bdad0461837"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -557,7 +557,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""360497d5-4851-4fb9-9eec-42239c40fd65"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -581,10 +581,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_AimButton = m_PlayerActions.FindAction("AimButton", throwIfNotFound: true);
         m_PlayerActions_AttackButton = m_PlayerActions.FindAction("AttackButton", throwIfNotFound: true);
         m_PlayerActions_SpecialMoveButton = m_PlayerActions.FindAction("SpecialMoveButton", throwIfNotFound: true);
+        m_PlayerActions_SpecialAbilityButton = m_PlayerActions.FindAction("SpecialAbilityButton", throwIfNotFound: true);
         m_PlayerActions_LockOnButton = m_PlayerActions.FindAction("LockOnButton", throwIfNotFound: true);
         m_PlayerActions_LockOnTargetLeft = m_PlayerActions.FindAction("LockOnTargetLeft", throwIfNotFound: true);
         m_PlayerActions_LockOnTargetRight = m_PlayerActions.FindAction("LockOnTargetRight", throwIfNotFound: true);
-        m_PlayerActions_SpecialAbilityButton = m_PlayerActions.FindAction("SpecialAbilityButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -690,10 +690,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_AimButton;
     private readonly InputAction m_PlayerActions_AttackButton;
     private readonly InputAction m_PlayerActions_SpecialMoveButton;
+    private readonly InputAction m_PlayerActions_SpecialAbilityButton;
     private readonly InputAction m_PlayerActions_LockOnButton;
     private readonly InputAction m_PlayerActions_LockOnTargetLeft;
     private readonly InputAction m_PlayerActions_LockOnTargetRight;
-    private readonly InputAction m_PlayerActions_SpecialAbilityButton;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -703,10 +703,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @AimButton => m_Wrapper.m_PlayerActions_AimButton;
         public InputAction @AttackButton => m_Wrapper.m_PlayerActions_AttackButton;
         public InputAction @SpecialMoveButton => m_Wrapper.m_PlayerActions_SpecialMoveButton;
+        public InputAction @SpecialAbilityButton => m_Wrapper.m_PlayerActions_SpecialAbilityButton;
         public InputAction @LockOnButton => m_Wrapper.m_PlayerActions_LockOnButton;
         public InputAction @LockOnTargetLeft => m_Wrapper.m_PlayerActions_LockOnTargetLeft;
         public InputAction @LockOnTargetRight => m_Wrapper.m_PlayerActions_LockOnTargetRight;
-        public InputAction @SpecialAbilityButton => m_Wrapper.m_PlayerActions_SpecialAbilityButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -731,6 +731,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SpecialMoveButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpecialMoveButton;
                 @SpecialMoveButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpecialMoveButton;
                 @SpecialMoveButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpecialMoveButton;
+                @SpecialAbilityButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpecialAbilityButton;
+                @SpecialAbilityButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpecialAbilityButton;
+                @SpecialAbilityButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpecialAbilityButton;
                 @LockOnButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnButton;
                 @LockOnButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnButton;
                 @LockOnButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnButton;
@@ -740,9 +743,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LockOnTargetRight.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetRight;
                 @LockOnTargetRight.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetRight;
                 @LockOnTargetRight.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetRight;
-                @SpecialAbilityButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpecialAbilityButton;
-                @SpecialAbilityButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpecialAbilityButton;
-                @SpecialAbilityButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpecialAbilityButton;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -762,6 +762,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SpecialMoveButton.started += instance.OnSpecialMoveButton;
                 @SpecialMoveButton.performed += instance.OnSpecialMoveButton;
                 @SpecialMoveButton.canceled += instance.OnSpecialMoveButton;
+                @SpecialAbilityButton.started += instance.OnSpecialAbilityButton;
+                @SpecialAbilityButton.performed += instance.OnSpecialAbilityButton;
+                @SpecialAbilityButton.canceled += instance.OnSpecialAbilityButton;
                 @LockOnButton.started += instance.OnLockOnButton;
                 @LockOnButton.performed += instance.OnLockOnButton;
                 @LockOnButton.canceled += instance.OnLockOnButton;
@@ -771,9 +774,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LockOnTargetRight.started += instance.OnLockOnTargetRight;
                 @LockOnTargetRight.performed += instance.OnLockOnTargetRight;
                 @LockOnTargetRight.canceled += instance.OnLockOnTargetRight;
-                @SpecialAbilityButton.started += instance.OnSpecialAbilityButton;
-                @SpecialAbilityButton.performed += instance.OnSpecialAbilityButton;
-                @SpecialAbilityButton.canceled += instance.OnSpecialAbilityButton;
             }
         }
     }
@@ -790,9 +790,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAimButton(InputAction.CallbackContext context);
         void OnAttackButton(InputAction.CallbackContext context);
         void OnSpecialMoveButton(InputAction.CallbackContext context);
+        void OnSpecialAbilityButton(InputAction.CallbackContext context);
         void OnLockOnButton(InputAction.CallbackContext context);
         void OnLockOnTargetLeft(InputAction.CallbackContext context);
         void OnLockOnTargetRight(InputAction.CallbackContext context);
-        void OnSpecialAbilityButton(InputAction.CallbackContext context);
     }
 }

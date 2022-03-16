@@ -32,10 +32,10 @@ public class PsionicStudent : PlayerGeneral
     // Handles the special movement the player can perform
     protected override void HandleCombatAbility()
     {
-        if (inputManager.specialAbilityInput) // Check if player is using the special move input
+        if (inputManager.specialAbilityInput) // Check if player is using the special ability input
         {
-            print("Test");
             inputManager.specialAbilityInput = false; // Reset back to false
+
         }
     }
 

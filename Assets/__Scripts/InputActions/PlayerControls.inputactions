@@ -308,6 +308,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SpecialAbilityButton",
+                    "type": "Button",
+                    "id": "a3ad236c-a457-4e1b-9bc6-5bdad0461837",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "LockOnButton",
                     "type": "Button",
                     "id": "d548ee20-944b-45d6-bd12-b07a1d86144c",
@@ -329,15 +338,6 @@
                     "name": "LockOnTargetRight",
                     "type": "Button",
                     "id": "efdd8728-70c9-4837-b724-2f51cc9699f7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SpecialAbilityButton",
-                    "type": "Button",
-                    "id": "a3ad236c-a457-4e1b-9bc6-5bdad0461837",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -535,7 +535,7 @@
                 {
                     "name": "",
                     "id": "360497d5-4851-4fb9-9eec-42239c40fd65",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
