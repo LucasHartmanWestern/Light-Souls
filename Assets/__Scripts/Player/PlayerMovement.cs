@@ -176,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimationManager.animator.SetBool("isJumping", true); // Set the bool in the animator
             playerAnimationManager.PlayTargetAnimation("Jumping", false); // Play animation in the animator
 
-            float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight); // Get the velocity for the jump
+            float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight * playerGeneral.jumpStrenth); // Get the velocity for the jump
             Vector3 playerVelocity = moveDirection; // Get the moveDirection variable and set it to the playerVelocity (to keep player movement pre-jump)
             playerVelocity.y = jumpingVelocity; // Add the jumpingVelocity as the velocity in the y axis
             playerRigidBody.velocity += playerVelocity; // Apply the newly calcualted velocity to the RigidBody of the player

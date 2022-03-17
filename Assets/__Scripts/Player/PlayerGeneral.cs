@@ -16,12 +16,14 @@ public class PlayerGeneral : MonoBehaviour
 
     [Header("Player Stats")]
     public bool isAlive = true; // Track if player is alive
+    public float jumpStrenth = 1f; // Track strength of player's jump
     public float playerMoveSpeed = 1f; // Track how fast player moves
     public float playerLookSpeed = 1f;
     public float playerHealth; // Track player's health
     public float playerExperience; // Track player exp
     public float rangedDamage; // How much damage player's ranged attack does
     public float meleeDamage; // How much damage player's melee attack does
+    public float resistance = 1f; // How much damage player can absorb
 
     // Called before Start()
     private void Awake()
@@ -66,7 +68,7 @@ public class PlayerGeneral : MonoBehaviour
     // Called to damage the player
     public void TakeDamage(float damageAmount)
     {
-        playerHealth -= damageAmount; // Decrease player's health
+        playerHealth -= damageAmount / resistance; // Decrease player's health
 
         if (playerHealth <= 0)
         {
