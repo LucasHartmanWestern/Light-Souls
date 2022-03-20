@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
-    public Animator animator; // Reference to the players animator
+    [HideInInspector] public Animator animator; // Reference to the players animator
     int horizontal;
     int vertical;
 
