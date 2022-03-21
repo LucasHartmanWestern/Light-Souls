@@ -42,8 +42,8 @@ public class DamageDealing : MonoBehaviour
         {
             Instantiate(psHitRed, transform.position, Quaternion.identity); // Create a red particle system
 
-            if (isProjectile) other.GetComponent<EnemyGeneral>().TakeDamage(playerGeneral.rangedDamage); // Damage enemy the ranged amount
-            else other.GetComponent<EnemyGeneral>().TakeDamage(playerGeneral.meleeDamage); // Damage enemy the melee amount
+            if (isProjectile) other.GetComponent<EnemyGeneral>().TakeDamage(playerGeneral.rangedDamage * equippableItems.GetFourLeafDamage()); // Damage enemy the ranged amount
+            else other.GetComponent<EnemyGeneral>().TakeDamage(playerGeneral.meleeDamage * equippableItems.GetFourLeafDamage()); // Damage enemy the melee amount
 
             if (!isProjectile && equippableItems.gasoline) other.GetComponent<EnemyGeneral>().isOnFire = true; // Set enemy on fire if player has gasoline equipped
         }

@@ -60,4 +60,12 @@ public class EquipableItems : MonoBehaviour
         else
             fireParticleSystem.SetActive(false);
     }
+
+    // Returns either 1 or 2 depending on crit chance
+    public float GetFourLeafDamage()
+    {
+        if (fourLeafClover)
+            return (Random.Range(1, 5) == 1) ? 2 : 1;
+        else return 1;
+    }
 }

@@ -4542,7 +4542,7 @@ MonoBehaviour:
   lockOnTransform: {fileID: 8486874127552474584}
   isAlive: 1
   enemyHealth: 50
-  expOnDeath: 0
+  expOnDeath: 100
   enemyDamage: 20
   walkSpeed: 5
   chaseSpeed: 15
@@ -4592,6 +4592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 308205855246968449}
+  startingHealth: 0
+  currentHealth: 0
 --- !u!1 &7873836633324178275
 GameObject:
   m_ObjectHideFlags: 0

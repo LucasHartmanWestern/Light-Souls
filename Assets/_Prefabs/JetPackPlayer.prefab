@@ -4279,8 +4279,11 @@ MonoBehaviour:
   jumpStrenth: 1
   playerMoveSpeed: 1
   playerLookSpeed: 1
-  playerHealth: 100
-  playerSpecial: 100
+  playerStartingHealth: 150
+  playerHealth: 0
+  playerStartingSpecial: 100
+  playerSpecial: 0
+  playerLevel: 1
   playerExperience: 0
   rangedDamage: 40
   meleeDamage: 20
@@ -4315,8 +4318,11 @@ MonoBehaviour:
   jumpStrenth: 1
   playerMoveSpeed: 1
   playerLookSpeed: 1
+  playerStartingHealth: 150
   playerHealth: 0
-  playerSpecial: 100
+  playerStartingSpecial: 100
+  playerSpecial: 0
+  playerLevel: 1
   playerExperience: 0
   rangedDamage: 40
   meleeDamage: 15

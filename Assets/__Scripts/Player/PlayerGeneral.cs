@@ -19,9 +19,13 @@ public class PlayerGeneral : MonoBehaviour
     public float jumpStrenth = 1f; // Track strength of player's jump
     public float playerMoveSpeed = 1f; // Track how fast player moves
     public float playerLookSpeed = 1f;
-    public float playerHealth; // Track player's health
-    public float playerSpecial = 100; // Track player's special
-    public float playerExperience; // Track player exp
+    public float playerStartingHealth; // Track player's starting health
+    public float playerHealth = 0; // Track player's current health
+    public float playerStartingSpecial;
+    public float playerSpecial = 0; // Track player's special
+    public float playerLevel = 1; // Track player's level
+    public float expToNextLevel = 1000; // Track exp needed to get to the next level
+    public float playerExperience = 0; // Track player exp
     public float rangedDamage = 15; // How much damage player's ranged attack does
     public float meleeDamage = 15; // How much damage player's melee attack does
     public float resistance = 1f; // How much damage player can absorb
@@ -36,6 +40,8 @@ public class PlayerGeneral : MonoBehaviour
         cameraTransform = Camera.main.transform; // Get transform of the main camera
         cameraManager = FindObjectOfType<CameraManager>(); // Reference to the object with the CameraManager script attached to it
         animator = GetComponent<Animator>(); // Reference to Animator attached to player
+        playerHealth = playerStartingHealth; // Set the player's starting health
+        playerSpecial = playerStartingSpecial; // Set the player's starting special meter
     }
 
     // Called once a frame
@@ -49,9 +55,22 @@ public class PlayerGeneral : MonoBehaviour
         }
 
         // Always be increase the player special meter to 100 (unless their in the air)
-        if (playerSpecial < 100 && playerMovement.isGrounded)
+        if (playerSpecial < playerStartingSpecial && playerMovement.isGrounded)
             playerSpecial += 5 * Time.deltaTime;
-        else if (playerSpecial > 100) playerSpecial = 100;
+        else if (playerSpecial > playerStartingSpecial) playerSpecial = playerStartingSpecial;
+
+        // Level up the player
+        if (playerExperience >= expToNextLevel)
+        {
+            playerExperience -= expToNextLevel;
+            expToNextLevel += 1000;
+            playerStartingHealth += 10;
+            playerStartingSpecial += 10;
+            playerLevel += 1;
+            playerHealth = playerStartingHealth;
+            playerSpecial = playerStartingSpecial;
+        }
+            
     }
     
     // Used for physics updates

@@ -69,7 +69,7 @@ public class EnemyGeneral : MonoBehaviour
         deathSound.Play(); // Play the death sound
 
         yield return new WaitForSeconds(5f); // Wait 5 seconds before destroying the object
-        Instantiate(deathPS, transform.position, Quaternion.identity); // Create a death particle system
+        Instantiate(deathPS, transform.position, Quaternion.identity); // Create a death particle 
 
         playerGeneral.playerExperience += expOnDeath; // Increase player exp
         Destroy(gameObject); // Destroy the game object
