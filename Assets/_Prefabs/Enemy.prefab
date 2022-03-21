@@ -3860,6 +3860,7 @@ Transform:
   - {fileID: 6944471370431026659}
   - {fileID: 7234865259601594430}
   - {fileID: 8486874127552474584}
+  - {fileID: 8376742274482754506}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -178.147, z: 0}
@@ -4124,6 +4125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathSound: {fileID: 5595493511494855940}
   deathPS: {fileID: 790030930504202461, guid: e480a13d776c8b54e9d23bd22500356d, type: 3}
+  firePS: {fileID: 8376742274482754511}
   lockOnTransform: {fileID: 8486874127552474584}
   isAlive: 1
   enemyHealth: 50
@@ -4131,6 +4133,7 @@ MonoBehaviour:
   enemyDamage: 20
   walkSpeed: 5
   chaseSpeed: 15
+  isOnFire: 0
   isInAir: 0
 --- !u!114 &7826937546502880158
 MonoBehaviour:
@@ -4645,3 +4648,74 @@ Transform:
   m_Father: {fileID: 5359992307303342660}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1347740390275068497
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7481902394709172513}
+    m_Modifications:
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.952
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.011436236
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.011436236
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7070143
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7070143
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191838, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_Name
+      value: FireDamagePS
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418563325065191838, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+--- !u!1 &8376742274482754511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7418563325065191838, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+  m_PrefabInstance: {fileID: 1347740390275068497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8376742274482754506 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7418563325065191835, guid: 1a5702a3f802cc7498737d41e2352852, type: 3}
+  m_PrefabInstance: {fileID: 1347740390275068497}
+  m_PrefabAsset: {fileID: 0}

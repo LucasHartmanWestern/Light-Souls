@@ -6,6 +6,8 @@ public class EquipableItems : MonoBehaviour
 {
     PlayerGeneral playerGeneral; // Reference to PlayerGeneral script
 
+    public GameObject fireParticleSystem; // Reference to the fire effect Particle System
+
     [Header("Equipable Items")]
     public bool bigMagazine; // Increase magazine capacity of equipped gun by 15%
     public bool gasoline; // Increase damage to melee weapon and apply tic damage
@@ -25,10 +27,16 @@ public class EquipableItems : MonoBehaviour
         ApplyEffects(); // Apply the effects
     }
 
+    private void Update()
+    {
+        ApplyEffects(); // Apply the effects
+    }
+
     // Finds which items are equipped and applies their effect
     void ApplyEffects()
     {
         HandleStatModifications(); // Handle the effects that just modify player stats
+        HandleFireEffect(); // Handle the fire effects
     }
 
     void HandleStatModifications()
@@ -42,5 +50,14 @@ public class EquipableItems : MonoBehaviour
         if (specialSerum) playerGeneral.playerHealth += 100; // Increase player health by 100hp
 
         if (bodyArmor) playerGeneral.resistance *= 1.5f; // Increase player resistance by 50%
+    }
+
+    void HandleFireEffect()
+    {
+        // Activate the fire particle system if the equipped item is selected
+        if (gasoline)
+            fireParticleSystem.SetActive(true);
+        else
+            fireParticleSystem.SetActive(false);
     }
 }

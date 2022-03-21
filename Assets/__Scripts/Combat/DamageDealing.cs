@@ -5,6 +5,7 @@ public class DamageDealing : MonoBehaviour
     InputManager inputManager; // Reference to Input Manager
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager
     PlayerGeneral playerGeneral; // Reference to PlayerGeneral
+    EquipableItems equippableItems; // Reference to the Equipabble items class
 
     public bool isProjectile; // Check if script is attached to projectile or not
     public float projectileSpeed = 10f; // Speed projectile travels after it's fired
@@ -21,6 +22,7 @@ public class DamageDealing : MonoBehaviour
         playerAnimationManager = FindObjectOfType<PlayerAnimationManager>(); // Get reference to instance of Player Animation Manager
         playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to instance of Player General script
         _projectileRigidBody = GetComponent<Rigidbody>(); // Get RigidBody attached to game object this script is on
+        equippableItems = FindObjectOfType<EquipableItems>(); // Get instance of EquippableItems script
     }
 
     // Called after Awake()
@@ -42,6 +44,8 @@ public class DamageDealing : MonoBehaviour
 
             if (isProjectile) other.GetComponent<EnemyGeneral>().TakeDamage(playerGeneral.rangedDamage); // Damage enemy the ranged amount
             else other.GetComponent<EnemyGeneral>().TakeDamage(playerGeneral.meleeDamage); // Damage enemy the melee amount
+
+            if (!isProjectile && equippableItems.gasoline) other.GetComponent<EnemyGeneral>().isOnFire = true; // Set enemy on fire if player has gasoline equipped
         }
         // Check if hit player
         else if (other.GetComponent<PlayerGeneral>() != null)

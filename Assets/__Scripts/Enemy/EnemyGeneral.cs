@@ -13,8 +13,8 @@ public class EnemyGeneral : MonoBehaviour
 
     [Header("Required objects")]
     public Transform deathPS; // Death particle system reference
+    public GameObject firePS; // Particle system of fire effect
     public Transform lockOnTransform; // Transform that the player can lock on to
-
 
     [Header("Enemy Stats")]
     public bool isAlive; // Track if this enemy instance is alive
@@ -23,6 +23,7 @@ public class EnemyGeneral : MonoBehaviour
     public float enemyDamage; // Track damage enemy does to player
     public float walkSpeed = 1f; // How fast enemy patrols
     public float chaseSpeed = 8f; // How fast enemy chases
+    public bool isOnFire; // Track if enemy is on fire
 
     public bool isInAir; // Checks if enemy is in the air or not
 
@@ -39,8 +40,8 @@ public class EnemyGeneral : MonoBehaviour
     // Called once a frame
     private void Update()
     {
-        if (enemyHealth <= 0)
-            isAlive = false; // Set that the enemy is dead
+        if (isAlive) HandleFireDamage(); // Handles the fire damage effect
+        if (enemyHealth <= 0) isAlive = false; // Set that the enemy is dead
     }
 
     // Damage the enemy
@@ -98,5 +99,26 @@ public class EnemyGeneral : MonoBehaviour
 
         animator.SetLayerWeight(2, 0); // Make it so aiming layer weight is 0
         animator.CrossFade("FlingBackwards", 0.2f); // Play death animation
+    }
+
+    // Takes fire damage for a certain amount of time
+    public void HandleFireDamage()
+    {
+        if (isOnFire && !firePS.activeSelf) // Check if player just got set on fire
+        {
+            firePS.SetActive(true); // Enable the fire particle systen
+            StartCoroutine("EndFireDamage"); // Start the coroutine to end the fire damage
+        }
+
+        if (isOnFire) // Check if player is on fire 
+            TakeDamage(5 * Time.deltaTime); // Damage the player
+    }
+
+    // End the fire damage after 5 seconds
+    private IEnumerator EndFireDamage()
+    {
+        yield return new WaitForSeconds(5);
+        isOnFire = false;
+        firePS.SetActive(false);
     }
 }
