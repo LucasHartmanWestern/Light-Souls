@@ -216,6 +216,11 @@ public class CameraManager : MonoBehaviour
     // Clear the possible lock on target
     public void ClearLockOnTargets()
     {
+        foreach(EnemyGeneral enemy in availableTargets)
+        {
+            if (enemy.transform.GetComponent<EnemyHealthBar>().currentHealth == enemy.transform.GetComponent<EnemyHealthBar>().startingHealth && enemy.transform.GetComponent<EnemyHealthBar>().healthBar.activeSelf)
+                enemy.transform.GetComponent<EnemyHealthBar>().healthBar.SetActive(false);
+        }
         availableTargets.Clear();
         nearestLockOnTarget = null;
         currentLockOnTarget = null;

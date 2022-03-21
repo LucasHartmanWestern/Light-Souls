@@ -147,6 +147,7 @@ public class InputManager : MonoBehaviour
             if (cameraManager.nearestLockOnTarget != null)
             {
                 cameraManager.currentLockOnTarget = cameraManager.nearestLockOnTarget; // By default, lock onto closest target
+                cameraManager.currentLockOnTarget.GetComponentInParent<EnemyHealthBar>().healthBar.SetActive(true); // Enable the health bar when locked onto
                 lockOnFlag = true; // Flag that player is locked on
             }
         }
@@ -161,14 +162,20 @@ public class InputManager : MonoBehaviour
             lockOnLeftInput = false;
             cameraManager.HandleLockOn();
             if (cameraManager.leftLockTarget != null)
+            {
                 cameraManager.currentLockOnTarget = cameraManager.leftLockTarget;
+                cameraManager.currentLockOnTarget.GetComponentInParent<EnemyHealthBar>().healthBar.SetActive(true); // Enable the health bar when locked onto
+            }
         }
         if (lockOnFlag && lockOnRightInput) // Lock onto the target right to the current target
         {
             lockOnRightInput = false;
             cameraManager.HandleLockOn();
             if (cameraManager.rightLockTarget != null)
+            {
                 cameraManager.currentLockOnTarget = cameraManager.rightLockTarget;
+                cameraManager.currentLockOnTarget.GetComponentInParent<EnemyHealthBar>().healthBar.SetActive(true); // Enable the health bar when locked onto
+            }
         }
         #endregion
     }
