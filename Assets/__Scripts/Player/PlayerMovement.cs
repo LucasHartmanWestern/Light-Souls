@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerGeneral playerGeneral; // Reference to PlayerGeneral script
 
     [Header("Falling Settings")]
-    private float inAirTimer; // Track how long player is in the air for
+    [HideInInspector] public float inAirTimer; // Track how long player is in the air for
     public float leapingVelocity = 3; // Specify how much the player should move forward when they begin to fall
     public float fallingVelocity = 55; // Specify how fast the player falls
     public float rayCastHeightOffset = 0.5f; // Specify how much to offset the height of the origin of the raycast
@@ -172,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Only let player jump if they're on the ground
         if (isGrounded)
-        {
+        { 
             playerAnimationManager.animator.SetBool("isJumping", true); // Set the bool in the animator
             playerAnimationManager.PlayTargetAnimation("Jumping", false); // Play animation in the animator
 

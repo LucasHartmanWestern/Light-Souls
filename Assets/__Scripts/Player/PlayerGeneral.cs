@@ -20,9 +20,10 @@ public class PlayerGeneral : MonoBehaviour
     public float playerMoveSpeed = 1f; // Track how fast player moves
     public float playerLookSpeed = 1f;
     public float playerHealth; // Track player's health
+    public float playerSpecial = 100; // Track player's special
     public float playerExperience; // Track player exp
-    public float rangedDamage; // How much damage player's ranged attack does
-    public float meleeDamage; // How much damage player's melee attack does
+    public float rangedDamage = 15; // How much damage player's ranged attack does
+    public float meleeDamage = 15; // How much damage player's melee attack does
     public float resistance = 1f; // How much damage player can absorb
 
     // Called before Start()
@@ -41,17 +42,22 @@ public class PlayerGeneral : MonoBehaviour
     private void Update()
     {
         inputManager.HandleAllInputs(); // Call the HandleAllInputs method in the InputManager
-        if (isAlive && GetComponent<PlayerMovement>().isGrounded)
+        if (isAlive)
         {
             HandleMovementAbility(); // Handles the movement ability of the player
             HandleCombatAbility(); // Handles the combat ability of the player
         }
-    }
 
+        // Always be increase the player special meter to 100 (unless their in the air)
+        if (playerSpecial < 100 && playerMovement.isGrounded)
+            playerSpecial += 5 * Time.deltaTime;
+        else if (playerSpecial > 100) playerSpecial = 100;
+    }
+    
     // Used for physics updates
     private void FixedUpdate()
     {
-        playerMovement.HandleAllPlayerMovement(); // Call the HandleAllPlayerMovement method in the PlayerMovement script
+        playerMovement.HandleAllPlayerMovement(); // Call the HandleAllPlayerMovement method in the PlayerMovement script   
     }
 
     // Called after all the other updates

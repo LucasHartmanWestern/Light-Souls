@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
     public bool sprintInput; // Check if player is trying to sprint
     public bool jumpInput; // Check if player is trying to jump
     public bool aimInput; // Check if player is trying to aim
-    public bool attackInput; // Check if player is trying to attack
+    public bool attackInput; // Check sif player is trying to attack
     public bool specialMoveInput; // Check if player is trying to use their special moving abilitiy
     public bool lockOnInput; // Check if player is trying to lock onto an enemy
     public bool lockOnLeftInput; // Check if player is trying to lock onto a different enemy
@@ -57,7 +57,6 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.SprintButton.canceled += i => sprintInput = false; // Set sprintInput to false when the SprintButton is no longer pressed
 
             playerControls.PlayerActions.JumpButton.performed += i => jumpInput = true; // Set jumpInput to true when the JumpButton is pressed
-            playerControls.PlayerActions.JumpButton.canceled += i => jumpInput = false; // Set jumpInput to false when the JumpButton is no longer pressed
 
             playerControls.PlayerActions.AimButton.performed += i => aimInput = true; // Set aimInput to true when the AimButton is pressed
             playerControls.PlayerActions.AimButton.canceled += i => aimInput = false; // Set aimInput to false when the AimButton is no longer pressed

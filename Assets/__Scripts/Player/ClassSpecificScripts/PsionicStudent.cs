@@ -7,8 +7,10 @@ public class PsionicStudent : PlayerGeneral
     // Handles the special movement the player can perform
     protected override void HandleMovementAbility()
     {
-        if (inputManager.specialMoveInput) // Check if player is using the special move input
+        if (inputManager.specialMoveInput && playerMovement.isGrounded && playerSpecial >= 10) // Check if player is using the special move input
         {
+            playerSpecial -= 10; // Decrease special ability meter by 10
+
             Vector3 dashDirection = Vector3.zero; // Track direction player will dash
 
             if (inputManager.horizontalInput == 0 && inputManager.verticalInput == 0) dashDirection = transform.forward; // If player isn't try to move then dash forwards
@@ -32,8 +34,10 @@ public class PsionicStudent : PlayerGeneral
     // Handles the special movement the player can perform
     protected override void HandleCombatAbility()
     {
-        if (inputManager.specialAbilityInput) // Check if player is using the special ability input
+        if (inputManager.specialAbilityInput && playerSpecial >= 10) // Check if player is using the special ability input
         {
+            playerSpecial -= 20; // Decrease special ability meter by 10
+
             inputManager.specialAbilityInput = false; // Reset back to false
 
             StartCoroutine("DelayAbility"); // Start the coroutine related to the abilities

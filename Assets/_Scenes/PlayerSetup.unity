@@ -800,6 +800,10 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7826937546502880152, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
+      propertyPath: enemyHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7826937546502880155, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: m_Name
       value: Enemy 2
@@ -2266,6 +2270,10 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7826937546502880152, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
+      propertyPath: enemyHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7826937546502880155, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: m_Name
       value: Enemy 1
@@ -2342,6 +2350,10 @@ PrefabInstance:
     - target: {fileID: 7826937546502880152, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: spawnPoint
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826937546502880152, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
+      propertyPath: enemyHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7826937546502880155, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: m_Name
@@ -3123,6 +3135,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008402170}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &2031803974
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6259999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763363, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_Name
+      value: SwordPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111842690241763363, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
 --- !u!1 &2038579078
 GameObject:
   m_ObjectHideFlags: 0
@@ -7846,6 +7919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c502eeebbf4573e4299400a2b75f9d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inAirTimer: 0
   leapingVelocity: 3
   fallingVelocity: 55
   rayCastHeightOffset: 0.5
@@ -7943,6 +8017,7 @@ MonoBehaviour:
   playerMoveSpeed: 1
   playerLookSpeed: 1
   playerHealth: 100
+  playerSpecial: 100
   playerExperience: 0
   rangedDamage: 40
   meleeDamage: 20
@@ -8019,10 +8094,12 @@ MonoBehaviour:
   playerMoveSpeed: 1
   playerLookSpeed: 1
   playerHealth: 0
+  playerSpecial: 100
   playerExperience: 0
-  rangedDamage: 0
-  meleeDamage: 0
+  rangedDamage: 40
+  meleeDamage: 15
   resistance: 1
+  jetPackPS: {fileID: 7464764888743893077, guid: d8f5864404fefa14995558ec504c343b, type: 3}
 --- !u!4 &4170664488752306894
 Transform:
   m_ObjectHideFlags: 0
@@ -12042,67 +12119,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1001 &8111842689424237382
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.626
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763363, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_Name
-      value: SwordPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8111842690241763363, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
 --- !u!4 &8131028138378120558
 Transform:
   m_ObjectHideFlags: 0
@@ -13353,6 +13369,7 @@ MonoBehaviour:
   playerMoveSpeed: 1
   playerLookSpeed: 1
   playerHealth: 0
+  playerSpecial: 100
   playerExperience: 0
   rangedDamage: 0
   meleeDamage: 0
@@ -13455,6 +13472,7 @@ MonoBehaviour:
   playerMoveSpeed: 1
   playerLookSpeed: 1
   playerHealth: 100
+  playerSpecial: 100
   playerExperience: 0
   rangedDamage: 20
   meleeDamage: 50
@@ -13494,6 +13512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c502eeebbf4573e4299400a2b75f9d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inAirTimer: 0
   leapingVelocity: 3
   fallingVelocity: 55
   rayCastHeightOffset: 0.5

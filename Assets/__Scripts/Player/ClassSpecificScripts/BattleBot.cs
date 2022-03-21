@@ -7,12 +7,12 @@ public class BattleBot : PlayerGeneral
     // Handles the special movement the player can perform
     protected override void HandleMovementAbility()
     {
-        if (GetComponent<InputManager>().specialMoveInput) // Check if player is using the special move input
+        if (inputManager.specialMoveInput) // Check if player is using the special move input
         {
 
 
 
-            GetComponent<InputManager>().specialMoveInput = false; // Reset back to false
+            inputManager.specialMoveInput = false; // Reset back to false
         }
     }
 
