@@ -2600,6 +2600,7 @@ MonoBehaviour:
   lockOnLeftInput: 0
   lockOnRightInput: 0
   specialAbilityInput: 0
+  reloadInput: 0
   lockOnFlag: 0
 --- !u!114 &4392828608178591185
 MonoBehaviour:
@@ -2712,10 +2713,13 @@ MonoBehaviour:
   playerStartingSpecial: 100
   playerSpecial: 0
   playerLevel: 1
+  expToNextLevel: 1000
   playerExperience: 0
   rangedDamage: 20
   meleeDamage: 50
   resistance: 1
+  playerMaganizeCapacity: 20
+  playerAmmo: 0
 --- !u!114 &1647212396493975287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2751,10 +2755,13 @@ MonoBehaviour:
   playerStartingSpecial: 100
   playerSpecial: 0
   playerLevel: 1
+  expToNextLevel: 1000
   playerExperience: 0
   rangedDamage: 10
   meleeDamage: 100
   resistance: 1
+  playerMaganizeCapacity: 20
+  playerAmmo: 0
 --- !u!1 &4392828608353179955
 GameObject:
   m_ObjectHideFlags: 0

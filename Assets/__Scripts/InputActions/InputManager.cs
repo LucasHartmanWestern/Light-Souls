@@ -4,6 +4,7 @@ public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls; // Reference to the Input System PlayerControls
     PlayerMovement playerMovement; // Reference to the PlayerMovement script
+    PlayerGeneral playerGeneral; // Reference to the PlayerGeneral script
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script
     CameraManager cameraManager; // Reference to the CameraManager script
     
@@ -28,6 +29,7 @@ public class InputManager : MonoBehaviour
     public bool lockOnLeftInput; // Check if player is trying to lock onto a different enemy
     public bool lockOnRightInput; // Check if player is trying to lock onto a different enemy
     public bool specialAbilityInput; // Check if player is trying to use their special ability
+    public bool reloadInput; // Check if player is trying to reload
 
     [Header("Toggled flags for certain inputs")]
     public bool lockOnFlag; // Check if player should be locked on
@@ -37,6 +39,7 @@ public class InputManager : MonoBehaviour
     {
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Get the PlayerAnimationManager script attached to player
         playerMovement = GetComponent<PlayerMovement>(); // Get the PlayerMovement script attached to player
+        playerGeneral = GetComponent<PlayerGeneral>(); // Get the PlayerGeneral script attached to player
         cameraManager = FindObjectOfType<CameraManager>(); // Get the CameraManager script
     }
 
@@ -73,6 +76,8 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.LockOnButton.performed += i => lockOnInput = true; // Set lockOnInput to true when the lockOnButton is pressed
             playerControls.PlayerActions.LockOnTargetLeft.performed += i => lockOnLeftInput = true; // Set lockOnLeftInput to true when the LockOnTargetLeft is pressed
             playerControls.PlayerActions.LockOnTargetRight.performed += i => lockOnRightInput = true; // Set lockOnRightInput to true when the LockOnTargetRight is pressed
+
+            playerControls.PlayerActions.ReloadButton.performed += i => reloadInput = true; // Set reloadInput to true when the ReloadButton is pressed
             #endregion
         }
 
@@ -124,6 +129,15 @@ public class InputManager : MonoBehaviour
         {
             jumpInput = false;
             playerMovement.HandleJumping();
+        }
+        #endregion
+
+        #region Reload Input
+        // If player tries to jump, set the input to false (to only jump once) then call the HandleJump method
+        if (reloadInput)
+        {
+            reloadInput = false;
+            playerGeneral.isReloading = true;
         }
         #endregion
 

@@ -364,6 +364,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReloadButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""8772c3a4-fe64-4d98-85f0-a01667fd900a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -564,6 +573,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""SpecialAbilityButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff2beb89-02b7-40c7-93f5-74897107ea5d"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReloadButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e796c468-97c8-492f-b4e6-c8e989e7b321"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReloadButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -585,6 +616,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_LockOnButton = m_PlayerActions.FindAction("LockOnButton", throwIfNotFound: true);
         m_PlayerActions_LockOnTargetLeft = m_PlayerActions.FindAction("LockOnTargetLeft", throwIfNotFound: true);
         m_PlayerActions_LockOnTargetRight = m_PlayerActions.FindAction("LockOnTargetRight", throwIfNotFound: true);
+        m_PlayerActions_ReloadButton = m_PlayerActions.FindAction("ReloadButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -694,6 +726,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_LockOnButton;
     private readonly InputAction m_PlayerActions_LockOnTargetLeft;
     private readonly InputAction m_PlayerActions_LockOnTargetRight;
+    private readonly InputAction m_PlayerActions_ReloadButton;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -707,6 +740,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @LockOnButton => m_Wrapper.m_PlayerActions_LockOnButton;
         public InputAction @LockOnTargetLeft => m_Wrapper.m_PlayerActions_LockOnTargetLeft;
         public InputAction @LockOnTargetRight => m_Wrapper.m_PlayerActions_LockOnTargetRight;
+        public InputAction @ReloadButton => m_Wrapper.m_PlayerActions_ReloadButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -743,6 +777,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LockOnTargetRight.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetRight;
                 @LockOnTargetRight.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetRight;
                 @LockOnTargetRight.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOnTargetRight;
+                @ReloadButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnReloadButton;
+                @ReloadButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnReloadButton;
+                @ReloadButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnReloadButton;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -774,6 +811,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LockOnTargetRight.started += instance.OnLockOnTargetRight;
                 @LockOnTargetRight.performed += instance.OnLockOnTargetRight;
                 @LockOnTargetRight.canceled += instance.OnLockOnTargetRight;
+                @ReloadButton.started += instance.OnReloadButton;
+                @ReloadButton.performed += instance.OnReloadButton;
+                @ReloadButton.canceled += instance.OnReloadButton;
             }
         }
     }
@@ -794,5 +834,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLockOnButton(InputAction.CallbackContext context);
         void OnLockOnTargetLeft(InputAction.CallbackContext context);
         void OnLockOnTargetRight(InputAction.CallbackContext context);
+        void OnReloadButton(InputAction.CallbackContext context);
     }
 }

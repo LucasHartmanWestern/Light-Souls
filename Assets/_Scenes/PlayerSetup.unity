@@ -6375,6 +6375,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JetPackPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 8549190234161642436, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8549190234161642438, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -8353,16 +8357,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathSound: {fileID: 0}
   isInteracting: 0
+  isReloading: 0
   isAlive: 1
   jumpStrenth: 1
   playerMoveSpeed: 1
   playerLookSpeed: 1
+  playerStartingHealth: 0
   playerHealth: 0
+  playerStartingSpecial: 0
   playerSpecial: 100
+  playerLevel: 1
+  expToNextLevel: 1000
   playerExperience: 0
   rangedDamage: 0
   meleeDamage: 0
   resistance: 1
+  playerMaganizeCapacity: 0
+  playerAmmo: 0
 --- !u!4 &9175356293002973906
 Transform:
   m_ObjectHideFlags: 0
@@ -8409,6 +8420,7 @@ MonoBehaviour:
   lockOnLeftInput: 0
   lockOnRightInput: 0
   specialAbilityInput: 0
+  reloadInput: 0
   lockOnFlag: 0
 --- !u!114 &9175356293002973912
 MonoBehaviour:
@@ -8456,16 +8468,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathSound: {fileID: 5693123085270232454}
   isInteracting: 0
+  isReloading: 0
   isAlive: 1
   jumpStrenth: 1
   playerMoveSpeed: 1
   playerLookSpeed: 1
+  playerStartingHealth: 0
   playerHealth: 100
+  playerStartingSpecial: 0
   playerSpecial: 100
+  playerLevel: 1
+  expToNextLevel: 1000
   playerExperience: 0
   rangedDamage: 20
   meleeDamage: 50
   resistance: 1
+  playerMaganizeCapacity: 0
+  playerAmmo: 0
 --- !u!114 &9175356293002973915
 MonoBehaviour:
   m_ObjectHideFlags: 0

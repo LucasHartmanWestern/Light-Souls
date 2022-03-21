@@ -4172,6 +4172,7 @@ MonoBehaviour:
   lockOnLeftInput: 0
   lockOnRightInput: 0
   specialAbilityInput: 0
+  reloadInput: 0
   lockOnFlag: 0
 --- !u!114 &8549190234161642441
 MonoBehaviour:
@@ -4284,10 +4285,13 @@ MonoBehaviour:
   playerStartingSpecial: 100
   playerSpecial: 0
   playerLevel: 1
+  expToNextLevel: 1000
   playerExperience: 0
   rangedDamage: 40
   meleeDamage: 20
   resistance: 1
+  playerMaganizeCapacity: 35
+  playerAmmo: 0
 --- !u!114 &6669469936940564719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4323,10 +4327,13 @@ MonoBehaviour:
   playerStartingSpecial: 100
   playerSpecial: 0
   playerLevel: 1
+  expToNextLevel: 1000
   playerExperience: 0
   rangedDamage: 40
   meleeDamage: 15
   resistance: 1
+  playerMaganizeCapacity: 35
+  playerAmmo: 0
   jetPackPS: {fileID: 7464764888743893077, guid: d8f5864404fefa14995558ec504c343b, type: 3}
 --- !u!1 &8553625966246785983
 GameObject:

@@ -13,6 +13,7 @@ public class PlayerGeneral : MonoBehaviour
     protected CameraManager cameraManager; // CameraManager instance
     protected Animator animator; // Animator instance
     public bool isInteracting; // Track whether or not the player is interacting with something
+    public bool isReloading; // Track whether player is reloading or not
 
     [Header("Player Stats")]
     public bool isAlive = true; // Track if player is alive
@@ -29,6 +30,8 @@ public class PlayerGeneral : MonoBehaviour
     public float rangedDamage = 15; // How much damage player's ranged attack does
     public float meleeDamage = 15; // How much damage player's melee attack does
     public float resistance = 1f; // How much damage player can absorb
+    public float playerMaganizeCapacity; // How many bullets player can fire before reloading
+    public float playerAmmo; // How many bullets the player currently has loaded
 
     // Called before Start()
     private void Awake()
@@ -42,6 +45,7 @@ public class PlayerGeneral : MonoBehaviour
         animator = GetComponent<Animator>(); // Reference to Animator attached to player
         playerHealth = playerStartingHealth; // Set the player's starting health
         playerSpecial = playerStartingSpecial; // Set the player's starting special meter
+        playerAmmo = playerMaganizeCapacity; // Set player's starting ammo to the capacity
     }
 
     // Called once a frame
@@ -52,6 +56,7 @@ public class PlayerGeneral : MonoBehaviour
         {
             HandleMovementAbility(); // Handles the movement ability of the player
             HandleCombatAbility(); // Handles the combat ability of the player
+            HandleReload(); // Handles the reload ability
         }
 
         // Always be increase the player special meter to 100 (unless their in the air)
@@ -69,8 +74,7 @@ public class PlayerGeneral : MonoBehaviour
             playerLevel += 1;
             playerHealth = playerStartingHealth;
             playerSpecial = playerStartingSpecial;
-        }
-            
+        }   
     }
     
     // Used for physics updates
@@ -103,6 +107,16 @@ public class PlayerGeneral : MonoBehaviour
             playerAnimationManager.AplpyRootMotion(true); // Apply root motion for death animation only
             playerAnimationManager.PlayTargetAnimation("Death", true); // Play death animation
             StartCoroutine(DestroyPlayer()); // Destroy enemy game obejct
+        }
+    }
+
+    // Handles the reload of the ranged weapon
+    protected void HandleReload()
+    {
+        if (isReloading)
+        {
+            FindObjectOfType<PlayerGeneral>().playerAmmo = FindObjectOfType<PlayerGeneral>().playerMaganizeCapacity; // Reset ammo of player
+            isReloading = false; // Set that the player is no longer reloading
         }
     }
 

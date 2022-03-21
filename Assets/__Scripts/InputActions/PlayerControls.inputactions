@@ -342,6 +342,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ReloadButton",
+                    "type": "Button",
+                    "id": "8772c3a4-fe64-4d98-85f0-a01667fd900a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -540,6 +549,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpecialAbilityButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff2beb89-02b7-40c7-93f5-74897107ea5d",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReloadButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e796c468-97c8-492f-b4e6-c8e989e7b321",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReloadButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -50,6 +50,8 @@ public class EquipableItems : MonoBehaviour
         if (specialSerum) playerGeneral.playerHealth += 100; // Increase player health by 100hp
 
         if (bodyArmor) playerGeneral.resistance *= 1.5f; // Increase player resistance by 50%
+
+        if (bigMagazine) playerGeneral.playerMaganizeCapacity += 10; // Increase magazine capacity by 10
     }
 
     void HandleFireEffect()

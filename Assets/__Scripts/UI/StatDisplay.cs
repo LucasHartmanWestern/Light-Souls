@@ -6,6 +6,7 @@ public class StatDisplay : MonoBehaviour
     public Text scoreCount; // Text that shows the player the remaining count of enemies
     public Text expCount; // Text that shows the player their exp
     public Text levelCount; // Text that shows the player their level
+    public Text ammoCount; // Text that shows the player their ammo levels
     int enemyCount, startingEnemyCount;//the running and starting count of enemies
     GameObject enemies;//the enemies
     PlayerGeneral playerGeneral; // Reference to the PlayerGeneral script
@@ -23,6 +24,8 @@ public class StatDisplay : MonoBehaviour
     {
         expCount.text = "Exp: " + playerGeneral.playerExperience + "/" + playerGeneral.expToNextLevel; // Display the exp to the player
         levelCount.text = "Level: " + playerGeneral.playerLevel; // Display the level to the player
+        ammoCount.text = "Ammo: " + playerGeneral.playerAmmo + "/" + playerGeneral.playerMaganizeCapacity; // Display the ammo level to the player
+
 
         scoreCount.text = "Enemies Remaining " + enemyCount + "/" + startingEnemyCount;//displays the running count of enemies against the starting count of enemies
         enemyCount = enemies.transform.childCount;//updates the enemy Count

@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         inputManager = FindObjectOfType<InputManager>(); // Get reference to instance of InputManager
-        playerGeneral = GetComponent<PlayerGeneral>(); // Get refernce to instance of PlayerGeneral attached to player
+        playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get refernce to instance of PlayerGeneral attached to player
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Get reference to instance of PlayerAnimationManager
         cameraManager = FindObjectOfType<CameraManager>(); // Get reference to the Camera Manager instance
     }
@@ -74,8 +74,9 @@ public class PlayerAttack : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, _aimColliderMask))
         {
             // Player is attacking
-            if (inputManager.attackInput)
-            { 
+            if (inputManager.attackInput && playerGeneral.playerAmmo > 0)
+            {
+                playerGeneral.playerAmmo -= 1; // Decrease ammo by 1
                 Vector3 aimDirection = (raycastHit.point - spawnBulletPosition.position).normalized; // Determine where the user is aiming relative to the player
                 Instantiate(muzzleFlashPS, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Create a yellow muzzle flash
                 Instantiate(projectilePrefab, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Spawn in a bullet
