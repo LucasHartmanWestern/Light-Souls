@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Selector_Cust : MonoBehaviour
 {
+    IDictionary<int, GameObject> itemDictionary = new Dictionary<int, GameObject>();
+    EquipableItems equipItems; // Reference to the EquipableItems classs
+
     public GameObject Mag;
     public GameObject Gas;
     public GameObject RBoots;
@@ -15,6 +18,14 @@ public class Selector_Cust : MonoBehaviour
     public GameObject LowCal;
     public GameObject Clover;
 
+    public Transform pos1;
+    public Transform pos2;
+    public Transform pos3;
+
+    public int equipNum1 = 1;
+    public int equipNum2 = 2;
+    public int equipNum3 = 3;
+
     private Vector3 CharacterPosition;
     private Vector3 OffScreen;
     private int CharacterInt = 1;
@@ -22,214 +33,168 @@ public class Selector_Cust : MonoBehaviour
 
     private void Awake()
     {
-        CharacterPosition = Aimbot.transform.position;
-        OffScreen = EDrink.transform.position;
-        AimbotRender = Aimbot.GetComponent<SpriteRenderer>();
-        MagRender = Aimbot.GetComponent<SpriteRenderer>();
-        GasRender = Aimbot.GetComponent<SpriteRenderer>();
-        RBootsRender = Aimbot.GetComponent<SpriteRenderer>();
-        HighCalRender = Aimbot.GetComponent<SpriteRenderer>();
-        EDrinkRender = Aimbot.GetComponent<SpriteRenderer>();
-        SerumRender = Aimbot.GetComponent<SpriteRenderer>();
-        BodyArmourRender = Aimbot.GetComponent<SpriteRenderer>();
-      
-        LowCalRender = Aimbot.GetComponent<SpriteRenderer>();
-        CloverRender = Aimbot.GetComponent<SpriteRenderer>();
-      
-    }
+        equipItems = FindObjectOfType<EquipableItems>();
 
-    public void NextCharacter()
-    {
-            switch(CharacterInt)
-            {
-            case 1:
-                AimbotRender.enabled = false;
-                Aimbot.transform.position = OffScreen;
-                Mag.transform.position = CharacterPosition;
-                MagRender.enabled = true;
-                CharacterInt++;
-               
-                break;
-            case 2:
-                MagRender.enabled = false;
-                Mag.transform.position = OffScreen;
-                Gas.transform.position = CharacterPosition;
-                GasRender.enabled = true;
-                CharacterInt++;
-               
-                break;
-            case 3:
-                GasRender.enabled = false;
-                Gas.transform.position = OffScreen;
-                RBoots.transform.position = CharacterPosition;
-                RBootsRender.enabled = true;
-                CharacterInt++;
-               
-                break;
-            case 4:
-                RBootsRender.enabled = false;
-                RBoots.transform.position = OffScreen;
-                HighCal.transform.position = CharacterPosition;
-                HighCalRender.enabled = true;
-                CharacterInt++;
-               
-                break;
-            case 5:
-                HighCalRender.enabled = false;
-                HighCal.transform.position = OffScreen;
-                EDrink.transform.position = CharacterPosition;
-                EDrinkRender.enabled = true;
-                CharacterInt++;
-               
-                break;
-            case 6:
-                EDrinkRender.enabled = false;
-                EDrink.transform.position = OffScreen;
-                Serum.transform.position = CharacterPosition;
-                SerumRender.enabled = true;
-                CharacterInt++;
-               
-                break;
-            case 7:
-                SerumRender.enabled = false;
-                Serum.transform.position = OffScreen;
-                BodyArmour.transform.position = CharacterPosition;
-                BodyArmourRender.enabled = true;
-                CharacterInt++;
-               
-                break;
-            case 8:
-                BodyArmourRender.enabled = false;
-                BodyArmour.transform.position = OffScreen;
-                LowCal.transform.position = CharacterPosition;
-                LowCalRender.enabled = true;
-                CharacterInt++;
-               
-                break;
-            case 9:
-                LowCalRender.enabled = false;
-                LowCal.transform.position = OffScreen;
-                Clover.transform.position = CharacterPosition;
-                CloverRender.enabled = true;
-                CharacterInt++;
-               
-                break;
-            case 10:
-                CloverRender.enabled = false;
-                Clover.transform.position = OffScreen;
-                Aimbot.transform.position = CharacterPosition;
-                AimbotRender.enabled = true;
-                CharacterInt++;
-                ResetInt();
-                break;
-            default:
-                ResetInt();
-                break;         
-
-            }
-    }
-
-    public void PreviousCharacter()
-    {
-        switch(CharacterInt)
-            {
-            case 1:
-                AimbotRender.enabled = false;
-                Aimbot.transform.position = OffScreen;
-                Clover.transform.position = CharacterPosition;
-                CloverRender.enabled = true;
-                CharacterInt--;
-                ResetInt();
-                break;
-            case 2:
-                MagRender.enabled = false;
-                Mag.transform.position = OffScreen;
-                Aimbot.transform.position = CharacterPosition;
-                AimbotRender.enabled = true;
-                CharacterInt--;
-                break;
-            case 3:
-                GasRender.enabled = false;
-                Gas.transform.position = OffScreen;
-                Mag.transform.position = CharacterPosition;
-                MagRender.enabled = true;
-                CharacterInt--;
-               
-                break;
-            case 4:
-                RBootsRender.enabled = false;
-                RBoots.transform.position = OffScreen;
-                Gas.transform.position = CharacterPosition;
-                GasRender.enabled = true;
-                CharacterInt--;
-               
-                break;
-            case 5:
-                HighCalRender.enabled = false;
-                HighCal.transform.position = OffScreen;
-                RBoots.transform.position = CharacterPosition;
-                RBootsRender.enabled = true;
-                CharacterInt--;
-               
-                break;
-            case 6:
-                EDrinkRender.enabled = false;
-                EDrink.transform.position = OffScreen;
-                HighCal.transform.position = CharacterPosition;
-                HighCalRender.enabled = true;
-                CharacterInt--;
-               
-                break;
-            case 7:
-                SerumRender.enabled = false;
-                Serum.transform.position = OffScreen;
-                EDrink.transform.position = CharacterPosition;
-                EDrinkRender.enabled = true;
-                CharacterInt--;
-               
-                break;
-            case 8:
-                BodyArmourRender.enabled = false;
-                BodyArmour.transform.position = OffScreen;
-                Serum.transform.position = CharacterPosition;
-                SerumRender.enabled = true;
-                CharacterInt--;
-               
-                break;
-            case 9:
-                LowCalRender.enabled = false;
-                LowCal.transform.position = OffScreen;
-                BodyArmour.transform.position = CharacterPosition;
-                BodyArmourRender.enabled = true;
-                CharacterInt--;
-               
-                break;
-            case 10:
-                CloverRender.enabled = false;
-                Clover.transform.position = OffScreen;
-                LowCal.transform.position = CharacterPosition;
-                LowCalRender.enabled = true;
-                CharacterInt--;
+        itemDictionary.Add(1, Mag);
+        itemDictionary.Add(2, Gas);
+        itemDictionary.Add(3, RBoots);
+        itemDictionary.Add(4, HighCal);
+        itemDictionary.Add(5, EDrink);
+        itemDictionary.Add(6, Serum);
+        itemDictionary.Add(7, BodyArmour);
+        itemDictionary.Add(8, Aimbot);
+        itemDictionary.Add(9, LowCal);
+        itemDictionary.Add(10, Clover);    
         
+        foreach(KeyValuePair<int, GameObject> item in itemDictionary)
+        {
+            item.Value.SetActive(false);
+        }
+
+        #region Initialize default items
+        itemDictionary[equipNum1].SetActive(true);
+        itemDictionary[equipNum1].transform.position = pos1.position;
+
+        itemDictionary[equipNum2].SetActive(true);
+        itemDictionary[equipNum2].transform.position = pos2.position;
+
+        itemDictionary[equipNum3].SetActive(true);
+        itemDictionary[equipNum3].transform.position = pos3.position;
+        #endregion
+    }
+
+    public void NextCharacter(int buttonNum)
+    {
+        foreach (KeyValuePair<int, GameObject> item in itemDictionary)
+        {
+            item.Value.SetActive(false);
+        }
+
+        #region Get Transform and Set equipnum
+        switch (buttonNum)
+        {
+            case 1:
+                equipNum1++;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
+                if (equipNum1 > 10) equipNum1 = 1;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
+                itemDictionary[equipNum1].transform.position = pos1.position;
+                break;
+            case 2:
+                equipNum2++;
+                if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2++;
+                if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2++;
+                if (equipNum2 > 10) equipNum2 = 1;
+                if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2++;
+                if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2++;
+                itemDictionary[equipNum2].transform.position = pos2.position;
+                break;
+            case 3:
+                equipNum3++;
+                if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3++;
+                if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3++;
+                if (equipNum3 > 10) equipNum3 = 1;
+                if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3++;
+                if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3++;
+                itemDictionary[equipNum3].transform.position = pos3.position;
                 break;
             default:
-                ResetInt();
-                break;         
+                equipNum1++;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
+                if (equipNum1 > 10) equipNum1 = 1;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
+                itemDictionary[equipNum1].transform.position = pos1.position;
+                break;
+        }
+        #endregion
 
-            }
+        itemDictionary[equipNum1].SetActive(true);
+        itemDictionary[equipNum2].SetActive(true);
+        itemDictionary[equipNum3].SetActive(true);
+        itemDictionary[equipNum1].transform.position = pos1.position;
+        itemDictionary[equipNum2].transform.position = pos2.position;
+        itemDictionary[equipNum3].transform.position = pos3.position;
+
+        SetEquipItemsBoolValues();
     }
 
-    private void ResetInt()
+    public void PreviousCharacter(int buttonNum)
     {
-        if(CharacterInt >= 10 )
+        foreach (KeyValuePair<int, GameObject> item in itemDictionary)
         {
-            CharacterInt = 1;
+            item.Value.SetActive(false);
         }
-        else
+        #region Get Transform and Set equipnum
+        switch (buttonNum)
         {
-            CharacterInt = 10;
+            case 1:
+                equipNum1--;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
+                if (equipNum1 < 1) equipNum1 = 10;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
+                itemDictionary[equipNum1].transform.position = pos1.position;
+                break;
+            case 2:
+                equipNum2--;
+                if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2--;
+                if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2--;
+                if (equipNum2 < 1) equipNum2 = 10;
+                if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2--;
+                if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2--;
+                itemDictionary[equipNum2].transform.position = pos2.position;
+                break;
+            case 3:
+                equipNum3--;
+                if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3--;
+                if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3--;
+                if (equipNum3 < 1) equipNum3 = 10;
+                if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3--;
+                if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3--;
+                itemDictionary[equipNum3].transform.position = pos3.position;
+                break;
+            default:
+                equipNum1--;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
+                if (equipNum1 < 1) equipNum1 = 10;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
+                if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
+                itemDictionary[equipNum1].transform.position = pos1.position;
+                break;
         }
+        #endregion
+
+        itemDictionary[equipNum1].SetActive(true);
+        itemDictionary[equipNum2].SetActive(true);
+        itemDictionary[equipNum3].SetActive(true);
+        itemDictionary[equipNum1].transform.position = pos1.position;
+        itemDictionary[equipNum2].transform.position = pos2.position;
+        itemDictionary[equipNum3].transform.position = pos3.position;
+
+        SetEquipItemsBoolValues();
     }
 
+    void SetEquipItemsBoolValues()
+    {
+        #region Set Boolean values in EquipableItems class
+        equipItems.bigMagazine = Mag.activeSelf;
+        equipItems.gasoline = Gas.activeSelf;
+        equipItems.rocketBoots = RBoots.activeSelf;
+        equipItems.highCalBullets = HighCal.activeSelf;
+        equipItems.energyDrink = EDrink.activeSelf;
+        equipItems.specialSerum = Serum.activeSelf;
+        equipItems.bodyArmor = BodyArmour.activeSelf;
+        equipItems.aimbotChip = Aimbot.activeSelf;
+        equipItems.lowCalBullet = LowCal.activeSelf;
+        equipItems.fourLeafClover = Clover.activeSelf;
+        #endregion
 
+        equipItems.ApplyEffects(); // Apply the effects only after modifying them
+    }
 }

@@ -27,13 +27,8 @@ public class EquipableItems : MonoBehaviour
         ApplyEffects(); // Apply the effects
     }
 
-    private void Update()
-    {
-        ApplyEffects(); // Apply the effects
-    }
-
     // Finds which items are equipped and applies their effect
-    void ApplyEffects()
+    public void ApplyEffects()
     {
         HandleStatModifications(); // Handle the effects that just modify player stats
         HandleFireEffect(); // Handle the fire effects
