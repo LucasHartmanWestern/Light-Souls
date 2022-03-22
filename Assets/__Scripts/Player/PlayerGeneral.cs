@@ -57,24 +57,24 @@ public class PlayerGeneral : MonoBehaviour
             HandleMovementAbility(); // Handles the movement ability of the player
             HandleCombatAbility(); // Handles the combat ability of the player
             HandleReload(); // Handles the reload ability
-        }
 
-        // Always be increase the player special meter to 100 (unless their in the air)
-        if (playerSpecial < playerStartingSpecial && playerMovement.isGrounded)
-            playerSpecial += 5 * Time.deltaTime;
-        else if (playerSpecial > playerStartingSpecial) playerSpecial = playerStartingSpecial;
+            // Always be increase the player special meter to 100 (unless their in the air)
+            if (playerSpecial < playerStartingSpecial && playerMovement.isGrounded)
+                playerSpecial += 5 * Time.deltaTime;
+            else if (playerSpecial > playerStartingSpecial) playerSpecial = playerStartingSpecial;
 
-        // Level up the player
-        if (playerExperience >= expToNextLevel)
-        {
-            playerExperience -= expToNextLevel;
-            expToNextLevel += 1000;
-            playerStartingHealth += 10;
-            playerStartingSpecial += 10;
-            playerLevel += 1;
-            playerHealth = playerStartingHealth;
-            playerSpecial = playerStartingSpecial;
-        }   
+            // Level up the player
+            if (playerExperience >= expToNextLevel)
+            {
+                playerExperience -= expToNextLevel;
+                expToNextLevel += 1000;
+                playerStartingHealth += 10;
+                playerStartingSpecial += 10;
+                playerLevel += 1;
+                playerHealth = playerStartingHealth;
+                playerSpecial = playerStartingSpecial;
+            }
+        } 
     }
     
     // Used for physics updates
@@ -102,6 +102,7 @@ public class PlayerGeneral : MonoBehaviour
         if (playerHealth <= 0)
         {
             isAlive = false; // Show player as no longer alive
+            FindObjectOfType<PlayerGeneral>().isAlive = false; // Set child component of isAlive to false
             GetComponent<CapsuleCollider>().enabled = false; // Remove capsule collider to avoid player floating
             GetComponent<Rigidbody>().isKinematic = true; // Make rigid body kinematic
             playerAnimationManager.AplpyRootMotion(true); // Apply root motion for death animation only

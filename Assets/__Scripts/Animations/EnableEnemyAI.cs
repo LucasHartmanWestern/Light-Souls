@@ -8,7 +8,7 @@ public class EnableEnemyAI : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.gameObject.GetComponent<EnemyAI>().enabled = true;
+        animator.gameObject.GetComponent<GenericEnemyAI>().enabled = true;
         animator.gameObject.GetComponent<NavMeshAgent>().enabled = true;
     }
 }

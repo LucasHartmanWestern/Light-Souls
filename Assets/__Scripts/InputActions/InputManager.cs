@@ -142,15 +142,23 @@ public class InputManager : MonoBehaviour
         #endregion
 
         #region Aim Input
-        playerMovement.isAiming = aimInput; // Make player face where they're aiming
-        if (aimInput)
+        if (playerGeneral.isAlive)
         {
-            playerAnimationManager.PlayerAim(1f); // Make the player animate to aim if player is aiming
-            cameraManager.ClearLockOnTargets(); // Don't let player aim and lock on
-            lockOnInput = false;
-            lockOnFlag = false;
+            playerMovement.isAiming = aimInput; // Make player face where they're aiming
+            if (aimInput)
+            {
+                playerAnimationManager.PlayerAim(1f); // Make the player animate to aim if player is aiming
+                cameraManager.ClearLockOnTargets(); // Don't let player aim and lock on
+                lockOnInput = false;
+                lockOnFlag = false;
+            }
+            else playerAnimationManager.PlayerAim(0f);
         }
-        else playerAnimationManager.PlayerAim(0f);
+        else
+        {
+            aimInput = false;
+            playerAnimationManager.PlayerAim(0f);
+        }
         #endregion
 
         #region Lock On Input and Lock On Flag

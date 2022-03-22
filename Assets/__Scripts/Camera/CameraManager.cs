@@ -55,7 +55,7 @@ public class CameraManager : MonoBehaviour
         FollowTarget(); // Move the camera with the player
         RotateCamera(); // Rotate the camera according to the player input
         HandleCameraCollisions(); // Adjust the camera if it collides with an object
-        HandleCameraAim(); // Adjust the camera if player is aiming
+        if (playerGeneral.isAlive) HandleCameraAim(); // Adjust the camera if player is aiming
     }
 
     // Make camera follow a specified target

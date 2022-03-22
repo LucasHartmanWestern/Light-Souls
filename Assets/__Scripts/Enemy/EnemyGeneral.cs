@@ -51,6 +51,12 @@ public class EnemyGeneral : MonoBehaviour
 
         if (enemyHealth <= 0)
         {
+            if (GetComponent<MechBossEnemyAI>() != null)
+            {
+                GetComponent<MechBossEnemyAI>().AttachAnimationController(); // Attach the animation controller to the mech
+                animator = GetComponent<Animator>(); // Get animator attached to this enemy
+            }
+
             animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0f, Time.deltaTime * 10f)); // Smoothly transition animation to aiming or not aiming
             animator.CrossFade("Death", 0.2f); // Play death animation
 
@@ -65,7 +71,11 @@ public class EnemyGeneral : MonoBehaviour
     // Handle the destroying of the enemy GameObject
     IEnumerator DestroyEnemyObject()
     {
-        GetComponent<NavMeshAgent>().enabled = false; // Disable the NavMeshAgent
+        if (GetComponent<GenericEnemyAI>() != null)
+            GetComponent<NavMeshAgent>().enabled = false; // Disable the NavMeshAgent
+        else
+            Destroy(GetComponent<MechBossEnemyAI>()); // Distroy the mech ai
+
         deathSound.Play(); // Play the death sound
 
         yield return new WaitForSeconds(5f); // Wait 5 seconds before destroying the object
@@ -78,7 +88,7 @@ public class EnemyGeneral : MonoBehaviour
     // Fling enemy towards target
     public void FlingForwards(Transform target)
     {
-        GetComponent<EnemyAI>().enabled = false;
+        GetComponent<GenericEnemyAI>().enabled = false;
         navMeshAgent.enabled = false;
 
         Vector3 lookDirection = new Vector3(target.position.x, transform.position.y, target.position.z); // Get directino of player
@@ -91,7 +101,7 @@ public class EnemyGeneral : MonoBehaviour
     // Fling the enemy backwards from the target
     public void FlingBackwards(Transform target)
     {
-        GetComponent<EnemyAI>().enabled = false;
+        GetComponent<GenericEnemyAI>().enabled = false;
         navMeshAgent.enabled = false;
 
         Vector3 lookDirection = new Vector3(target.position.x, 0, target.position.z); // Get directino of player

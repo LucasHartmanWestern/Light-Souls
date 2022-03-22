@@ -29,6 +29,8 @@ public class EnemyHealthBar : MonoBehaviour
             healthBar.SetActive(false);
 
         healthBar.GetComponent<Slider>().value = Mathf.Clamp(currentHealth / startingHealth, 0, 1); // Get the value of the health relative to the max health
-        healthBar.transform.forward = -_mainCamera.transform.forward; // Make it so health bar always faces the camera
+        
+        if (GetComponent<GenericEnemyAI>() != null)
+            healthBar.transform.forward = -_mainCamera.transform.forward; // Make it so health bar always faces the camera
     }
 }
