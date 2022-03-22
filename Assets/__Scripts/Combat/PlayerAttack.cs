@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private LayerMask _aimColliderMask; // All layers that player can aim at
     [SerializeField] AudioSource shootSoundEffect; // Get the audio source attached to the player that contains the sound effect for shooting
     [SerializeField] AudioSource swingSoundEffect; // Get the audio source attached to the player that contains the sound effect for swinging their melee weapon
+    public bool dontAttack; // Don't attack if true
 
     [Header("Game Objects/Transforms")]
     public GameObject projectilePrefab; // Get reference to the projectile prefab
@@ -38,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         // Only handle combat if player is alive
-        if (playerGeneral.isAlive)
+        if (playerGeneral.isAlive && !dontAttack)
         {
             // Handle the combat depending on whether or not character is aiming
             if (inputManager.aimInput) HandleRangedCombat();

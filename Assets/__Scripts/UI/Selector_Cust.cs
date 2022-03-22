@@ -6,6 +6,9 @@ public class Selector_Cust : MonoBehaviour
 {
     IDictionary<int, GameObject> itemDictionary = new Dictionary<int, GameObject>();
     EquipableItems equipItems; // Reference to the EquipableItems classs
+    PlayerAttack playerAttack; // Reference to the PlayerAttack class
+
+    public GameObject UIItemsContainer; // Reference to the UIItems object
 
     public GameObject Mag;
     public GameObject Gas;
@@ -31,10 +34,12 @@ public class Selector_Cust : MonoBehaviour
     private int CharacterInt = 1;
     private SpriteRenderer MagRender,GasRender,RBootsRender,HighCalRender,EDrinkRender,SerumRender,BodyArmourRender,AimbotRender,LowCalRender,CloverRender;
 
-    private void Awake()
+    private void Start()
     {
-        equipItems = FindObjectOfType<EquipableItems>();
+        equipItems = FindObjectOfType<EquipableItems>(); // Get EquipableItems instance
+        playerAttack = FindObjectOfType<PlayerAttack>(); // Get PlayerAttack instance
 
+        #region Populate Dictionary
         itemDictionary.Add(1, Mag);
         itemDictionary.Add(2, Gas);
         itemDictionary.Add(3, RBoots);
@@ -50,6 +55,7 @@ public class Selector_Cust : MonoBehaviour
         {
             item.Value.SetActive(false);
         }
+        #endregion
 
         #region Initialize default items
         itemDictionary[equipNum1].SetActive(true);
@@ -61,6 +67,18 @@ public class Selector_Cust : MonoBehaviour
         itemDictionary[equipNum3].SetActive(true);
         itemDictionary[equipNum3].transform.position = pos3.position;
         #endregion
+
+        SetEquipItemsBoolValues();
+    }
+
+    // Runs every frame
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) // Check if player pressed the escape key
+        {
+            UIItemsContainer.SetActive(!UIItemsContainer.activeSelf); // Open/close item container
+            playerAttack.dontAttack = !playerAttack.dontAttack; // Don't let player attack when menu is open
+        }    
     }
 
     public void NextCharacter(int buttonNum)

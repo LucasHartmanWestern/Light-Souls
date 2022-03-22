@@ -5,6 +5,7 @@ public class CameraManager : MonoBehaviour
 {
     InputManager inputManager; // Reference to the InputManager
     PlayerGeneral playerGeneral; // Reference to PlayerGeneral
+    public bool noMenu = true; // Check if menu is showing
 
     private Vector3 _cameraFollowVelocity = Vector3.zero; // Vector3 to track the current velocity
 
@@ -52,6 +53,8 @@ public class CameraManager : MonoBehaviour
     // Public method to handle the camera movement
     public void HandleAllCameraMovement()
     {
+        if (!noMenu) return; // Don't run if menu is active
+
         FollowTarget(); // Move the camera with the player
         RotateCamera(); // Rotate the camera according to the player input
         HandleCameraCollisions(); // Adjust the camera if it collides with an object

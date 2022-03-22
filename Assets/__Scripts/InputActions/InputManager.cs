@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
     PlayerGeneral playerGeneral; // Reference to the PlayerGeneral script
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script
     CameraManager cameraManager; // Reference to the CameraManager script
-    
+
     [Header("Input from the Input Controller")]
     public Vector2 movementInput; // 2D vector tracking where the player is trying to move
     public Vector2 cameraInput; // 2D vector tracking how the player is trying to adjust the camera
