@@ -7,10 +7,6 @@ public class GetChar : MonoBehaviour
 
     public GameObject Gun,Sword;
 
-    void Awake()
-    {
-        
-    }
 
 
     void Start()
@@ -19,18 +15,19 @@ public class GetChar : MonoBehaviour
 
         if(getCharacter == 1)
         {
-            Gun.SetActive(false);
             Sword.SetActive(false);
+            Gun.SetActive(true);
         }
         if(getCharacter == 2)
         {
-            Gun.SetActive(false);
-            Sword.SetActive(true);
+            Debug.Log("No Character Yet");
+            Destroy(Sword);
+            Destroy(Gun);
         }
         if(getCharacter == 3)
         {
-            Gun.SetActive(true);
-            Sword.SetActive(false);
+            Gun.SetActive(false);
+            Sword.SetActive(true);
         }
         
         
