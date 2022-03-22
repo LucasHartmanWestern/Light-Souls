@@ -12246,9 +12246,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1895920977524169368, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: gasoline
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392828608178591177, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: meleeDamage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4392828608178591196, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4392828608178591198, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: m_RootOrder
