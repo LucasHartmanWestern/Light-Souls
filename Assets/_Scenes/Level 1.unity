@@ -5679,7 +5679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8549190234161642436, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8549190234161642437, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
       propertyPath: playerMaganizeCapacity
@@ -7776,7 +7776,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gun: {fileID: 945076918}
   Sword: {fileID: 1909622126}
-  Snipe: {fileID: 0}
 --- !u!1001 &1179799603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12431,7 +12430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4392828608178591196, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4392828608178591198, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: m_RootOrder
