@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Selector_Script : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Selector_Script : MonoBehaviour
    public GameObject Book;
    private Vector3 CharacterPosition;
    private Vector3 OffScreen;
-   private int CharacterInt = 1;
+   public int CharacterInt = 1;
    private SpriteRenderer GunnerRender, SnipsRender, BookRender;
 
    private void Awake()
@@ -98,5 +99,12 @@ public class Selector_Script : MonoBehaviour
          CharacterInt = 3;
       }
    }
+
+   public void gameStart()
+   {
+         SceneManager.LoadScene("Level 1");
+
+   }
+
 
 }
