@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 158127204}
   - component: {fileID: 158127205}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GunSlinger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158127203}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -206.16148, y: -3.4700003, z: 727.61487}
+  m_LocalPosition: {x: -206.09, y: -3.47, z: 727.61487}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 739762020}
@@ -192,8 +192,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1634014825
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9a35c0c8681fd944a89c1f85d00520cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 183485388}
   - component: {fileID: 183485389}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,8 +274,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1634014825
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7497869261eb202499266858946b352f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -551,7 +551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 739762020}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ Transform:
   - {fileID: 183485388}
   - {fileID: 1018792947}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &770912830
 GameObject:
@@ -651,7 +651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1018792947}
   - component: {fileID: 1018792948}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -710,8 +710,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1634014825
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8de871dc4ccb98d499e7906185a1f3af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -805,7 +805,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1121807481}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1790240183}
+        m_TargetAssemblyTypeName: Selector_Script, Assembly-CSharp
+        m_MethodName: startGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1121807481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +967,7 @@ MonoBehaviour:
   Gunner: {fileID: 158127203}
   Snips: {fileID: 183485387}
   Book: {fileID: 1018792946}
+  CharacterInt: 1
 --- !u!4 &1790240184
 Transform:
   m_ObjectHideFlags: 0
@@ -1214,7 +1227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1977390829}
   - component: {fileID: 1977390828}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: scene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1259,7 +1272,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 615645391
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 64cd6abc6e2d1764b8c9969a3ca8f6b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1284,7 +1297,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1989316202
 GameObject:
