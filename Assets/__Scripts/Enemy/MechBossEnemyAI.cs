@@ -15,22 +15,28 @@ public class MechBossEnemyAI : MonoBehaviour
 
     public Transform smallMuzzleFlashPS; // Get reference to the muzzle flash particle system
     public Transform bigMuzzleFlashPS; // Get reference to the big muzzle flash particle system
+    public Transform missilePS; // Get reference to the missile particle system
     public GameObject smallProjectilePrefab; // Get reference to the projectile prefab
     public GameObject bigProjectilePrefab; // Get reference to the big projectile prefab
+    public GameObject missilePrefab; // Get reference to the missile prefab
 
     public Transform spawnBulletPosition1; // Point where bullet spawns when fired
     public Transform spawnBulletPosition2; // Point where bullet spawns when fired
     public Transform spawnBulletPosition3; // Point where bullet spawns when fired
     public Transform spawnBulletPosition4; // Point where bullet spawns when fired
 
+    public Transform missileSpawnPosition; // Point where missile spawns when fired
+
     [Header("Attacking variables")]
     public float timeBetweenAttacks; // How long to wait between attacks
     bool alreadyAttacked = true; // Check if enemy already attacked
+    bool alreadyMissileAttacked = true; // Check if enemy already attacked
 
     // Called before Start
     private void Awake()
     {
         Invoke(nameof(ResetAttack), 2); // Delay start of attacks by 2 seconds
+        Invoke(nameof(ResetMissileAttack), 2); // Delay start of attacks by 2 seconds
         playerTransform = FindObjectOfType<PlayerGeneral>().transform.Find("PlayerTarget").transform;
     }
 
@@ -95,16 +101,28 @@ public class MechBossEnemyAI : MonoBehaviour
 
             Instantiate(muzzleFlashPS, currentSpawnPos.position, Quaternion.LookRotation(currentSpawnPos.forward, Vector3.up)); // Create a yellow muzzle flash
             shootSoundEffect.Play(); // Play the shooting sound effect
-            Instantiate(projectilePrefab, currentSpawnPos.position, Quaternion.LookRotation(currentSpawnPos.forward, Vector3.up)); // Spawn in a bullet
+            Instantiate(projectilePrefab, currentSpawnPos.position, Quaternion.LookRotation(currentSpawnPos.forward, Vector3.up)); // Spawn in a bullet        
 
             alreadyAttacked = true; // Set that they attacked
             Invoke(nameof(ResetAttack), timeBetweenAttacks); // Reset attack after specified cooldown
-        }   
+        }  
+        if (!alreadyMissileAttacked)
+        {
+            alreadyMissileAttacked = true; // Set that they attacked
+            Instantiate(missilePS, missileSpawnPosition.position, Quaternion.LookRotation(Vector3.up, Vector3.up)); // Create a yellow muzzle flash
+            Instantiate(missilePrefab, missileSpawnPosition.position, Quaternion.LookRotation(Vector3.up, Vector3.up)); // Spawn in a missile
+            Invoke(nameof(ResetMissileAttack), timeBetweenAttacks * 20); // Reset missile attack after specified cooldown
+        }
     }
 
     // Reset the attack
     private void ResetAttack()
     {
         alreadyAttacked = false; // Reset the alreadyAttacked bool
+    }
+    // Reset the missile attack
+    private void ResetMissileAttack()
+    {
+        alreadyMissileAttacked = false; // Reset the alreadyMissileAttacked bool
     }
 }

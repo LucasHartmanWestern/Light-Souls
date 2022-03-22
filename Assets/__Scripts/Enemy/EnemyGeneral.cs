@@ -49,7 +49,7 @@ public class EnemyGeneral : MonoBehaviour
     {
         enemyHealth -= damageAmount; // Decrease health
 
-        if (enemyHealth <= 0)
+        if (enemyHealth <= 0 && isAlive)
         {
             if (GetComponent<MechBossEnemyAI>() != null)
             {

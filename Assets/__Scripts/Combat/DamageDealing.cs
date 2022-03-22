@@ -1,15 +1,18 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class DamageDealing : MonoBehaviour
 {
-    InputManager inputManager; // Reference to Input Manager
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager
     PlayerGeneral playerGeneral; // Reference to PlayerGeneral
     EquipableItems equippableItems; // Reference to the Equipabble items class
 
     public bool isProjectile; // Check if script is attached to projectile or not
+    public bool isMissile; // Check if script is attached to a missile
     public float projectileSpeed = 10f; // Speed projectile travels after it's fired
     public float enemyDamage = 15; // Damage dealt if used by enemy
+    private bool startTracking; // Check if missile should track player
 
     private Rigidbody _projectileRigidBody; // Reference to RigidBody of the projectile
     [SerializeField] private Transform psHitGreen; // Red particle system reference
@@ -18,7 +21,6 @@ public class DamageDealing : MonoBehaviour
     // Called before Start()
     private void Awake()
     {
-        inputManager = FindObjectOfType<InputManager>(); // Get reference to instance of Input Manager
         playerAnimationManager = FindObjectOfType<PlayerAnimationManager>(); // Get reference to instance of Player Animation Manager
         playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to instance of Player General script
         _projectileRigidBody = GetComponent<Rigidbody>(); // Get RigidBody attached to game object this script is on
@@ -28,8 +30,31 @@ public class DamageDealing : MonoBehaviour
     // Called after Awake()
     private void Start()
     {
-        if (isProjectile)
+        if (isProjectile && !isMissile)
             _projectileRigidBody.velocity = transform.forward * projectileSpeed; // Set the velocity based on the position the projectile spawns in
+    }
+
+    // Called every physics update
+    private void FixedUpdate()
+    {
+        if (isMissile) // Only runs on a missile
+        {
+            if (startTracking)
+            {
+                Vector3 targetDirection = playerGeneral.transform.Find("PlayerTarget").transform.position - transform.position;
+                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+                Quaternion missileRotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime); // Get quaternion of the player's roation
+
+                transform.rotation = missileRotation;
+            }
+            else Invoke(nameof(StartTracking), 1); // Start tracking after 1 second
+            _projectileRigidBody.velocity = transform.forward * projectileSpeed; // Set the velocity based on the position the projectile spawns in
+        }
+    }
+    void StartTracking()
+    {
+        startTracking = true;
     }
 
     // Called when object enters the collider of another game object
