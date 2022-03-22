@@ -35,18 +35,13 @@ public class GenericEnemyAI : MonoBehaviour
     public float sightRange, attackRange; // How far away player needs to be to be seen or attacked
     public bool playerInSightRange, playerInAttackRange; // Check if player is in the range to be seen or attacked
 
-    // Called before Start()
-    private void Awake()
+    // Called after Awake()
+    private void Start()
     {
         enemyGeneral = GetComponent<EnemyGeneral>(); // Get EnemyGeneral script attached to the same object as this
         animator = GetComponent<Animator>(); // Get reference of animator attached to enemy
         playerTargetTransform = GameObject.Find("PlayerTarget").transform; // Get reference to player instance transform
         agent = GetComponent<NavMeshAgent>(); // Get reference to the NavMeshAgent attached to this enemy instance
-    }
-
-    // Called after Awake()
-    private void Start()
-    {
         rangedWeapon.SetParent(handTransform); // Track ranged weapon to hands
         spawnPoint = transform.position;
     }

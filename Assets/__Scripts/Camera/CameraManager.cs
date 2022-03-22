@@ -40,8 +40,9 @@ public class CameraManager : MonoBehaviour
     public float minCollisionOffset = 0.2f; // Minimum offset for a collision to trigger a jump
     private float defaultPosition; // Default position camera always comes back to
 
-    // Called right before Start() method
-    private void Awake()
+    
+    // Called right after Start() method
+    private void Start()
     {
         targetTransform = FindObjectOfType<PlayerGeneral>().transform; // Get the transform of the player
         inputManager = FindObjectOfType<InputManager>(); // Get the InputManager
