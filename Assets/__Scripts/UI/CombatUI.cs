@@ -9,8 +9,8 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private Image _crosshair;
     [SerializeField] private GameObject _lockOnIndicator;
 
-    // Awake is called before Start()
-    private void Awake()
+    // Start is called after Start()
+    private void Start()
     {
         inputManager = FindObjectOfType<InputManager>(); // Reference to instance of InputManager
     }
