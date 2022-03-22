@@ -10932,6 +10932,7 @@ GameObject:
   - component: {fileID: 1476744971}
   - component: {fileID: 1476744970}
   - component: {fileID: 1476744975}
+  - component: {fileID: 1476744976}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -11055,6 +11056,34 @@ MonoBehaviour:
   expCount: {fileID: 394735963}
   levelCount: {fileID: 1844299308}
   ammoCount: {fileID: 912492764}
+--- !u!114 &1476744976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476744969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14b92d6ec6db1743aa8cddc7f6d045f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mag: {fileID: 0}
+  Gas: {fileID: 0}
+  RBoots: {fileID: 0}
+  HighCal: {fileID: 0}
+  EDrink: {fileID: 0}
+  Serum: {fileID: 0}
+  BodyArmour: {fileID: 0}
+  Aimbot: {fileID: 0}
+  LowCal: {fileID: 0}
+  Clover: {fileID: 0}
+  pos1: {fileID: 0}
+  pos2: {fileID: 0}
+  pos3: {fileID: 0}
+  equipNum1: 1
+  equipNum2: 2
+  equipNum3: 3
 --- !u!1 &1476930529
 GameObject:
   m_ObjectHideFlags: 0
@@ -12927,7 +12956,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4392828608178591196, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4392828608178591198, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: m_RootOrder
