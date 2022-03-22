@@ -12,6 +12,8 @@ public class Selector_Script : MonoBehaviour
    private Vector3 OffScreen;
    public int CharacterInt = 1;
    private SpriteRenderer GunnerRender, SnipsRender, BookRender;
+   private readonly string selectedCharacter = "SelectedCharacter";
+
 
    private void Awake()
    {
@@ -27,6 +29,7 @@ public class Selector_Script : MonoBehaviour
          switch(CharacterInt)
          {
             case 1:
+               PlayerPrefs.SetInt(selectedCharacter,1);
                GunnerRender.enabled = false;
                Gunner.transform.position = OffScreen;
                Snips.transform.position = CharacterPosition;
@@ -34,6 +37,7 @@ public class Selector_Script : MonoBehaviour
                CharacterInt++;
                break;
             case 2:
+               PlayerPrefs.SetInt(selectedCharacter,2);
                SnipsRender.enabled = false;
                Snips.transform.position = OffScreen;
                Book.transform.position = CharacterPosition;
@@ -41,6 +45,7 @@ public class Selector_Script : MonoBehaviour
                CharacterInt++;
                break;
             case 3:
+               PlayerPrefs.SetInt(selectedCharacter,3);
                BookRender.enabled = false;
                Book.transform.position = OffScreen;
                Gunner.transform.position = CharacterPosition;
@@ -60,6 +65,7 @@ public class Selector_Script : MonoBehaviour
       switch(CharacterInt)
          {
             case 1:
+               PlayerPrefs.SetInt(selectedCharacter,2);
                GunnerRender.enabled = false;
                Gunner.transform.position = OffScreen;
                Book.transform.position = CharacterPosition;
@@ -68,6 +74,7 @@ public class Selector_Script : MonoBehaviour
                ResetInt();
                break;
             case 2:
+               PlayerPrefs.SetInt(selectedCharacter,3);
                SnipsRender.enabled = false;
                Snips.transform.position = OffScreen;
                Gunner.transform.position = CharacterPosition;
@@ -75,6 +82,7 @@ public class Selector_Script : MonoBehaviour
                CharacterInt--;
                break;
             case 3:
+               PlayerPrefs.SetInt(selectedCharacter,1);
                BookRender.enabled = false;
                Book.transform.position = OffScreen;
                Snips.transform.position = CharacterPosition;
@@ -102,6 +110,33 @@ public class Selector_Script : MonoBehaviour
    public void startGame()
    {
         SceneManager.LoadScene("Level 1");
+   }
+   public void charSelection()
+   {
+      switch(CharacterInt)
+         {
+            case 1:
+               Gunner.SetActive(true);
+               Snips.SetActive(false);
+               Book.SetActive(false);
+               break;
+            case 2:
+               Snips.SetActive(true);
+               Gunner.SetActive(false);
+               Book.SetActive(false);
+               break;
+            case 3:
+               Book.SetActive(true);
+               Gunner.SetActive(false);
+               Snips.SetActive(false);
+               break;
+            default:
+               Gunner.SetActive(true);
+               Snips.SetActive(false);
+               Book.SetActive(false);
+               break;         
+
+         }
    }
 
 }
