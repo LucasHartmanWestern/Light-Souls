@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5737,7 +5737,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
 --- !u!4 &945076917 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8549190234161642438, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2866423813802726692, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
   m_PrefabInstance: {fileID: 945076916}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &952759093
@@ -7747,12 +7747,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163175131}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 80, y: 15, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 40.913567, y: 3.441, z: -37.4953}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1909622125}
   - {fileID: 945076917}
+  - {fileID: 1909622125}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12428,6 +12428,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -37.4953
       objectReference: {fileID: 0}
+    - target: {fileID: 7636709166405659876, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8111842690241763361, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -12480,7 +12484,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
 --- !u!4 &1909622125 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4392828608178591198, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7636709166405659878, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
   m_PrefabInstance: {fileID: 1909622124}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1947832860
