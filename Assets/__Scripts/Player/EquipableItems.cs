@@ -20,6 +20,19 @@ public class EquipableItems : MonoBehaviour
     public bool lowCalBullet; // Increase rate of fire of ranged weapons
     public bool fourLeafClover; // 1/4 change player's attack does double damage
 
+    #region Previous Equip Tracker
+    bool bigMagazinePrev;
+    bool gasolinePrev;
+    bool rocketBootsPrev;
+    bool highCalBulletsPrev;
+    bool energyDrinkPrev;
+    bool specialSerumPrev;
+    bool bodyArmorPrev;
+    bool aimbotChipPrev;
+    bool lowCalBulletPrev;
+    bool fourLeafCloverPrev;
+    #endregion
+
     // Called when script is instantiated
     private void Awake()
     {
@@ -36,17 +49,39 @@ public class EquipableItems : MonoBehaviour
 
     void HandleStatModifications()
     {
-        if (rocketBoots) playerGeneral.jumpStrenth *= 1.5f; // Increase jump strength by 50%
+        #region Modify Stats based on what is equpped
+        if (rocketBoots && !rocketBootsPrev) playerGeneral.jumpStrenth *= 1.5f; // Increase jump strength by 50%
+        if (!rocketBoots && rocketBootsPrev) playerGeneral.jumpStrenth /= 1.5f; // Decrease jump strength by 50%
 
-        if (highCalBullets) playerGeneral.rangedDamage *= 1.5f; // Increase ranged damage by 50%
+        if (highCalBullets && !highCalBulletsPrev) playerGeneral.rangedDamage *= 1.5f; // Increase ranged damage by 50%
+        if (!highCalBullets && highCalBulletsPrev) playerGeneral.rangedDamage /= 1.5f; // Decrease ranged damage by 50%
 
-        if (energyDrink) playerGeneral.playerMoveSpeed *= 1.5f; // Increase movement speed by 50%
+        if (energyDrink && !energyDrinkPrev) playerGeneral.playerMoveSpeed *= 1.5f; // Increase movement speed by 50%
+        if (!energyDrink && energyDrinkPrev) playerGeneral.playerMoveSpeed /= 1.5f; // Decrease movement speed by 50%
 
-        if (specialSerum) playerGeneral.playerHealth += 100; // Increase player health by 100hp
+        if (specialSerum && !specialSerumPrev) playerGeneral.playerHealth += 100; // Increase player health by 100hp
+        if (!specialSerum && specialSerumPrev) playerGeneral.playerHealth -= 100; // Decrease player health by 100hp
 
-        if (bodyArmor) playerGeneral.resistance *= 1.5f; // Increase player resistance by 50%
+        if (bodyArmor && !bodyArmorPrev) playerGeneral.resistance *= 1.5f; // Increase player resistance by 50%
+        if (!bodyArmor && bodyArmorPrev) playerGeneral.resistance /= 1.5f; // Decrease player resistance by 50%
 
-        if (bigMagazine) playerGeneral.playerMaganizeCapacity += 10; // Increase magazine capacity by 10
+        if (bigMagazine && !bigMagazinePrev) playerGeneral.playerMaganizeCapacity += 10; // Increase magazine capacity by 10
+        if (!bigMagazine && bigMagazinePrev) playerGeneral.playerMaganizeCapacity -= 10; // Decrease magazine capacity by 10
+        #endregion
+
+        #region Set Prev Values
+        bigMagazinePrev = bigMagazine;
+        gasolinePrev = gasoline;
+        rocketBootsPrev = rocketBoots;
+        highCalBulletsPrev = highCalBullets;
+        energyDrinkPrev = energyDrink;
+        specialSerumPrev = specialSerum;
+        bodyArmorPrev = bodyArmor;
+        aimbotChipPrev = aimbotChip;
+        lowCalBulletPrev = lowCalBullet;
+        fourLeafCloverPrev = fourLeafClover;
+        #endregion
+
     }
 
     void HandleFireEffect()

@@ -95,7 +95,7 @@ public class Selector_Cust : MonoBehaviour
                 equipNum1++;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
-                if (equipNum1 > 10) equipNum1 = 1;
+                if (equipNum1 > itemDictionary.Count) equipNum1 = 1;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
                 itemDictionary[equipNum1].transform.position = pos1.position;
@@ -104,7 +104,7 @@ public class Selector_Cust : MonoBehaviour
                 equipNum2++;
                 if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2++;
                 if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2++;
-                if (equipNum2 > 10) equipNum2 = 1;
+                if (equipNum2 > itemDictionary.Count) equipNum2 = 1;
                 if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2++;
                 if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2++;
                 itemDictionary[equipNum2].transform.position = pos2.position;
@@ -113,7 +113,7 @@ public class Selector_Cust : MonoBehaviour
                 equipNum3++;
                 if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3++;
                 if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3++;
-                if (equipNum3 > 10) equipNum3 = 1;
+                if (equipNum3 > itemDictionary.Count) equipNum3 = 1;
                 if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3++;
                 if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3++;
                 itemDictionary[equipNum3].transform.position = pos3.position;
@@ -122,7 +122,7 @@ public class Selector_Cust : MonoBehaviour
                 equipNum1++;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
-                if (equipNum1 > 10) equipNum1 = 1;
+                if (equipNum1 > itemDictionary.Count) equipNum1 = 1;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1++;
                 itemDictionary[equipNum1].transform.position = pos1.position;
@@ -153,7 +153,7 @@ public class Selector_Cust : MonoBehaviour
                 equipNum1--;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
-                if (equipNum1 < 1) equipNum1 = 10;
+                if (equipNum1 < 1) equipNum1 = itemDictionary.Count;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
                 itemDictionary[equipNum1].transform.position = pos1.position;
@@ -162,7 +162,7 @@ public class Selector_Cust : MonoBehaviour
                 equipNum2--;
                 if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2--;
                 if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2--;
-                if (equipNum2 < 1) equipNum2 = 10;
+                if (equipNum2 < 1) equipNum2 = itemDictionary.Count;
                 if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2--;
                 if (equipNum2 == equipNum1 || equipNum2 == equipNum3) equipNum2--;
                 itemDictionary[equipNum2].transform.position = pos2.position;
@@ -171,7 +171,7 @@ public class Selector_Cust : MonoBehaviour
                 equipNum3--;
                 if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3--;
                 if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3--;
-                if (equipNum3 < 1) equipNum3 = 10;
+                if (equipNum3 < 1) equipNum3 = itemDictionary.Count;
                 if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3--;
                 if (equipNum3 == equipNum1 || equipNum3 == equipNum2) equipNum3--;
                 itemDictionary[equipNum3].transform.position = pos3.position;
@@ -180,7 +180,7 @@ public class Selector_Cust : MonoBehaviour
                 equipNum1--;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
-                if (equipNum1 < 1) equipNum1 = 10;
+                if (equipNum1 < 1) equipNum1 = itemDictionary.Count;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
                 if (equipNum1 == equipNum2 || equipNum1 == equipNum3) equipNum1--;
                 itemDictionary[equipNum1].transform.position = pos1.position;
