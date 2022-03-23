@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GetChar : MonoBehaviour
 {
-    public GameObject Gun,Sword;
+    public GameObject Gun,Sword,Sniper;
 
     void Awake()
     {
@@ -14,19 +14,19 @@ public class GetChar : MonoBehaviour
         {
             Gun.SetActive(true);
             Sword.SetActive(false);
-            
+            Sniper.SetActive(false);
         }
         if (getCharacter == 2)
         {
-            Debug.Log("hi");
             Gun.SetActive(false);
             Sword.SetActive(false);
+            Sniper.SetActive(true);
         }
         if (getCharacter == 3)
         {
             Gun.SetActive(false);
             Sword.SetActive(true);
-            
+            Sniper.SetActive(false);
         }
     }
 }
