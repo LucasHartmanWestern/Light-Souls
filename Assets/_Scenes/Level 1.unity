@@ -8551,7 +8551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gun: {fileID: 945076918}
   Sword: {fileID: 1909622126}
-  Sniper: {fileID: 1849165560580747956, guid: 70ff62a5384648646a24e78f00216c8b, type: 3}
+  Sniper: {fileID: 1909622126}
 --- !u!1001 &1179799603
 PrefabInstance:
   m_ObjectHideFlags: 0

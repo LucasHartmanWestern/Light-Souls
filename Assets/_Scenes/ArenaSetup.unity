@@ -2639,7 +2639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gun: {fileID: 1841095843}
   Sword: {fileID: 949203343}
-  Sniper: {fileID: 1849165560580747956, guid: 70ff62a5384648646a24e78f00216c8b, type: 3}
+  Sniper: {fileID: 949203343}
 --- !u!4 &2052586267
 Transform:
   m_ObjectHideFlags: 0
