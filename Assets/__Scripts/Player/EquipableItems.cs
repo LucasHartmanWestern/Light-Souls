@@ -36,7 +36,7 @@ public class EquipableItems : MonoBehaviour
     // Called when script is instantiated
     private void Awake()
     {
-        playerGeneral = GetComponent<PlayerGeneral>(); // Get reference to instance of playerGeneral object
+        playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to instance of playerGeneral object
         ApplyEffects(); // Apply the effects
     }
 
@@ -59,14 +59,14 @@ public class EquipableItems : MonoBehaviour
         if (energyDrink && !energyDrinkPrev) playerGeneral.playerMoveSpeed *= 1.5f; // Increase movement speed by 50%
         if (!energyDrink && energyDrinkPrev) playerGeneral.playerMoveSpeed /= 1.5f; // Decrease movement speed by 50%
 
-        if (specialSerum && !specialSerumPrev) playerGeneral.playerHealth += 100; // Increase player health by 100hp
-        if (!specialSerum && specialSerumPrev) playerGeneral.playerHealth -= 100; // Decrease player health by 100hp
+        if (specialSerum && !specialSerumPrev) playerGeneral.playerStartingHealth += 100; // Increase player health by 100hp
+        if (!specialSerum && specialSerumPrev) playerGeneral.playerStartingHealth -= 100; // Decrease player health by 100hp
 
         if (bodyArmor && !bodyArmorPrev) playerGeneral.resistance *= 1.5f; // Increase player resistance by 50%
         if (!bodyArmor && bodyArmorPrev) playerGeneral.resistance /= 1.5f; // Decrease player resistance by 50%
 
         if (bigMagazine && !bigMagazinePrev) playerGeneral.playerMaganizeCapacity += 10; // Increase magazine capacity by 10
-        if (!bigMagazine && bigMagazinePrev) playerGeneral.playerMaganizeCapacity -= 10; // Decrease magazine capacity by 10
+        if (!bigMagazine && bigMagazinePrev) { playerGeneral.playerMaganizeCapacity -= 10; playerGeneral.playerAmmo -= 10; }// Decrease magazine capacity by 10
         #endregion
 
         #region Set Prev Values

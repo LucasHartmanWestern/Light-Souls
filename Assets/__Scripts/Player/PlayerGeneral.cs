@@ -58,23 +58,31 @@ public class PlayerGeneral : MonoBehaviour
             HandleCombatAbility(); // Handles the combat ability of the player
             HandleReload(); // Handles the reload ability
 
+            #region Increase Special meter gradually
             // Always be increase the player special meter to 100 (unless their in the air)
             if (playerSpecial < playerStartingSpecial && playerMovement.isGrounded)
                 playerSpecial += 5 * Time.deltaTime;
             else if (playerSpecial > playerStartingSpecial) playerSpecial = playerStartingSpecial;
+            #endregion
 
-            // Level up the player
+            #region Level up the player
             if (playerExperience >= expToNextLevel)
             {
                 playerExperience -= expToNextLevel;
                 expToNextLevel += 1000;
+                FindObjectOfType<PlayerGeneral>().playerStartingHealth += 10;
+                FindObjectOfType<PlayerGeneral>().playerStartingSpecial += 10;
+                FindObjectOfType<PlayerGeneral>().playerLevel += 1;
+                FindObjectOfType<PlayerGeneral>().playerHealth = FindObjectOfType<PlayerGeneral>().playerStartingHealth;
+                FindObjectOfType<PlayerGeneral>().playerSpecial = FindObjectOfType<PlayerGeneral>().playerStartingSpecial;
                 playerStartingHealth += 10;
                 playerStartingSpecial += 10;
                 playerLevel += 1;
                 playerHealth = playerStartingHealth;
                 playerSpecial = playerStartingSpecial;
             }
-        } 
+            #endregion
+        }
     }
     
     // Used for physics updates
@@ -100,7 +108,8 @@ public class PlayerGeneral : MonoBehaviour
         playerHealth -= damageAmount / resistance; // Decrease player's health
         FindObjectOfType<PlayerGeneral>().playerHealth -= damageAmount / resistance; // Decrease inherited script playerHealth too
 
-        if (playerHealth <= 0)
+        #region Handle player dying
+        if (FindObjectOfType<PlayerGeneral>().playerHealth <= 0)
         {
             isAlive = false; // Show player as no longer alive
             FindObjectOfType<PlayerGeneral>().isAlive = false; // Set child component of isAlive to false
@@ -110,6 +119,7 @@ public class PlayerGeneral : MonoBehaviour
             playerAnimationManager.PlayTargetAnimation("Death", true); // Play death animation
             StartCoroutine(DestroyPlayer()); // Destroy enemy game obejct
         }
+        #endregion
     }
 
     // Handles the reload of the ranged weapon
