@@ -14305,6 +14305,7 @@ GameObject:
   - component: {fileID: 7636709166405659886}
   - component: {fileID: 4886808207333791695}
   - component: {fileID: 7636709166405659889}
+  - component: {fileID: 7629597424353445240}
   m_Layer: 6
   m_Name: SwordPlayer
   m_TagString: Untagged
@@ -14756,6 +14757,7 @@ MonoBehaviour:
     m_Bits: 1
   shootSoundEffect: {fileID: 6336818399910251379}
   swingSoundEffect: {fileID: 823224272164350369}
+  dontAttack: 0
   projectilePrefab: {fileID: 3044849764310341107, guid: 7fa0a28b7ecb24546998d4a61b4ababc, type: 3}
   muzzleFlashPS: {fileID: 7137170522057275788, guid: 0e366373df4f9f54982593d27a5a96dc, type: 3}
   spawnBulletPosition: {fileID: 7636709166080073738}
@@ -14859,6 +14861,18 @@ MonoBehaviour:
   resistance: 1
   playerMaganizeCapacity: 20
   playerAmmo: 0
+--- !u!114 &7629597424353445240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7636709166405659876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c6203fd05009a429e8060325d953f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7636709167018835768
 GameObject:
   m_ObjectHideFlags: 0
@@ -15144,6 +15158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isProjectile: 0
+  isMissile: 0
   projectileSpeed: 10
   enemyDamage: 15
   psHitGreen: {fileID: 613433886817584985, guid: b20cfbe8ee679ee45b9b0e862a56d344, type: 3}
