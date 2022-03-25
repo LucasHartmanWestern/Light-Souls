@@ -105,7 +105,6 @@ public class PlayerGeneral : MonoBehaviour
     // Called to damage the player
     public void TakeDamage(float damageAmount)
     {
-        playerHealth -= damageAmount / resistance; // Decrease player's health
         FindObjectOfType<PlayerGeneral>().playerHealth -= damageAmount / resistance; // Decrease inherited script playerHealth too
 
         #region Handle player dying

@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         playerRigidBody = GetComponent<Rigidbody>(); // Reference to RigidBody attached to player
         cameraTransform = Camera.main.transform; // Get transform of the main camera
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Reference to PlayerAnimation script attached to player
-        playerGeneral = GetComponent<PlayerGeneral>(); // Reference to PlayerGeneral script attached to player
+        playerGeneral = FindObjectOfType<PlayerGeneral>(); // Reference to PlayerGeneral script attached to player
     }
 
     // Public method to call the other movement functions
