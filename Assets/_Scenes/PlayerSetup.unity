@@ -6076,6 +6076,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7636709166405659876, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7636709166405659878, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6092,11 +6096,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -5.5460052
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7636709166405659889, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 5504942093850104763}
+    m_RemovedComponents:
+    - {fileID: 7636709166405659886, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
 --- !u!4 &5504942093850104762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7636709166405659878, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+  m_PrefabInstance: {fileID: 5504942093850104761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &5504942093850104763 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6461656258299155378, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
   m_PrefabInstance: {fileID: 5504942093850104761}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5542707639962875013
@@ -6263,6 +6277,10 @@ PrefabInstance:
     - target: {fileID: 2866423813802726692, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
       propertyPath: m_LocalPosition.z
       value: -5.5460052
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866423813802726694, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2866423813802726695, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
       propertyPath: deathSound

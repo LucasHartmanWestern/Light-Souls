@@ -900,7 +900,6 @@ GameObject:
   - component: {fileID: 1849165560580747964}
   - component: {fileID: 1849165560580747967}
   - component: {fileID: 4544222229058010608}
-  - component: {fileID: 1849165560580747966}
   - component: {fileID: 3712068823629760927}
   - component: {fileID: 1849165560580747957}
   m_Layer: 6
@@ -1384,37 +1383,6 @@ MonoBehaviour:
   aimbotChip: 0
   lowCalBullet: 0
   fourLeafClover: 0
---- !u!114 &1849165560580747966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849165560580747956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1cb950e8d684047ae8b5868deafb61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathSound: {fileID: 3026118648117906914}
-  isInteracting: 0
-  isReloading: 0
-  isAlive: 1
-  jumpStrenth: 1
-  playerMoveSpeed: 1
-  playerLookSpeed: 1
-  playerStartingHealth: 0
-  playerHealth: 100
-  playerStartingSpecial: 0
-  playerSpecial: 100
-  playerLevel: 1
-  expToNextLevel: 1000
-  playerExperience: 0
-  rangedDamage: 20
-  meleeDamage: 50
-  resistance: 1
-  playerMaganizeCapacity: 0
-  playerAmmo: 0
 --- !u!114 &3712068823629760927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,24 +1407,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b676e133bf2770d4f962e44f5ad68d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 3026118648117906914}
   isInteracting: 0
   isReloading: 0
   isAlive: 1
-  jumpStrenth: 1
-  playerMoveSpeed: 1
-  playerLookSpeed: 1
-  playerStartingHealth: 0
+  jumpStrenth: 5
+  playerMoveSpeed: 5
+  playerLookSpeed: 3
+  playerStartingHealth: 200
   playerHealth: 0
-  playerStartingSpecial: 0
+  playerStartingSpecial: 100
   playerSpecial: 100
   playerLevel: 1
   expToNextLevel: 1000
   playerExperience: 0
-  rangedDamage: 0
-  meleeDamage: 0
-  resistance: 1
-  playerMaganizeCapacity: 0
+  rangedDamage: 300
+  meleeDamage: 5
+  resistance: 10
+  playerMaganizeCapacity: 10
   playerAmmo: 0
 --- !u!1 &1849165560975654734
 GameObject:

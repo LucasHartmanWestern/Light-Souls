@@ -14302,7 +14302,6 @@ GameObject:
   - component: {fileID: 7636709166405659884}
   - component: {fileID: 7636709166405659887}
   - component: {fileID: 5711363446213616544}
-  - component: {fileID: 7636709166405659886}
   - component: {fileID: 4886808207333791695}
   - component: {fileID: 7636709166405659889}
   - component: {fileID: 7629597424353445240}
@@ -14312,7 +14311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7636709166405659878
 Transform:
   m_ObjectHideFlags: 0
@@ -14787,37 +14786,6 @@ MonoBehaviour:
   aimbotChip: 0
   lowCalBullet: 0
   fourLeafClover: 0
---- !u!114 &7636709166405659886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7636709166405659876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1cb950e8d684047ae8b5868deafb61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathSound: {fileID: 6461656258299155378}
-  isInteracting: 0
-  isReloading: 0
-  isAlive: 1
-  jumpStrenth: 1
-  playerMoveSpeed: 1
-  playerLookSpeed: 1
-  playerStartingHealth: 150
-  playerHealth: 0
-  playerStartingSpecial: 100
-  playerSpecial: 0
-  playerLevel: 1
-  expToNextLevel: 1000
-  playerExperience: 0
-  rangedDamage: 20
-  meleeDamage: 50
-  resistance: 1
-  playerMaganizeCapacity: 20
-  playerAmmo: 0
 --- !u!114 &4886808207333791695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14842,7 +14810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b847ad247418db45a3010e89d663f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 6461656258299155378}
   isInteracting: 0
   isReloading: 0
   isAlive: 1
