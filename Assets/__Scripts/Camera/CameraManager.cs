@@ -73,7 +73,7 @@ public class CameraManager : MonoBehaviour
     // Make the camera rotate according to the player's input
     private void RotateCamera()
     {
-        if (!inputManager.lockOnFlag && currentLockOnTarget == null) // Check player is not locked on
+        if (!inputManager.lockOnFlag && currentLockOnTarget == null && !FindObjectOfType<EquipableItems>().aimbotLockOn) // Check player is not locked on
         {
             Vector3 rotation; // Specify the rotation of the camera
             Quaternion targetRotation; // Target rotation in a Quaterion form
