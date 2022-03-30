@@ -54,7 +54,7 @@ public class PlayerAttack : MonoBehaviour
     private void HandleWeaponModels()
     {
         // Only have 1 weapon enabled at a time and have it switch depending on the player's input
-        if (inputManager.aimInput)
+        if (inputManager.aimInput || playerGeneral.isReloading)
         {
             meleeWeapon.gameObject.SetActive(false);
             rangedWeapon.gameObject.SetActive(true);
