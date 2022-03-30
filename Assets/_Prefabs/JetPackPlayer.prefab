@@ -2171,7 +2171,6 @@ GameObject:
   - component: {fileID: 2866423813802726702}
   - component: {fileID: 2866423813802726701}
   - component: {fileID: 107603740941097570}
-  - component: {fileID: 2866423813802726700}
   - component: {fileID: 1003724301886729741}
   - component: {fileID: 2866423813802726695}
   - component: {fileID: 5805299063452574852}
@@ -2656,37 +2655,6 @@ MonoBehaviour:
   aimbotChip: 0
   lowCalBullet: 0
   fourLeafClover: 0
---- !u!114 &2866423813802726700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2866423813802726694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1cb950e8d684047ae8b5868deafb61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathSound: {fileID: 1698127413237738096}
-  isInteracting: 0
-  isReloading: 0
-  isAlive: 1
-  jumpStrenth: 1
-  playerMoveSpeed: 1
-  playerLookSpeed: 1
-  playerStartingHealth: 150
-  playerHealth: 0
-  playerStartingSpecial: 100
-  playerSpecial: 0
-  playerLevel: 1
-  expToNextLevel: 1000
-  playerExperience: 0
-  rangedDamage: 40
-  meleeDamage: 20
-  resistance: 1
-  playerMaganizeCapacity: 35
-  playerAmmo: 0
 --- !u!114 &1003724301886729741
 MonoBehaviour:
   m_ObjectHideFlags: 0

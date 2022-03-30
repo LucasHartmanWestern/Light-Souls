@@ -32,6 +32,7 @@ public class PlayerGeneral : MonoBehaviour
     public float resistance = 1f; // How much damage player can absorb
     public float playerMaganizeCapacity; // How many bullets player can fire before reloading
     public float playerAmmo; // How many bullets the player currently has loaded
+    public float playerFireRate; // Fire rate of player
 
     // Called before Start()
     private void Awake()
@@ -126,6 +127,8 @@ public class PlayerGeneral : MonoBehaviour
     {
         if (isReloading)
         {
+            inputManager.aimInput = false; // Set player to not aiming
+            playerAnimationManager.PlayTargetAnimation("Reloading", true); // Play reload animation
             FindObjectOfType<PlayerGeneral>().playerAmmo = FindObjectOfType<PlayerGeneral>().playerMaganizeCapacity; // Reset ammo of player
             isReloading = false; // Set that the player is no longer reloading
         }

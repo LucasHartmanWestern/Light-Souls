@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
         if (playerGeneral.isAlive && !dontAttack)
         {
             // Handle the combat depending on whether or not character is aiming
-            if (inputManager.aimInput) HandleRangedCombat();
+            if (inputManager.aimInput) StartCoroutine("HandleRangedCombat");
             else HandleMeleeCombat();
         }
 
@@ -66,7 +67,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // Handle the Ranged Combat
-    void HandleRangedCombat()
+    IEnumerator HandleRangedCombat()
     {
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f); // Get position of the center of the screen
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); // Cast ray from center of the screen forwards
@@ -75,14 +76,17 @@ public class PlayerAttack : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, _aimColliderMask))
         {
             // Player is attacking
-            if (inputManager.attackInput && playerGeneral.playerAmmo > 0)
+            if (inputManager.attackInput && playerGeneral.playerAmmo > 0 && !dontAttack)
             {
+                dontAttack = true;
                 playerGeneral.playerAmmo -= 1; // Decrease ammo by 1
                 Vector3 aimDirection = (raycastHit.point - spawnBulletPosition.position).normalized; // Determine where the user is aiming relative to the player
                 Instantiate(muzzleFlashPS, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Create a yellow muzzle flash
                 Instantiate(projectilePrefab, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Spawn in a bullet
                 shootSoundEffect.Play(); // Play the shooting sound effect
                 inputManager.attackInput = false; // Make it so player must press the attack button each time (semi-automatic)
+                yield return new WaitForSeconds(playerGeneral.playerFireRate);
+                dontAttack = false;
             }  
         }
     }

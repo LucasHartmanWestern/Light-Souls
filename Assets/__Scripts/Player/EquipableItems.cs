@@ -66,7 +66,10 @@ public class EquipableItems : MonoBehaviour
         if (!bodyArmor && bodyArmorPrev) playerGeneral.resistance /= 1.5f; // Decrease player resistance by 50%
 
         if (bigMagazine && !bigMagazinePrev) playerGeneral.playerMaganizeCapacity += 10; // Increase magazine capacity by 10
-        if (!bigMagazine && bigMagazinePrev) { playerGeneral.playerMaganizeCapacity -= 10; playerGeneral.playerAmmo -= 10; }// Decrease magazine capacity by 10
+        if (!bigMagazine && bigMagazinePrev) { playerGeneral.playerMaganizeCapacity -= 10; playerGeneral.playerAmmo -= 10; } // Decrease magazine capacity by 10
+
+        if (lowCalBullet && !lowCalBulletPrev) playerGeneral.playerFireRate /= 1.5f; // Increase fire rate by 50%
+        if (!lowCalBullet && lowCalBulletPrev) playerGeneral.playerFireRate *= 1.5f; // Decrease fire rate by 50%
         #endregion
 
         #region Set Prev Values
