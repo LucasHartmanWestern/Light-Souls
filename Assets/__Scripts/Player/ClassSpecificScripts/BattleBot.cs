@@ -25,12 +25,12 @@ public class BattleBot : PlayerGeneral
             if (Camera.main.fieldOfView == 60) // Check if they are not in scope vision
             {
                 Camera.main.fieldOfView = 20; // Zoom in the FOV
-                FindObjectOfType<CombatUI>().sniperCrosshair.SetActive(true); // Toggle sniper crosshair
+                combatUI.sniperCrosshair.SetActive(true); // Toggle sniper crosshair
             }
             else // The player is already in scope vision
             {
                 Camera.main.fieldOfView = 60; // Zoom out the FOV
-                FindObjectOfType<CombatUI>().sniperCrosshair.SetActive(false); // Toggle sniper crosshair
+                combatUI.sniperCrosshair.SetActive(false); // Toggle sniper crosshair
             }
                 
 
@@ -41,7 +41,7 @@ public class BattleBot : PlayerGeneral
         if (!inputManager.aimInput)
         {
             Camera.main.fieldOfView = 60;
-            FindObjectOfType<CombatUI>().sniperCrosshair.SetActive(false); // Make sure sniper crosshair is disabled
+            combatUI.sniperCrosshair.SetActive(false); // Make sure sniper crosshair is disabled
         }
     }
 }

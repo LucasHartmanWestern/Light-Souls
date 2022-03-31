@@ -15,8 +15,8 @@ public class DamageDealing : MonoBehaviour
     private bool startTracking; // Check if missile should track player
 
     private Rigidbody _projectileRigidBody; // Reference to RigidBody of the projectile
-    [SerializeField] private Transform psHitGreen; // Red particle system reference
-    [SerializeField] private Transform psHitRed; // Red particle system reference
+    [SerializeField] private Transform _psHitGreen; // Red particle system reference
+    [SerializeField] private Transform _psHitRed; // Red particle system reference
 
     // Called before Start()
     private void Awake()
@@ -65,7 +65,7 @@ public class DamageDealing : MonoBehaviour
         // Check if hit an enemy
         if (other.GetComponent<EnemyGeneral>() != null)
         {
-            Instantiate(psHitRed, transform.position, Quaternion.identity); // Create a red particle system
+            Instantiate(_psHitRed, transform.position, Quaternion.identity); // Create a red particle system
 
             if (isProjectile) other.GetComponent<EnemyGeneral>().TakeDamage(playerGeneral.rangedDamage * equippableItems.GetFourLeafDamage()); // Damage enemy the ranged amount
             else other.GetComponent<EnemyGeneral>().TakeDamage(playerGeneral.meleeDamage * equippableItems.GetFourLeafDamage()); // Damage enemy the melee amount
@@ -75,13 +75,13 @@ public class DamageDealing : MonoBehaviour
         // Check if hit player
         else if (other.GetComponent<PlayerGeneral>() != null)
         {
-            Instantiate(psHitRed, transform.position, Quaternion.identity); // Create a red particle system
+            Instantiate(_psHitRed, transform.position, Quaternion.identity); // Create a red particle system
             other.GetComponent<PlayerGeneral>().TakeDamage(enemyDamage); // Damage player the correct amount
         }
         else // Tiggers if a non-enemy and non-player object was hit
         {
             if (isProjectile)
-                Instantiate(psHitGreen, transform.position, Quaternion.identity); // Create a green particle system
+                Instantiate(_psHitGreen, transform.position, Quaternion.identity); // Create a green particle system
         }
 
         if (isProjectile)

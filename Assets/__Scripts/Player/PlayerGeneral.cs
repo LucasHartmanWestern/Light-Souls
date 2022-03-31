@@ -12,6 +12,7 @@ public class PlayerGeneral : MonoBehaviour
     protected PlayerMovement playerMovement; // PlayerMovement reference
     protected CameraManager cameraManager; // CameraManager instance
     protected Animator animator; // Animator instance
+    protected CombatUI combatUI; // CombatUI reference
     public bool isInteracting; // Track whether or not the player is interacting with something
     public bool isReloading; // Track whether player is reloading or not
     public bool startedReload; // Track whether player started to relaod or not
@@ -48,6 +49,7 @@ public class PlayerGeneral : MonoBehaviour
         playerHealth = playerStartingHealth; // Set the player's starting health
         playerSpecial = playerStartingSpecial; // Set the player's starting special meter
         playerAmmo = playerMaganizeCapacity; // Set player's starting ammo to the capacity
+        combatUI = FindObjectOfType<CombatUI>(); // Get CombatUI instance
     }
 
     // Called once a frame
