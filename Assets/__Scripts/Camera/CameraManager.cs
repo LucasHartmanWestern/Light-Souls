@@ -99,6 +99,10 @@ public class CameraManager : MonoBehaviour
         {
             float velocity = 0;
 
+            print(nearestLockOnTarget == null);
+            print(!FindObjectOfType<EquipableItems>().aimbotLockOn);
+            print(!inputManager.lockOnFlag);
+
             Vector3 direction = currentLockOnTarget.position - transform.position; // Get direction to point camera
             direction.Normalize(); // Normalize direction
             direction.y = 0; // Set y value to 0
@@ -177,7 +181,7 @@ public class CameraManager : MonoBehaviour
                 float viewableAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward); // Detect angle between the target and the current forward of the camera
 
                 // Check that the enemy is on screen and within an acceptable distance
-                if (enemy.transform.root != targetTransform.transform.root && viewableAngle > -50 && viewableAngle < 50 && distanceFromTarget <= maximumLockOnDistance && enemy.isAlive)
+                if (enemy.transform.root != targetTransform.transform.root && viewableAngle > -50 && viewableAngle < 50 && distanceFromTarget <= maximumLockOnDistance && enemy.isAlive && enemy.isHostile)
                     availableTargets.Add(enemy); // Add enemy as potential target
             }
         }

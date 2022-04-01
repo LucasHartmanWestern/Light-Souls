@@ -129,7 +129,7 @@ public class EquipableItems : MonoBehaviour
                     float viewableAngle = Vector3.Angle(lockTargetDirection, cameraManager.cameraTransform.forward); // Detect angle between the target and the current forward of the camera
 
                     // Check that the enemy is on screen and within an acceptable distance
-                    if (enemy.transform.root != cameraManager.targetTransform.transform.root && viewableAngle > -50 && viewableAngle < 50 && distanceFromTarget <= 60 && enemy.isAlive)
+                    if (enemy.transform.root != cameraManager.targetTransform.transform.root && viewableAngle > -50 && viewableAngle < 50 && distanceFromTarget <= 60 && enemy.isAlive && enemy.isHostile)
                         availableTargets.Add(enemy); // Add enemy as potential target
                 }
             }
@@ -165,7 +165,10 @@ public class EquipableItems : MonoBehaviour
         {
             #region Reset everything
             aimbotLockOn = false; // Set the flag back to false
-            cameraManager.ClearLockOnTargets(); // Clear all targets
+
+            if (!FindObjectOfType<InputManager>().lockOnFlag)
+                cameraManager.ClearLockOnTargets(); // Clear all targets
+
             cameraManager.cameraTransform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0)); // Set camera back to normal
             #endregion
         }

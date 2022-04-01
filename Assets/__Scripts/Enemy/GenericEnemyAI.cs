@@ -49,22 +49,30 @@ public class GenericEnemyAI : MonoBehaviour
     // Called once a frame
     private void Update()
     {
-        // Check if player is in the sight or attack range using a physics sphere
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (enemyGeneral.isAlive && playerInAttackRange)
-            animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 1f, Time.deltaTime * 10f)); // Make enemy not aim
-        else
-            animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0, Time.deltaTime * 10f)); // Make enemy not aim
-
-
-        if (GetComponent<NavMeshAgent>().enabled == true) // Only perform if the NavMeshAgent is on
+        // Hostile behaviour
+        if (enemyGeneral.isHostile)
         {
-            // Call the method relating to the state the enemy is in
-            if (!playerInSightRange && !playerInAttackRange) Patrolling();
-            else if (playerInSightRange && !playerInAttackRange) Chasing();
-            else if (playerInSightRange && playerInAttackRange) Attacking();
+            // Check if player is in the sight or attack range using a physics sphere
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+            if (enemyGeneral.isAlive && playerInAttackRange)
+                animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 1f, Time.deltaTime * 10f)); // Make enemy not aim
+            else
+                animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0, Time.deltaTime * 10f)); // Make enemy not aim
+
+
+            if (GetComponent<NavMeshAgent>().enabled == true) // Only perform if the NavMeshAgent is on
+            {
+                // Call the method relating to the state the enemy is in
+                if (!playerInSightRange && !playerInAttackRange) Patrolling();
+                else if (playerInSightRange && !playerInAttackRange) Chasing();
+                else if (playerInSightRange && playerInAttackRange) Attacking();
+            }
+        }
+        else
+        {
+
         }
     }
 
