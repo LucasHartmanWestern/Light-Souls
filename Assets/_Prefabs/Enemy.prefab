@@ -11535,6 +11535,7 @@ MonoBehaviour:
   firePS: {fileID: 5361035727317021871}
   lockOnTransform: {fileID: 5467787958764800696}
   isAlive: 1
+  isHostile: 1
   enemyHealth: 50
   expOnDeath: 100
   enemyDamage: 20
@@ -11568,7 +11569,8 @@ MonoBehaviour:
     m_Bits: 64
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 2
-  timeBetweenAttacks: 2
+  timeBetweenAttacks: 1
+  enemyState: Wander
   sightRange: 20
   attackRange: 10
   playerInSightRange: 0
@@ -12079,7 +12081,7 @@ Transform:
   m_GameObject: {fileID: 6807653505479422594}
   m_LocalRotation: {x: -0.6343436, y: -0.12051926, z: -0.19476415, w: -0.7383429}
   m_LocalPosition: {x: 0.537, y: 0.846, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 6807653505283164987}
   - {fileID: 6807653504386719967}

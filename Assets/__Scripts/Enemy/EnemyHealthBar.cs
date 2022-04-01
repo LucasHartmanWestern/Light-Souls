@@ -8,8 +8,8 @@ public class EnemyHealthBar : MonoBehaviour
     public GameObject healthBar; // Reference to the enemy health bar script
     private Camera _mainCamera; // Reference to the main camera
     private EnemyGeneral _enemyGeneral; // Reference to the EnemyGeneral script
-    public float startingHealth;
-    public float currentHealth;
+    [HideInInspector] public float startingHealth;
+    [HideInInspector] public float currentHealth;
 
     // Awake is called before Start
     void Awake()

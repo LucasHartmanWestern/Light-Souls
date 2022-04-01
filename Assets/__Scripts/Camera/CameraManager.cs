@@ -99,10 +99,6 @@ public class CameraManager : MonoBehaviour
         {
             float velocity = 0;
 
-            print(nearestLockOnTarget == null);
-            print(!FindObjectOfType<EquipableItems>().aimbotLockOn);
-            print(!inputManager.lockOnFlag);
-
             Vector3 direction = currentLockOnTarget.position - transform.position; // Get direction to point camera
             direction.Normalize(); // Normalize direction
             direction.y = 0; // Set y value to 0
