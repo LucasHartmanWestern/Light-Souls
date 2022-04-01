@@ -21,6 +21,7 @@ public class GenericEnemyAI : MonoBehaviour
     public Transform handTransform; // Reference to player's hand transform
 
     [Header("AI Parameters")]
+    public bool bossAI; // Check if this is for boss or not
     NavMeshAgent agent; // Reference to the NavMeshAgent script
     public LayerMask whatIsGround, whatIsPlayer; // Reference to the ground and player layers
 
@@ -55,7 +56,6 @@ public class GenericEnemyAI : MonoBehaviour
         // Hostile behaviour
         if (enemyGeneral.isHostile)
         {
-
             #region Handle State System of Enemy
             // Check if player is in the sight or attack range using a physics sphere
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -88,7 +88,6 @@ public class GenericEnemyAI : MonoBehaviour
                 }
             }
             #endregion
-
         }
         else
         {
@@ -110,6 +109,8 @@ public class GenericEnemyAI : MonoBehaviour
     // Make enemy wander around the arena
     private void Patrolling()
     {
+        if (bossAI) transform.Find("EnemyModel").transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0)); // Rotate boss model slightly
+
         animator.SetFloat("MovingAmount", 0.5f); // Set the isMoving float in the animator
         agent.speed = enemyGeneral.walkSpeed; // Decrease enemy speed
 
@@ -126,6 +127,8 @@ public class GenericEnemyAI : MonoBehaviour
     // Make enemy chase the player
     private void Chasing()
     {
+        if (bossAI) transform.Find("EnemyModel").transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0)); // Rotate boss model slightly
+
         animator.SetFloat("MovingAmount", 1f); // Set the isMoving float in the animator
         agent.speed = enemyGeneral.chaseSpeed; // Increase enemy speed
 
@@ -135,6 +138,8 @@ public class GenericEnemyAI : MonoBehaviour
     // Make enemy attack the player
     private void Attacking()
     {
+        if (bossAI) transform.Find("EnemyModel").transform.localRotation = Quaternion.Euler(new Vector3(0, 45, 0)); // Rotate boss model slightly
+
         agent.SetDestination(transform.position); // Don't move enemy when they are attacking
         animator.SetFloat("MovingAmount", 0); // Set the isMoving float in the animator
 
