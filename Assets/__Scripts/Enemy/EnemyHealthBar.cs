@@ -8,8 +8,9 @@ public class EnemyHealthBar : MonoBehaviour
     public GameObject healthBar; // Reference to the enemy health bar script
     private Camera _mainCamera; // Reference to the main camera
     private EnemyGeneral _enemyGeneral; // Reference to the EnemyGeneral script
-    public float startingHealth;
-    public float currentHealth;
+    [HideInInspector] public float startingHealth;
+    [HideInInspector] public float currentHealth;
+    public bool worldSpace; // Check if bar is in worldspace or not
 
     // Awake is called before Start
     void Awake()
@@ -30,7 +31,7 @@ public class EnemyHealthBar : MonoBehaviour
 
         healthBar.GetComponent<Slider>().value = Mathf.Clamp(currentHealth / startingHealth, 0, 1); // Get the value of the health relative to the max health
         
-        if (GetComponent<GenericEnemyAI>() != null)
+        if (GetComponent<GenericEnemyAI>() != null && worldSpace)
             healthBar.transform.forward = -_mainCamera.transform.forward; // Make it so health bar always faces the camera
     }
 }

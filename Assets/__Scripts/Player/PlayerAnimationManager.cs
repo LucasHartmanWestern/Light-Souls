@@ -64,6 +64,12 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), layerWeight, Time.deltaTime * 10f)); // Smoothly transition animation to aiming or not aiming
     }
 
+    // Changes the layer weight of a layer in the animator
+    public void SetLayerWeight(int layer, float layerWeight)
+    {
+        animator.SetLayerWeight(layer, Mathf.Lerp(animator.GetLayerWeight(layer), layerWeight, Time.deltaTime * 10f)); // Transition between layer weights
+    }
+
     // Apply root motion of animation (only triggered for certain animations)
     public void AplpyRootMotion(bool applyState)
     {

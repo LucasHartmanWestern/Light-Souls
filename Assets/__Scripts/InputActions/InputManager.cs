@@ -63,7 +63,7 @@ public class InputManager : MonoBehaviour
 
             playerControls.PlayerActions.AimButton.performed += i => aimInput = true; // Set aimInput to true when the AimButton is pressed
             playerControls.PlayerActions.AimButton.canceled += i => aimInput = false; // Set aimInput to false when the AimButton is no longer pressed
-
+            
             playerControls.PlayerActions.AttackButton.performed += i => attackInput = true; // Set attackInput to true when the AttackButton is pressed
             playerControls.PlayerActions.AttackButton.canceled += i => attackInput = false; // Set attackInput to false when the AttackButton is no longer pressed
 
@@ -137,12 +137,12 @@ public class InputManager : MonoBehaviour
         if (reloadInput)
         {
             reloadInput = false;
-            playerGeneral.isReloading = true;
+            playerGeneral.startedReload = true;
         }
         #endregion
 
         #region Aim Input
-        if (playerGeneral.isAlive)
+        if (playerGeneral.isAlive && !playerGeneral.isReloading)
         {
             playerMovement.isAiming = aimInput; // Make player face where they're aiming
             if (aimInput)

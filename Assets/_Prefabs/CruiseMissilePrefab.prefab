@@ -5261,8 +5261,8 @@ MonoBehaviour:
   isMissile: 1
   projectileSpeed: 15
   enemyDamage: 150
-  psHitGreen: {fileID: 5904329198179470861, guid: e261ecfcc10a2cc4c92257b106317346, type: 3}
-  psHitRed: {fileID: 5904329198179470861, guid: e261ecfcc10a2cc4c92257b106317346, type: 3}
+  _psHitGreen: {fileID: 5904329198179470861, guid: e261ecfcc10a2cc4c92257b106317346, type: 3}
+  _psHitRed: {fileID: 5904329198179470861, guid: e261ecfcc10a2cc4c92257b106317346, type: 3}
 --- !u!54 &1973518829850046223
 Rigidbody:
   m_ObjectHideFlags: 0

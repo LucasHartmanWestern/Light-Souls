@@ -14311,7 +14311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7636709166405659878
 Transform:
   m_ObjectHideFlags: 0
@@ -14776,6 +14776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireParticleSystem: {fileID: 1830721444796646229}
+  aimbotLockOn: 0
   bigMagazine: 0
   gasoline: 0
   rocketBoots: 0
@@ -14813,6 +14814,7 @@ MonoBehaviour:
   deathSound: {fileID: 6461656258299155378}
   isInteracting: 0
   isReloading: 0
+  startedReload: 0
   isAlive: 1
   jumpStrenth: 1
   playerMoveSpeed: 1
@@ -14829,6 +14831,7 @@ MonoBehaviour:
   resistance: 1
   playerMaganizeCapacity: 20
   playerAmmo: 0
+  playerFireRate: 0
 --- !u!114 &7629597424353445240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15129,8 +15132,8 @@ MonoBehaviour:
   isMissile: 0
   projectileSpeed: 10
   enemyDamage: 15
-  psHitGreen: {fileID: 613433886817584985, guid: b20cfbe8ee679ee45b9b0e862a56d344, type: 3}
-  psHitRed: {fileID: 613433886817584985, guid: 9c7b4aa2e3f077a448e66cf5ffe9ec12, type: 3}
+  _psHitGreen: {fileID: 613433886817584985, guid: b20cfbe8ee679ee45b9b0e862a56d344, type: 3}
+  _psHitRed: {fileID: 613433886817584985, guid: 9c7b4aa2e3f077a448e66cf5ffe9ec12, type: 3}
 --- !u!1 &7657462066446609858
 GameObject:
   m_ObjectHideFlags: 0

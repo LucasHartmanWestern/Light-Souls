@@ -77,7 +77,7 @@ public class Selector_Cust : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) // Check if player pressed the escape key
         {
             UIItemsContainer.SetActive(!UIItemsContainer.activeSelf); // Open/close item container
-            playerAttack.dontAttack = !playerAttack.dontAttack; // Don't let player attack when menu is open
+            playerAttack.dontAttack = UIItemsContainer.activeSelf; // Don't let player attack when menu is open
         }    
     }
 

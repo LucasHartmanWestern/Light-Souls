@@ -18,6 +18,7 @@ public class EnemyGeneral : MonoBehaviour
 
     [Header("Enemy Stats")]
     public bool isAlive; // Track if this enemy instance is alive
+    public bool isHostile; // Track if enemy is hostile or not
     public float enemyHealth; // Track health of enemy
     public float expOnDeath; // How much exp enemy gives player when they die
     public float enemyDamage; // Track damage enemy does to player
@@ -40,13 +41,18 @@ public class EnemyGeneral : MonoBehaviour
     // Called once a frame
     private void Update()
     {
-        if (isAlive) HandleFireDamage(); // Handles the fire damage effect
-        if (enemyHealth <= 0) isAlive = false; // Set that the enemy is dead
+        if (isHostile) // Enemy cannot be damaged or killed when they are not hostile
+        {
+            if (isAlive) HandleFireDamage(); // Handles the fire damage effect
+            if (enemyHealth <= 0) isAlive = false; // Set that the enemy is dead
+        }
     }
 
     // Damage the enemy
     public void TakeDamage(float damageAmount)
     {
+        if (!isHostile) return; // Don't take damage while non-hostile
+
         enemyHealth -= damageAmount; // Decrease health
 
         if (enemyHealth <= 0 && isAlive)
@@ -88,6 +94,8 @@ public class EnemyGeneral : MonoBehaviour
     // Fling enemy towards target
     public void FlingForwards(Transform target)
     {
+        if (!isHostile) return; // Don't trigger if non-hostile
+
         GetComponent<GenericEnemyAI>().enabled = false;
         navMeshAgent.enabled = false;
 
@@ -101,6 +109,8 @@ public class EnemyGeneral : MonoBehaviour
     // Fling the enemy backwards from the target
     public void FlingBackwards(Transform target)
     {
+        if (!isHostile) return; // Don't trigger if non-hostile
+
         GetComponent<GenericEnemyAI>().enabled = false;
         navMeshAgent.enabled = false;
 

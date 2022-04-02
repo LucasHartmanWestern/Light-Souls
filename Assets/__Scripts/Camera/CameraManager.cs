@@ -73,7 +73,7 @@ public class CameraManager : MonoBehaviour
     // Make the camera rotate according to the player's input
     private void RotateCamera()
     {
-        if (!inputManager.lockOnFlag && currentLockOnTarget == null) // Check player is not locked on
+        if (!inputManager.lockOnFlag && currentLockOnTarget == null && !FindObjectOfType<EquipableItems>().aimbotLockOn) // Check player is not locked on
         {
             Vector3 rotation; // Specify the rotation of the camera
             Quaternion targetRotation; // Target rotation in a Quaterion form
@@ -177,7 +177,7 @@ public class CameraManager : MonoBehaviour
                 float viewableAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward); // Detect angle between the target and the current forward of the camera
 
                 // Check that the enemy is on screen and within an acceptable distance
-                if (enemy.transform.root != targetTransform.transform.root && viewableAngle > -50 && viewableAngle < 50 && distanceFromTarget <= maximumLockOnDistance && enemy.isAlive)
+                if (enemy.transform.root != targetTransform.transform.root && viewableAngle > -50 && viewableAngle < 50 && distanceFromTarget <= maximumLockOnDistance && enemy.isAlive && enemy.isHostile)
                     availableTargets.Add(enemy); // Add enemy as potential target
             }
         }

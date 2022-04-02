@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +8,7 @@ public class GenericEnemyAI : MonoBehaviour
     Transform playerTargetTransform; // Reference to where the player is
     Animator animator; // Reference to the animator of the enemy
     Vector3 spawnPoint; // Determine where AI should be centered around
+    private bool _changingState; // Flags whether or not the state is changing
 
     [SerializeField]
     AudioSource shootSoundEffect; // Get the audio source attached to the enemy that contains the sound effect for shooting
@@ -19,6 +21,7 @@ public class GenericEnemyAI : MonoBehaviour
     public Transform handTransform; // Reference to player's hand transform
 
     [Header("AI Parameters")]
+    public bool bossAI; // Check if this is for boss or not
     NavMeshAgent agent; // Reference to the NavMeshAgent script
     public LayerMask whatIsGround, whatIsPlayer; // Reference to the ground and player layers
 
@@ -32,6 +35,7 @@ public class GenericEnemyAI : MonoBehaviour
     bool alreadyAttacked; // Check if enemy already attacked
 
     [Header("State variables")]
+    public string enemyState = "Wander"; // Holds state the enemy is in
     public float sightRange, attackRange; // How far away player needs to be to be seen or attacked
     public bool playerInSightRange, playerInAttackRange; // Check if player is in the range to be seen or attacked
 
@@ -49,22 +53,45 @@ public class GenericEnemyAI : MonoBehaviour
     // Called once a frame
     private void Update()
     {
-        // Check if player is in the sight or attack range using a physics sphere
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (enemyGeneral.isAlive && playerInAttackRange)
-            animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 1f, Time.deltaTime * 10f)); // Make enemy not aim
-        else
-            animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0, Time.deltaTime * 10f)); // Make enemy not aim
-
-
-        if (GetComponent<NavMeshAgent>().enabled == true) // Only perform if the NavMeshAgent is on
+        // Hostile behaviour
+        if (enemyGeneral.isHostile)
         {
-            // Call the method relating to the state the enemy is in
-            if (!playerInSightRange && !playerInAttackRange) Patrolling();
-            else if (playerInSightRange && !playerInAttackRange) Chasing();
-            else if (playerInSightRange && playerInAttackRange) Attacking();
+            #region Handle State System of Enemy
+            // Check if player is in the sight or attack range using a physics sphere
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+            if (enemyGeneral.isAlive && enemyState == "Attacking")
+                animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 1f, Time.deltaTime * 10f)); // Make enemy not aim
+            else
+                animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0, Time.deltaTime * 10f)); // Make enemy not aim
+
+            // Start coroutines based on changing the states
+            if (GetComponent<NavMeshAgent>().enabled == true) // Only perform if the NavMeshAgent is on
+            {
+                if (!playerInSightRange && !playerInAttackRange) StartCoroutine(ChangeState("Wannder"));
+                else if (playerInSightRange && !playerInAttackRange) StartCoroutine(ChangeState("Chasing"));
+                else if (playerInSightRange && playerInAttackRange) StartCoroutine(ChangeState("Attacking"));
+
+                // Call the method relating to the state the enemy is in
+                switch (enemyState)
+                {
+                    case "Attacking":
+                        Attacking();
+                        break;
+                    case "Chasing":
+                        Chasing();
+                        break;
+                    default:
+                        Patrolling();
+                        break;
+                }
+            }
+            #endregion
+        }
+        else
+        {
+            // TODO -- Handle non-hostile behavior
         }
     }
 
@@ -82,6 +109,8 @@ public class GenericEnemyAI : MonoBehaviour
     // Make enemy wander around the arena
     private void Patrolling()
     {
+        if (bossAI) transform.Find("EnemyModel").transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0)); // Rotate boss model slightly
+
         animator.SetFloat("MovingAmount", 0.5f); // Set the isMoving float in the animator
         agent.speed = enemyGeneral.walkSpeed; // Decrease enemy speed
 
@@ -98,6 +127,8 @@ public class GenericEnemyAI : MonoBehaviour
     // Make enemy chase the player
     private void Chasing()
     {
+        if (bossAI) transform.Find("EnemyModel").transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0)); // Rotate boss model slightly
+
         animator.SetFloat("MovingAmount", 1f); // Set the isMoving float in the animator
         agent.speed = enemyGeneral.chaseSpeed; // Increase enemy speed
 
@@ -107,6 +138,8 @@ public class GenericEnemyAI : MonoBehaviour
     // Make enemy attack the player
     private void Attacking()
     {
+        if (bossAI) transform.Find("EnemyModel").transform.localRotation = Quaternion.Euler(new Vector3(0, 45, 0)); // Rotate boss model slightly
+
         agent.SetDestination(transform.position); // Don't move enemy when they are attacking
         animator.SetFloat("MovingAmount", 0); // Set the isMoving float in the animator
 
@@ -146,6 +179,20 @@ public class GenericEnemyAI : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false; // Reset the alreadyAttacked bool
+    }
+
+    // Changes state of the enemy (used to delay state changes)
+    IEnumerator ChangeState(string newState)
+    {
+        // Only run if not already changing states
+        if (!_changingState)
+        {
+            _changingState = true; // Set the states are changing
+            yield return new WaitForSeconds(1); // Wait for a second
+            enemyState = newState; // Set the state
+            _changingState = false; // Set that states are no longer changing
+        }
+        yield return null;
     }
 
     // Draw the sight and attack ranges of the enemy
