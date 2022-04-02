@@ -40,16 +40,9 @@ public class Selector_Cust : MonoBehaviour
         playerAttack = FindObjectOfType<PlayerAttack>(); // Get PlayerAttack instance
 
         #region Populate Dictionary
-        itemDictionary.Add(1, Mag);
-        itemDictionary.Add(2, Gas);
-        itemDictionary.Add(3, RBoots);
-        itemDictionary.Add(4, HighCal);
-        itemDictionary.Add(5, EDrink);
-        itemDictionary.Add(6, Serum);
-        itemDictionary.Add(7, BodyArmour);
-        itemDictionary.Add(8, Aimbot);
-        itemDictionary.Add(9, LowCal);
-        itemDictionary.Add(10, Clover);    
+        itemDictionary.Add(1, Clover);
+        itemDictionary.Add(2, Serum);
+        itemDictionary.Add(3, BodyArmour);
         
         foreach(KeyValuePair<int, GameObject> item in itemDictionary)
         {
@@ -79,6 +72,12 @@ public class Selector_Cust : MonoBehaviour
             UIItemsContainer.SetActive(!UIItemsContainer.activeSelf); // Open/close item container
             playerAttack.dontAttack = UIItemsContainer.activeSelf; // Don't let player attack when menu is open
         }    
+    }
+
+    // Add a new possible equippable for the player to use
+    public void AddEquippable(GameObject newItem)
+    {
+        itemDictionary.Add(itemDictionary.Count + 1, newItem);
     }
 
     public void NextCharacter(int buttonNum)
