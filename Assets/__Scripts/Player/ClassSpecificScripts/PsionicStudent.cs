@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PsionicStudent : PlayerGeneral
 {
+    public float dashForce = 1f; // Force the player dashes with
+    public ParticleSystem psionicTrail; // Psionic trail particle system
+
     // Handles the special movement the player can perform
     protected override void HandleMovementAbility()
     {
+        #region Psionic Dash
         if (inputManager.specialMoveInput && playerMovement.isGrounded && playerSpecial >= 10) // Check if player is using the special move input
         {
             playerSpecial -= 10; // Decrease special ability meter by 10
@@ -18,17 +22,28 @@ public class PsionicStudent : PlayerGeneral
             {
                 dashDirection = cameraTransform.right * inputManager.horizontalInput;
                 dashDirection += cameraTransform.forward * inputManager.verticalInput;
+                dashDirection.y = 0.1f;
             }
 
             inputManager.specialMoveInput = false; // Reset back to false
 
-            playerAnimationManager.AplpyRootMotion(true); // Apply the root motion of the animation
             // Shrink collider
             this.GetComponent<CapsuleCollider>().height = 0.1f;
             this.GetComponent<CapsuleCollider>().radius = 0.1f;
-            playerAnimationManager.PlayTargetAnimation("Dash Forwards", true); // Play the dash animation
+
+            playerAnimationManager.animator.SetBool("isJumping", true); // Set the bool in the animator
+            playerAnimationManager.PlayTargetAnimation("Dash Forwards", false); // Play animation in the animator
+
+            rigidBody.velocity += dashDirection * dashForce; // Apply the newly calcualted velocity to the RigidBody of the player
+
+
             StartCoroutine("FinishDash"); // Start the coroutine to reset the variables after the animation finishes
         }
+
+        // Spawn in rocket trail ps while player is dashing
+        if (this.GetComponent<CapsuleCollider>().height == 0.1f)
+            Instantiate(psionicTrail, transform.Find("PlayerTarget").position, Quaternion.Inverse(transform.localRotation), transform);
+        #endregion
     }
 
     // Handles the special movement the player can perform
@@ -44,6 +59,7 @@ public class PsionicStudent : PlayerGeneral
         }
     }
 
+    #region IEnumerators to help with timings
     IEnumerator FinishDash()
     {
         yield return new WaitForSeconds(0.7f); // Wait duration of animation
@@ -80,4 +96,5 @@ public class PsionicStudent : PlayerGeneral
 
         yield return null;
     }
+    #endregion
 }

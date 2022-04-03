@@ -430,7 +430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6734744911550419681, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6734744911550419681, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -523,7 +523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8903321367730169955, guid: 818c8c78f1385c24888759cf6f444ce3, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8903321367730169955, guid: 818c8c78f1385c24888759cf6f444ce3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -824,7 +824,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 77.926, y: -30, z: 0}
 --- !u!1 &544910290 stripped
 GameObject:
@@ -1084,7 +1084,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &680392355
 PrefabInstance:
@@ -1168,11 +1168,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2784071247271590412, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
       propertyPath: isHostile
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2784071247271590415, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
       propertyPath: m_Name
       value: BigEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2784071247271590415, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3308125514726645941, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
       propertyPath: m_RootOrder
@@ -1217,6 +1221,10 @@ PrefabInstance:
     - target: {fileID: 3308125514726645941, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593683348983559944, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
+      propertyPath: m_Volume
+      value: 0.218
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
@@ -1639,9 +1647,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130619249}
     m_Modifications:
+    - target: {fileID: 5257000692557330850, guid: b92bb6c11001a91489606b6d207040db, type: 3}
+      propertyPath: m_Volume
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574697571531349556, guid: b92bb6c11001a91489606b6d207040db, type: 3}
+      propertyPath: dashForce
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8574697571531349557, guid: b92bb6c11001a91489606b6d207040db, type: 3}
       propertyPath: m_Name
       value: 'DroidPlayer '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574697571531349557, guid: b92bb6c11001a91489606b6d207040db, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
       propertyPath: m_RootOrder
@@ -3691,9 +3711,17 @@ PrefabInstance:
       value: -5.5460052
       objectReference: {fileID: 0}
     - target: {fileID: 7636709166405659889, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: dashForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636709166405659889, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: deathSound
       value: 
       objectReference: {fileID: 5504942093850104763}
+    - target: {fileID: 7636709166405659889, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
+      propertyPath: psionicTrail
+      value: 
+      objectReference: {fileID: 3227669265967485594, guid: f7b6d24a2e8147f499459ce465818ba6, type: 3}
     m_RemovedComponents:
     - {fileID: 7636709166405659886, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
@@ -3732,7 +3760,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2866423813802726694, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866423813802726695, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
+      propertyPath: dashForce
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2866423813802726695, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
       propertyPath: deathSound
