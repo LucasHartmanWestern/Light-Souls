@@ -1643,17 +1643,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130619249}
     m_Modifications:
-    - target: {fileID: 8574697571531349556, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: dashForce
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8574697571531349557, guid: b92bb6c11001a91489606b6d207040db, type: 3}
       propertyPath: m_Name
       value: 'DroidPlayer '
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349557, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
       propertyPath: m_RootOrder
@@ -3702,29 +3694,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -5.5460052
       objectReference: {fileID: 0}
-    - target: {fileID: 7636709166405659889, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: dashForce
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7636709166405659889, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: deathSound
-      value: 
-      objectReference: {fileID: 5504942093850104763}
-    - target: {fileID: 7636709166405659889, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-      propertyPath: psionicTrail
-      value: 
-      objectReference: {fileID: 3227669265967485594, guid: f7b6d24a2e8147f499459ce465818ba6, type: 3}
     m_RemovedComponents:
     - {fileID: 7636709166405659886, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
 --- !u!4 &5504942093850104762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7636709166405659878, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
-  m_PrefabInstance: {fileID: 5504942093850104761}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &5504942093850104763 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6461656258299155378, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
   m_PrefabInstance: {fileID: 5504942093850104761}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5712251500468347144
@@ -3754,10 +3729,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2866423813802726695, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
-      propertyPath: deathSound
-      value: 
-      objectReference: {fileID: 5712251500468347145}
     - target: {fileID: 8549190234161642436, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
       propertyPath: m_Name
       value: JetPackPlayer
@@ -3813,11 +3784,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2866423813802726700, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
---- !u!82 &5712251500468347145 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1698127413237738096, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
-  m_PrefabInstance: {fileID: 5712251500468347144}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5712251500468347146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2866423813802726692, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}

@@ -13835,7 +13835,7 @@ MonoBehaviour:
   playerMaganizeCapacity: 12
   playerAmmo: 0
   playerFireRate: 1.5
-  dashForce: 5
+  dashForce: 8
   rocketTrail: {fileID: 114164285105914497, guid: 72abc84b661373d44b6fee066bf3937c, type: 3}
 --- !u!1 &8574697572381461993
 GameObject:

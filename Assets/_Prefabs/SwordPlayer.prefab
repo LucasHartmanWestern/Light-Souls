@@ -14709,6 +14709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c502eeebbf4573e4299400a2b75f9d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0, z: 0}
   inAirTimer: 0
   leapingVelocity: 3
   fallingVelocity: 55
@@ -14832,6 +14833,8 @@ MonoBehaviour:
   playerMaganizeCapacity: 20
   playerAmmo: 0
   playerFireRate: 0
+  dashForce: 5
+  psionicTrail: {fileID: 3227669265967485594, guid: f7b6d24a2e8147f499459ce465818ba6, type: 3}
 --- !u!114 &7629597424353445240
 MonoBehaviour:
   m_ObjectHideFlags: 0
