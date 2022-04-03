@@ -2578,6 +2578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c502eeebbf4573e4299400a2b75f9d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0, z: 0}
   inAirTimer: 0
   leapingVelocity: 3
   fallingVelocity: 55
@@ -2702,6 +2703,7 @@ MonoBehaviour:
   playerAmmo: 0
   playerFireRate: 0
   jetPackPS: {fileID: 7464764888743893077, guid: d8f5864404fefa14995558ec504c343b, type: 3}
+  dashForce: 12
 --- !u!114 &5805299063452574852
 MonoBehaviour:
   m_ObjectHideFlags: 0

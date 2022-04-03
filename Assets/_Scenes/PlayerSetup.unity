@@ -1222,10 +1222,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3593683348983559944, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
-      propertyPath: m_Volume
-      value: 0.218
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
 --- !u!4 &739222372 stripped
@@ -1647,10 +1643,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2130619249}
     m_Modifications:
-    - target: {fileID: 5257000692557330850, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_Volume
-      value: 0.35
-      objectReference: {fileID: 0}
     - target: {fileID: 8574697571531349556, guid: b92bb6c11001a91489606b6d207040db, type: 3}
       propertyPath: dashForce
       value: 8
@@ -3764,7 +3756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2866423813802726695, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
       propertyPath: dashForce
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2866423813802726695, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
       propertyPath: deathSound

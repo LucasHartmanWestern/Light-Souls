@@ -11,7 +11,7 @@ public class BattleBot : PlayerGeneral
     protected override void HandleMovementAbility()
     {
         #region Rocket Dash Ability
-        if (inputManager.specialMoveInput && playerMovement.isGrounded && playerSpecial >= 10) // Check if player is using the special move input
+        if (inputManager.specialMoveInput && playerSpecial >= 10) // Check if player is using the special move input
         {
             playerSpecial -= 10; // Decrease special ability meter by 10
 
