@@ -57,6 +57,23 @@ public class Pickups : MonoBehaviour
         popup.transform.localPosition = new Vector3(0, 0, 0);
         popup.GetComponent<Image>().rectTransform.anchoredPosition3D = new Vector3(0, 0, 0);
         #endregion
+
+        #region Get rid of object if player already has it
+        switch (GetObjectFromEnum().name)
+        {
+            case "Gas": if (selector.gasItem.enabled == true) { Destroy(gameObject); } break;
+            case "Serum": if (selector.serumItem.enabled == true) { Destroy(gameObject); } break;
+            case "BodyArmor": if (selector.bodyArmourItem.enabled == true) { Destroy(gameObject); } break;
+            case "Clover": if (selector.cloverItem.enabled == true) { Destroy(gameObject); } break;
+            case "Aimbot": if (selector.aimbotItem.enabled == true) { Destroy(gameObject); } break;
+            case "EnergyDrink": if (selector.eDrinkItem.enabled == true) { Destroy(gameObject); } break;
+            case "BigMag": if (selector.magItem.enabled == true) { Destroy(gameObject); } break;
+            case "HighCal": if (selector.highCalItem.enabled == true) { Destroy(gameObject); } break;
+            case "LowCal": if (selector.lowCalItem.enabled == true) { Destroy(gameObject); } break;
+            case "RocketBoots": if (selector.rBootItem.enabled == true) { Destroy(gameObject); } break;
+            default: break;
+        }
+        #endregion
     }
 
     // Update is called once per frame

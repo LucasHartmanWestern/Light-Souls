@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Selector_Cust : MonoBehaviour
 {
+    public static Selector_Cust Instance;
+
     IDictionary<int, GameObject> itemDictionary = new Dictionary<int, GameObject>();
     EquipableItems equipItems; // Reference to the EquipableItems classs
     PlayerAttack playerAttack; // Reference to the PlayerAttack class
@@ -44,8 +46,23 @@ public class Selector_Cust : MonoBehaviour
     public int equipNum2 = 2;
     public int equipNum3 = 3;
 
+    void Awake()
+    {
+        HandleInventory();
+    }
+
     private void Start()
     {
+        // Check if already an equippable item in the scene
+        if (Instance != null)
+        {
+            Destroy(gameObject); // Get rid of new instance
+            return;
+        }
+        // Set new instance
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // Don't destroy this object
+
         equipItems = FindObjectOfType<EquipableItems>(); // Get EquipableItems instance
         playerAttack = FindObjectOfType<PlayerAttack>(); // Get PlayerAttack instance
 
@@ -78,6 +95,11 @@ public class Selector_Cust : MonoBehaviour
     // Runs every frame
     private void Update()
     {
+        if (equipItems == null)
+            equipItems = FindObjectOfType<EquipableItems>(); // Get EquipableItems instance
+        if (playerAttack == null)
+            playerAttack = FindObjectOfType<PlayerAttack>(); // Get PlayerAttack instance
+
         if (Input.GetKeyDown(KeyCode.Escape)) // Check if player pressed the escape key
         {
             UIItemsContainer.SetActive(!UIItemsContainer.activeSelf); // Open/close item container
@@ -112,7 +134,6 @@ public class Selector_Cust : MonoBehaviour
         #region Loop through and re-enable the available items
         foreach (GameObject item in itemDictionary.Values)
         {
-            print(item.name);
             switch(item.name)
             {
                 case "Gas": gasItem.enabled = true; break;
