@@ -14828,7 +14828,7 @@ MonoBehaviour:
   expToNextLevel: 1000
   playerExperience: 0
   rangedDamage: 10
-  meleeDamage: 100
+  meleeDamage: 400
   resistance: 1
   playerMaganizeCapacity: 20
   playerAmmo: 0
