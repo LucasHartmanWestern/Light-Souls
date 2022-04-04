@@ -42549,7 +42549,7 @@ GameObject:
   - component: {fileID: 750454322}
   m_Layer: 0
   m_Name: Door trigger
-  m_TagString: DoorExit
+  m_TagString: DoorTravelTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
