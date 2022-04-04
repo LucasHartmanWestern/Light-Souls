@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 41238505}
   m_Layer: 0
   m_Name: cave enterance
-  m_TagString: Untagged
+  m_TagString: CaveTravelTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2169,6 +2169,7 @@ Transform:
   - {fileID: 1942045683}
   - {fileID: 4468933278949413}
   - {fileID: 1765046272}
+  - {fileID: 2007364011}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2451,8 +2452,8 @@ Transform:
   m_Children:
   - {fileID: 41238504}
   - {fileID: 1743297900}
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1771375664}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &2052586265
 GameObject:

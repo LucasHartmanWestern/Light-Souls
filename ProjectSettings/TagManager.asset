@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DoorExit
   - DoorEnter
+  - CaveTravelTrigger
   layers:
   - Default
   - TransparentFX
