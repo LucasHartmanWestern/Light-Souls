@@ -113,5 +113,9 @@ public class Selector_Script : MonoBehaviour
    {
       SceneManager.LoadScene("Level 1");
    }
+   public void instructions()
+   {
+      SceneManager.LoadScene("HowToPlay");
+   }
    
 }
