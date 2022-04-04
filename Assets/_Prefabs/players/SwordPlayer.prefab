@@ -14304,7 +14304,7 @@ GameObject:
   - component: {fileID: 5711363446213616544}
   - component: {fileID: 4886808207333791695}
   - component: {fileID: 7636709166405659889}
-  - component: {fileID: 7629597424353445240}
+  - component: {fileID: -4790835860960060518}
   m_Layer: 6
   m_Name: SwordPlayer
   m_TagString: Untagged
@@ -14835,7 +14835,7 @@ MonoBehaviour:
   playerFireRate: 0
   dashForce: 5
   psionicTrail: {fileID: 3227669265967485594, guid: f7b6d24a2e8147f499459ce465818ba6, type: 3}
---- !u!114 &7629597424353445240
+--- !u!114 &-4790835860960060518
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14844,7 +14844,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7636709166405659876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c6203fd05009a429e8060325d953f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bf9900b2a53ad74ab82e94d2caacd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7636709167018835768

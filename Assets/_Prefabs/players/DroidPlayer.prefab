@@ -13307,6 +13307,7 @@ GameObject:
   - component: {fileID: 5784502427770507633}
   - component: {fileID: 6689277734361490718}
   - component: {fileID: 8574697571531349556}
+  - component: {fileID: -3168770953896017108}
   m_Layer: 6
   m_Name: DroidPlayer
   m_TagString: Untagged
@@ -13322,7 +13323,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8574697571531349557}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -555.5041, y: -40.633224, z: -5.5460052}
+  m_LocalPosition: {x: 0, y: 0.626, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459115936115030601}
@@ -13837,6 +13838,18 @@ MonoBehaviour:
   playerFireRate: 1.5
   dashForce: 8
   rocketTrail: {fileID: 114164285105914497, guid: 72abc84b661373d44b6fee066bf3937c, type: 3}
+--- !u!114 &-3168770953896017108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574697571531349557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf9900b2a53ad74ab82e94d2caacd85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8574697572381461993
 GameObject:
   m_ObjectHideFlags: 0

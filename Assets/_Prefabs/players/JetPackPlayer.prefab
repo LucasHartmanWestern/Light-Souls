@@ -2173,7 +2173,7 @@ GameObject:
   - component: {fileID: 107603740941097570}
   - component: {fileID: 1003724301886729741}
   - component: {fileID: 2866423813802726695}
-  - component: {fileID: 5805299063452574852}
+  - component: {fileID: -783429098062696421}
   m_Layer: 6
   m_Name: JetPackPlayer
   m_TagString: Untagged
@@ -2704,7 +2704,7 @@ MonoBehaviour:
   playerFireRate: 0
   jetPackPS: {fileID: 7464764888743893077, guid: d8f5864404fefa14995558ec504c343b, type: 3}
   dashForce: 12
---- !u!114 &5805299063452574852
+--- !u!114 &-783429098062696421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2713,7 +2713,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2866423813802726694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c6203fd05009a429e8060325d953f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bf9900b2a53ad74ab82e94d2caacd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2866423813994093001
