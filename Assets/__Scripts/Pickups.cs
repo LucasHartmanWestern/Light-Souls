@@ -79,6 +79,56 @@ public class Pickups : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        #region Make sure connections are made
+        if (selector == null)
+        {
+            selector = FindObjectOfType<Selector_Cust>(); // Get instance
+
+            #region Get Objects From Selector_Cust
+            Mag = selector.Mag;
+            Gas = selector.Gas;
+            RBoots = selector.RBoots;
+            HighCal = selector.HighCal;
+            EDrink = selector.EDrink;
+            Serum = selector.Serum;
+            BodyArmour = selector.BodyArmour;
+            Aimbot = selector.Aimbot;
+            LowCal = selector.LowCal;
+            Clover = selector.Clover;
+            #endregion
+            #region Get rid of object if player already has it
+            switch (GetObjectFromEnum().name)
+            {
+                case "Gas": if (selector.gasItem.enabled == true) { Destroy(gameObject); } break;
+                case "Serum": if (selector.serumItem.enabled == true) { Destroy(gameObject); } break;
+                case "BodyArmor": if (selector.bodyArmourItem.enabled == true) { Destroy(gameObject); } break;
+                case "Clover": if (selector.cloverItem.enabled == true) { Destroy(gameObject); } break;
+                case "Aimbot": if (selector.aimbotItem.enabled == true) { Destroy(gameObject); } break;
+                case "EnergyDrink": if (selector.eDrinkItem.enabled == true) { Destroy(gameObject); } break;
+                case "BigMag": if (selector.magItem.enabled == true) { Destroy(gameObject); } break;
+                case "HighCal": if (selector.highCalItem.enabled == true) { Destroy(gameObject); } break;
+                case "LowCal": if (selector.lowCalItem.enabled == true) { Destroy(gameObject); } break;
+                case "RocketBoots": if (selector.rBootItem.enabled == true) { Destroy(gameObject); } break;
+                default: break;
+            }
+            #endregion
+        }
+
+        if (canvasPrefab == null)
+        {
+            canvasPrefab = FindObjectOfType<StatDisplay>().transform.Find("Popups").Find("PickupPopup").gameObject;
+            #region Add and format popup image
+            popupCanvas = Instantiate(canvasPrefab, canvasPrefab.transform.parent);
+            popup = Instantiate(GetObjectFromEnum(), popupCanvas.transform);
+            popup.transform.localScale = new Vector3(0.15f, 0.75f, 1);
+            popup.GetComponent<Image>().rectTransform.anchorMin = new Vector2(0.2f, 0.5f);
+            popup.GetComponent<Image>().rectTransform.anchorMax = new Vector2(0.2f, 0.5f);
+            popup.transform.localPosition = new Vector3(0, 0, 0);
+            popup.GetComponent<Image>().rectTransform.anchoredPosition3D = new Vector3(0, 0, 0);
+            #endregion
+        }
+        #endregion
+
         if (Physics.CheckSphere(transform.position, 2, whatIsPlayer))
         {
             #region Handle player in area

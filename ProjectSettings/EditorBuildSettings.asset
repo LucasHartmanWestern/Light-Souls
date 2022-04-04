@@ -12,11 +12,17 @@ EditorBuildSettings:
     path: Assets/_Scenes/Player Select.unity
     guid: 6ec9acfe8ffe8cd43b7603978ce6bc6c
   - enabled: 1
+    path: Assets/_Scenes/HowToPlay.unity
+    guid: cf1cbce1ebc397a43a7fb8a2aac5a539
+  - enabled: 1
     path: Assets/_Scenes/Level 1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/_Scenes/Tavern.unity
     guid: a92a6d0b0ae27334cb5f761399514006
+  - enabled: 1
+    path: Assets/_Scenes/Level 2.unity
+    guid: a7d515bcf29388346a22cb8abf7834f1
   - enabled: 1
     path: Assets/_Scenes/Volcano.unity
     guid: 0f75d673313438342b87352e2e7be9c8

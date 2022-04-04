@@ -7,6 +7,6 @@ public class ReturnToChar : MonoBehaviour
 {
     public void goBack()
     {
-        SceneManager.LoadScene("SelectPlayer");
+        SceneManager.LoadScene("Player Select");
     }   
 }
