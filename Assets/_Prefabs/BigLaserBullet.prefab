@@ -171,7 +171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isProjectile: 1
+  isMissile: 0
   projectileSpeed: 40
   enemyDamage: 80
-  psHitGreen: {fileID: 8423173314250745152, guid: a5947e860b7cff144a36cdd9d29f7e81, type: 3}
-  psHitRed: {fileID: 5115441583726862660, guid: 6bede29f5b7f1a948a5b30ee18d7579d, type: 3}
+  _psHitGreen: {fileID: 8423173314250745152, guid: a5947e860b7cff144a36cdd9d29f7e81, type: 3}
+  _psHitRed: {fileID: 5115441583726862660, guid: 6bede29f5b7f1a948a5b30ee18d7579d, type: 3}

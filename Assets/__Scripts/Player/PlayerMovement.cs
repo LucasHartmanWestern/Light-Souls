@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     InputManager inputManager; // Input Manager instance
 
-    Vector3 moveDirection; // Direction player moves
+    [HideInInspector] public Vector3 moveDirection; // Direction player moves
     Transform cameraTransform; // Transform of the camera the player sees through
     Rigidbody playerRigidBody; // Reference to player's RigidBody component
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script attached to this object

@@ -12,8 +12,10 @@ public class PlayerGeneral : MonoBehaviour
     protected PlayerMovement playerMovement; // PlayerMovement reference
     protected CameraManager cameraManager; // CameraManager instance
     protected Animator animator; // Animator instance
+    protected CombatUI combatUI; // CombatUI reference
     public bool isInteracting; // Track whether or not the player is interacting with something
     public bool isReloading; // Track whether player is reloading or not
+    public bool startedReload; // Track whether player started to relaod or not
 
     [Header("Player Stats")]
     public bool isAlive = true; // Track if player is alive
@@ -32,6 +34,7 @@ public class PlayerGeneral : MonoBehaviour
     public float resistance = 1f; // How much damage player can absorb
     public float playerMaganizeCapacity; // How many bullets player can fire before reloading
     public float playerAmmo; // How many bullets the player currently has loaded
+    public float playerFireRate; // Fire rate of player
 
     // Called before Start()
     private void Awake()
@@ -46,6 +49,7 @@ public class PlayerGeneral : MonoBehaviour
         playerHealth = playerStartingHealth; // Set the player's starting health
         playerSpecial = playerStartingSpecial; // Set the player's starting special meter
         playerAmmo = playerMaganizeCapacity; // Set player's starting ammo to the capacity
+        combatUI = FindObjectOfType<CombatUI>(); // Get CombatUI instance
     }
 
     // Called once a frame
@@ -70,11 +74,6 @@ public class PlayerGeneral : MonoBehaviour
             {
                 playerExperience -= expToNextLevel;
                 expToNextLevel += 1000;
-                FindObjectOfType<PlayerGeneral>().playerStartingHealth += 10;
-                FindObjectOfType<PlayerGeneral>().playerStartingSpecial += 10;
-                FindObjectOfType<PlayerGeneral>().playerLevel += 1;
-                FindObjectOfType<PlayerGeneral>().playerHealth = FindObjectOfType<PlayerGeneral>().playerStartingHealth;
-                FindObjectOfType<PlayerGeneral>().playerSpecial = FindObjectOfType<PlayerGeneral>().playerStartingSpecial;
                 playerStartingHealth += 10;
                 playerStartingSpecial += 10;
                 playerLevel += 1;
@@ -105,13 +104,13 @@ public class PlayerGeneral : MonoBehaviour
     // Called to damage the player
     public void TakeDamage(float damageAmount)
     {
-        FindObjectOfType<PlayerGeneral>().playerHealth -= damageAmount / resistance; // Decrease inherited script playerHealth too
+        playerHealth -= damageAmount / resistance; // Decrease inherited script playerHealth too
 
         #region Handle player dying
-        if (FindObjectOfType<PlayerGeneral>().playerHealth <= 0)
+        if (playerHealth <= 0)
         {
             isAlive = false; // Show player as no longer alive
-            FindObjectOfType<PlayerGeneral>().isAlive = false; // Set child component of isAlive to false
+            isAlive = false; // Set child component of isAlive to false
             GetComponent<CapsuleCollider>().enabled = false; // Remove capsule collider to avoid player floating
             GetComponent<Rigidbody>().isKinematic = true; // Make rigid body kinematic
             playerAnimationManager.AplpyRootMotion(true); // Apply root motion for death animation only
@@ -124,10 +123,12 @@ public class PlayerGeneral : MonoBehaviour
     // Handles the reload of the ranged weapon
     protected void HandleReload()
     {
-        if (isReloading)
+        if (startedReload && !isReloading)
         {
-            FindObjectOfType<PlayerGeneral>().playerAmmo = FindObjectOfType<PlayerGeneral>().playerMaganizeCapacity; // Reset ammo of player
-            isReloading = false; // Set that the player is no longer reloading
+            isReloading = true; // Set that player is reloading
+            inputManager.aimInput = false; // Set player to not aiming
+            playerAnimationManager.PlayTargetAnimation("Reloading", false); // Play reload animation
+            playerAmmo = playerMaganizeCapacity; // Reset ammo of player
         }
     }
 

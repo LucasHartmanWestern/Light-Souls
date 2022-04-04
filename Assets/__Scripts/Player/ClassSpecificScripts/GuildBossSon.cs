@@ -5,10 +5,12 @@ using UnityEngine;
 public class GuildBossSon : PlayerGeneral
 {
     public ParticleSystem jetPackPS; // Get particle system of the jetpack
+    public float dashForce = 1f; // Force the player dashes with
 
     // Handles the special movement the player can perform
     protected override void HandleMovementAbility()
     {
+        #region Hover Ability
         if (Input.GetButton("Jump") && !playerMovement.isGrounded && playerSpecial > 0) // Check if player is trying to jump in the air
         {
             playerSpecial -= 30 * Time.deltaTime; // Decrease player special meter by 30
@@ -64,8 +66,65 @@ public class GuildBossSon : PlayerGeneral
             transform.rotation = playerRotation; // Rotate the transform of the player
             #endregion
         }
+        #endregion
+
+        #region Jump Boost Ability
+        if (inputManager.specialMoveInput && playerMovement.isGrounded && playerSpecial >= 30) // Check if player is using the special move input
+        {
+            playerSpecial -= 30; // Decrease special ability meter by 30
+
+            Vector3 dashDirection = Vector3.zero; // Track direction player will dash
+
+            if (inputManager.horizontalInput == 0 && inputManager.verticalInput == 0) dashDirection = Vector3.up; // If player isn't try to move then dash forwards
+            else // If player is trying to move then dash in that direction
+            {
+                dashDirection = cameraTransform.right * inputManager.horizontalInput;
+                dashDirection += cameraTransform.forward * inputManager.verticalInput;
+                dashDirection.y = 1f;
+
+                dashDirection.x = Mathf.Clamp(dashDirection.x, 0, 0.1f);
+                dashDirection.z = Mathf.Clamp(dashDirection.z, 0, 0.1f);
+            }
+
+            inputManager.specialMoveInput = false; // Reset back to false
+
+            // Shrink collider
+            this.GetComponent<CapsuleCollider>().height = 0.1f;
+            this.GetComponent<CapsuleCollider>().radius = 0.1f;
+
+            playerAnimationManager.animator.SetBool("isJumping", true); // Set the bool in the animator
+            playerAnimationManager.PlayTargetAnimation("Jumping", false); // Play animation in the animator
+
+            rigidBody.velocity += dashDirection * dashForce; // Apply the newly calcualted velocity to the RigidBody of the player
+
+            StartCoroutine("FinishBoost"); // Start the coroutine to reset the variables after the animation finishes
+        }
+
+        // Spawn in rocket trail ps while player is dashing
+        if (this.GetComponent<CapsuleCollider>().height == 0.1f)
+            Instantiate(jetPackPS, transform.Find("PlayerTarget").position, Quaternion.Euler(new Vector3(90, 0, 0)), transform);
+        #endregion
     }
 
     // Handles the special combat ability of the GuildBossSon
-    protected override void HandleCombatAbility() { }
+    protected override void HandleCombatAbility()
+    {
+        if (inputManager.specialAbilityInput && playerSpecial >= 50) // Check if player is using the special ability input
+        {
+            playerSpecial -= 50; // Decrease special ability meter by 10
+
+            inputManager.specialAbilityInput = false; // Reset back to false
+
+            playerAmmo = playerMaganizeCapacity; // Reload without playing animation
+        }
+    }
+
+    IEnumerator FinishBoost()
+    {
+        yield return new WaitForSeconds(0.5f); // Wait duration of animation
+        // Set collider back to normal
+        this.GetComponent<CapsuleCollider>().height = 1.6f;
+        this.GetComponent<CapsuleCollider>().radius = 0.28f;
+        yield return null;
+    }
 }
