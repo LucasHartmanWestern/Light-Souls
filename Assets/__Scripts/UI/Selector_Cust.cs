@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Selector_Cust : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Selector_Cust : MonoBehaviour
 
     public GameObject UIItemsContainer; // Reference to the UIItems object
 
+    #region Get References
+    [Header("Selector Game Objects")]
     public GameObject Mag;
     public GameObject Gas;
     public GameObject RBoots;
@@ -20,19 +23,26 @@ public class Selector_Cust : MonoBehaviour
     public GameObject Aimbot;
     public GameObject LowCal;
     public GameObject Clover;
-
+    [Header("Item Images")]
+    public Image gasItem;
+    public Image magItem;
+    public Image rBootItem;
+    public Image highCalItem;
+    public Image eDrinkItem;
+    public Image serumItem;
+    public Image bodyArmourItem;
+    public Image aimbotItem;
+    public Image lowCalItem;
+    public Image cloverItem;
+    [Header("Seletor Transforms")]
     public Transform pos1;
     public Transform pos2;
     public Transform pos3;
+    #endregion
 
     public int equipNum1 = 1;
     public int equipNum2 = 2;
     public int equipNum3 = 3;
-
-    private Vector3 CharacterPosition;
-    private Vector3 OffScreen;
-    private int CharacterInt = 1;
-    private SpriteRenderer MagRender,GasRender,RBootsRender,HighCalRender,EDrinkRender,SerumRender,BodyArmourRender,AimbotRender,LowCalRender,CloverRender;
 
     private void Start()
     {
@@ -62,6 +72,7 @@ public class Selector_Cust : MonoBehaviour
         #endregion
 
         SetEquipItemsBoolValues();
+        HandleInventory();
     }
 
     // Runs every frame
@@ -78,6 +89,46 @@ public class Selector_Cust : MonoBehaviour
     public void AddEquippable(GameObject newItem)
     {
         itemDictionary.Add(itemDictionary.Count + 1, newItem);
+
+        HandleInventory();
+    }
+
+    // Handles the items in the inventory
+    public void HandleInventory()
+    {
+        #region Disable all items by default
+        gasItem.enabled = false;
+        serumItem.enabled = false;
+        bodyArmourItem.enabled = false;
+        cloverItem.enabled = false;
+        aimbotItem.enabled = false;
+        eDrinkItem.enabled = false;
+        magItem.enabled = false;
+        highCalItem.enabled = false;
+        lowCalItem.enabled = false;
+        rBootItem.enabled = false;
+        #endregion
+
+        #region Loop through and re-enable the available items
+        foreach (GameObject item in itemDictionary.Values)
+        {
+            print(item.name);
+            switch(item.name)
+            {
+                case "Gas": gasItem.enabled = true; break;
+                case "Serum": serumItem.enabled = true; break;
+                case "BodyArmor": bodyArmourItem.enabled = true; break;
+                case "Clover": cloverItem.enabled = true; break;
+                case "Aimbot": aimbotItem.enabled = true; break;
+                case "EnergyDrink": eDrinkItem.enabled = true; break;
+                case "BigMag": magItem.enabled = true; break;
+                case "HighCal": highCalItem.enabled = true; break;
+                case "LowCal": lowCalItem.enabled = true; break;
+                case "RocketBoots": rBootItem.enabled = true; break;
+                default: return;
+            } 
+        }
+        #endregion
     }
 
     public void NextCharacter(int buttonNum)

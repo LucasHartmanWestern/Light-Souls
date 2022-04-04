@@ -420,6 +420,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 951457406259357630, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Name
+      value: BigMagSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1169550074298464716, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Name
+      value: BodyArmourSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265318714606730139, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Name
+      value: LowCalSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635242256532825210, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Name
+      value: SerumSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903283664395750704, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Name
+      value: CloverSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402051274509010272, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368464542207524383, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4550301667867297203, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Name
+      value: RocketBootsSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691421230237369747, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Name
+      value: EnergyDrinkSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026791433173096038, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Name
+      value: HighCalSlot
+      objectReference: {fileID: 0}
     - target: {fileID: 6734744911550419681, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -507,6 +547,18 @@ PrefabInstance:
     - target: {fileID: 6734744911550419685, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
       propertyPath: m_Name
       value: EquipItemsSelectorCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444754175549376619, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Name
+      value: GasSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013180808500954037, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Name
+      value: AimbotSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787427344172181374, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
@@ -1095,7 +1147,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5960739621550349560, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: isHostile
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6481556956903016001, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1168,7 +1220,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2784071247271590412, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
       propertyPath: isHostile
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2784071247271590415, guid: a8d009b5d5067c64e99b698009d02939, type: 3}
       propertyPath: m_Name
@@ -1473,7 +1525,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5960739621550349560, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: isHostile
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6481556956903016001, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: m_RootOrder
@@ -2914,7 +2966,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5960739621550349560, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: isHostile
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6481556956903016001, guid: c8330588d94749d4781f3e7679a4951b, type: 3}
       propertyPath: m_RootOrder
