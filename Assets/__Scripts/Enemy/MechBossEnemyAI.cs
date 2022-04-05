@@ -37,12 +37,18 @@ public class MechBossEnemyAI : MonoBehaviour
     {
         Invoke(nameof(ResetAttack), 2); // Delay start of attacks by 2 seconds
         Invoke(nameof(ResetMissileAttack), 2); // Delay start of attacks by 2 seconds
-        playerTransform = FindObjectOfType<PlayerGeneral>().transform.Find("PlayerTarget").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (FindObjectOfType<Selector_Cust>().mechDead)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        if (playerTransform == null) playerTransform = FindObjectOfType<PlayerGeneral>().transform.Find("PlayerTarget").transform;
+        
         bodyTransform.LookAt(playerTransform);
         bodyTransform.rotation = Quaternion.Euler(bodyTransform.rotation.eulerAngles + new Vector3(0, 0, -90));
 
