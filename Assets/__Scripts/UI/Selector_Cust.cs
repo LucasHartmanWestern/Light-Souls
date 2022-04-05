@@ -289,7 +289,7 @@ public class Selector_Cust : MonoBehaviour
 
         equipItems.ApplyEffects(); // Apply the effects only after modifying them
     }
-    public void exitToMain()
+    public void exitToMain() // function to exit to the home page and change character or exit game
     {
         SceneManager.LoadScene("MainMenu");
         UIItemsContainer.SetActive(false);
