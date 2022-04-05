@@ -37090,7 +37090,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 86de1dc64ef54b34b972d20dda8ae97f, type: 3}
+  - {fileID: 2100000, guid: 44c294194484c784182715432684c4bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -40957,14 +40957,13 @@ GameObject:
   - component: {fileID: 8111842689821918831}
   - component: {fileID: 6537372162924445006}
   - component: {fileID: 8111842689821918832}
-  - component: {fileID: 8111842689821918825}
   m_Layer: 6
   m_Name: SwordPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8111842689821918822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41042,52 +41041,6 @@ MonoBehaviour:
   rotationSpeed: 15
   jumpHeight: 2
   gravityIntensity: -15
---- !u!114 &8111842689821918825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8111842689821918821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boneShape: 1
-  drawBones: 1
-  drawTripods: 0
-  boneSize: 1
-  tripodSize: 1
-  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
-  m_Transforms:
-  - {fileID: 6160593225693120742}
-  - {fileID: 1287707395781658001}
-  - {fileID: 8807304682261111676}
-  - {fileID: 598811348510538795}
-  - {fileID: 3891138945655482633}
-  - {fileID: 5029361445952646458}
-  - {fileID: 6165554122691680150}
-  - {fileID: 7589975671003509208}
-  - {fileID: 4592918454921527470}
-  - {fileID: 6357922715769516777}
-  - {fileID: 477403145616188979}
-  - {fileID: 5776414096904417289}
-  - {fileID: 5791641407634682166}
-  - {fileID: 2298953605587418298}
-  - {fileID: 6608274828295569602}
-  - {fileID: 4636372335632623136}
-  - {fileID: 657793350399375461}
-  - {fileID: 7604639807667980562}
-  - {fileID: 5367927847460575513}
-  - {fileID: 3577607621416685786}
-  - {fileID: 796157265354364812}
-  - {fileID: 3678521802382280474}
-  - {fileID: 1959059974778879679}
-  - {fileID: 7190155472605998970}
-  - {fileID: 1609605841115388556}
-  - {fileID: 5892500729505209316}
-  - {fileID: 3884153654647423096}
 --- !u!136 &8111842689821918826
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -43732,7 +43685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &9175356293002973905
 MonoBehaviour:
   m_ObjectHideFlags: 0
