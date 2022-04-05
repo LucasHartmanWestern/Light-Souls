@@ -9,6 +9,7 @@ public class GenericEnemyAI : MonoBehaviour
     Animator animator; // Reference to the animator of the enemy
     Vector3 spawnPoint; // Determine where AI should be centered around
     private bool _changingState; // Flags whether or not the state is changing
+    HandleDialogue handleDialogue; // Reference to HandleDialogue class
 
     [SerializeField]
     AudioSource shootSoundEffect; // Get the audio source attached to the enemy that contains the sound effect for shooting
@@ -59,11 +60,10 @@ public class GenericEnemyAI : MonoBehaviour
         // Hostile behaviour
         if (enemyGeneral.isHostile)
         {
-            #region Handle State System of Enemy
+            #region Handle State System
             // Check if player is in the sight or attack range using a physics sphere
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
             if (enemyGeneral.isAlive && enemyState == "Attacking")
                 animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 1f, Time.deltaTime * 10f)); // Make enemy not aim
             else
@@ -94,29 +94,21 @@ public class GenericEnemyAI : MonoBehaviour
         }
         else
         {
-            // TODO -- Handle non-hostile behavior
-            if(playerInAttackRange && Input.GetKeyDown(KeyCode.T) && !bossAI)
+            bool checkDialogue = Physics.CheckSphere(transform.position, 2, whatIsPlayer); // Check if player is close enough
+
+            #region Toggle dialogues based on enemy type
+            if (checkDialogue && Input.GetKeyDown(KeyCode.E) && !bossAI)
             {
-                GruntDialogue.SetActive(true);
-                if(Input.GetKeyDown(KeyCode.B))
-                {
-                    GruntDialogue.SetActive(false);
-                }
-                
+                FindObjectOfType<HandleDialogue>().GruntDialogue();
             }
-            else if(playerInAttackRange && Input.GetKeyDown(KeyCode.T) && bossAI)
+            else if(checkDialogue && Input.GetKeyDown(KeyCode.E) && bossAI)
             {
-                BossDialogue.SetActive(true);
-                if(Input.GetKeyDown(KeyCode.B))
-                {
-                    BossDialogue.SetActive(false);
-                }
+                if (!FindObjectOfType<Selector_Cust>().mechDead)
+                    FindObjectOfType<HandleDialogue>().Boss2Dialogue();
+                else
+                    FindObjectOfType<HandleDialogue>().BossBetrayDialogue();
             }
-            else
-            {
-                GruntDialogue.SetActive(false);
-                BossDialogue.SetActive(false);
-            }
+            #endregion
         }
     }
 

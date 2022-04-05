@@ -5644,6 +5644,7 @@ MonoBehaviour:
   firePS: {fileID: 3417367308573303308}
   lockOnTransform: {fileID: 3417367308486921592}
   isAlive: 1
+  isHostile: 1
   enemyHealth: 1500
   expOnDeath: 2000
   enemyDamage: 50
@@ -5666,6 +5667,7 @@ MonoBehaviour:
   healthBar: {fileID: 3417367310442988341}
   startingHealth: 0
   currentHealth: 0
+  worldSpace: 0
 --- !u!114 &3417367308936153540
 MonoBehaviour:
   m_ObjectHideFlags: 0

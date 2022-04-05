@@ -61,6 +61,8 @@ public class EnemyGeneral : MonoBehaviour
             {
                 GetComponent<MechBossEnemyAI>().AttachAnimationController(); // Attach the animation controller to the mech
                 animator = GetComponent<Animator>(); // Get animator attached to this enemy
+                FindObjectOfType<HandleDialogue>().Boss1Dialogue(); // Trigger post battle dialogue
+                FindObjectOfType<Selector_Cust>().mechDead = true; // Indicate mech enemy is dead
             }
 
             animator.SetLayerWeight(2, Mathf.Lerp(animator.GetLayerWeight(2), 0f, Time.deltaTime * 10f)); // Smoothly transition animation to aiming or not aiming

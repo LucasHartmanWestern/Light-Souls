@@ -33,5 +33,7 @@ public class EnemyHealthBar : MonoBehaviour
         
         if (GetComponent<GenericEnemyAI>() != null && worldSpace)
             healthBar.transform.forward = -_mainCamera.transform.forward; // Make it so health bar always faces the camera
+
+        if (_enemyGeneral.isHostile && transform.name == "BigEnemy") healthBar.SetActive(true);
     }
 }

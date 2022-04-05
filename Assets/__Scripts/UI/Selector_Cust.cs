@@ -46,6 +46,8 @@ public class Selector_Cust : MonoBehaviour
     public int equipNum2 = 2;
     public int equipNum3 = 3;
 
+    public bool mechDead; // Track if mech boss is dead
+
     void Awake()
     {
         HandleInventory();
