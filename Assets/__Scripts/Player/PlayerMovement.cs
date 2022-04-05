@@ -46,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneral>(); // Reference to PlayerGeneral script attached to player
+        if (cameraTransform == null) cameraTransform = Camera.main.transform; // Get transform of the main camera
+        if (inputManager == null) inputManager = GetComponent<InputManager>(); // Reference to InputManager attached to player
+        if (playerRigidBody == null) playerRigidBody = GetComponent<Rigidbody>(); // Reference to RigidBody attached to player
+        if (playerAnimationManager == null) playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Reference to PlayerAnimation script attached to player
     }
 
     // Public method to call the other movement functions
@@ -89,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     private void HandlePlayerRotation()
     {
         if (isJumping && !isAiming) return; // Don't rotate in the air while jumping and not aiming
-
+        if (cameraTransform == null) return; // Safeguard
         Vector3 targetDirection = Vector3.zero; // Start out at (0, 0, 0)
 
         // Face player at what they're aiming if they're aiming

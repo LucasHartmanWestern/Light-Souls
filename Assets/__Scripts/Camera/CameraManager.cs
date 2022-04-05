@@ -54,6 +54,9 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
         if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to PlayerGeneral script
+        if (targetTransform == null) targetTransform = FindObjectOfType<PlayerGeneral>().transform; // Get the transform of the player
+        if (inputManager == null) inputManager = FindObjectOfType<InputManager>(); // Get the InputManager
+        if (cameraTransform == null) cameraTransform = Camera.main.transform; // Get the transform of the main camera
     }
 
     // Public method to handle the camera movement

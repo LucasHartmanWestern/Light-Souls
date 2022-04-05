@@ -14,6 +14,8 @@ public class OnLevelCrlear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemies == null) enemies = GameObject.Find("Enemies");//finds the gameobject
+
         if (enemies.transform.childCount != 0)//if enemies are still alive
             return;
 

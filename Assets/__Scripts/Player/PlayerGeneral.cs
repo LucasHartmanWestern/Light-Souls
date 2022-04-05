@@ -36,6 +36,7 @@ public class PlayerGeneral : MonoBehaviour
     public float playerAmmo; // How many bullets the player currently has loaded
     public float playerFireRate; // Fire rate of player
 
+
     // Called before Start()
     private void Awake()
     {
@@ -50,13 +51,14 @@ public class PlayerGeneral : MonoBehaviour
         playerSpecial = playerStartingSpecial; // Set the player's starting special meter
         playerAmmo = playerMaganizeCapacity; // Set player's starting ammo to the capacity
         combatUI = FindObjectOfType<CombatUI>(); // Get CombatUI instance
-
-        DontDestroyOnLoad(transform.parent); // Don't destroy this object
     }
 
     // Called once a frame
     private void Update()
     {
+        if (cameraManager == null) cameraManager = FindObjectOfType<CameraManager>(); // Reference to the object with the CameraManager script attached to it
+        if (cameraTransform == null) cameraTransform = Camera.main.transform; // Get transform of the main camera
+
         inputManager.HandleAllInputs(); // Call the HandleAllInputs method in the InputManager
         if (isAlive)
         {

@@ -5,9 +5,22 @@ using UnityEngine;
 public class GetChar : MonoBehaviour
 {
     public GameObject Gun,Sword,Snipe;
+    public static GameObject Instance = null;
+
 
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = gameObject;
+            DontDestroyOnLoad(gameObject); // Don't destroy this object
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         int getCharacter = Selector_Script.refInt;
 
         if (getCharacter == 0)
