@@ -22,9 +22,12 @@ public class Selector_Script : MonoBehaviour
       GunnerRender = Gunner.GetComponent<SpriteRenderer>();
       SnipsRender = Gunner.GetComponent<SpriteRenderer>();
       BookRender = Gunner.GetComponent<SpriteRenderer>();
-   }
 
-   public void NextCharacter()
+      refInt = 1; // Set the refInt based on the newly selected CharacterInt
+
+    }
+
+    public void NextCharacter()
    {
         #region Cycle through character ints in the upwards direction
         switch (CharacterInt)
