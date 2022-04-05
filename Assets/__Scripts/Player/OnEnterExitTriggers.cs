@@ -32,5 +32,8 @@ public class OnEnterExitTriggers : MonoBehaviour
                 SceneManager.LoadScene("Level 2");
         }
 
+        if(collision.transform.tag == "DeathTrigger")//if the player clips and falls out of bounds: load the current scene again
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 }
