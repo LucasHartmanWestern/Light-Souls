@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class OnEnterExitTriggers : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)//called every new collision
     {
-        if (collision.transform.tag == "DoorTravelTrigger")
+        if (collision.transform.tag == "DoorTravelTrigger")//when player touches the tavern door, they are either sent to level 1 or tavern depending on their current scene
         {
             if (SceneManager.GetActiveScene().name == "Level 1")
                 SceneManager.LoadScene("Tavern");
@@ -14,7 +14,7 @@ public class OnEnterExitTriggers : MonoBehaviour
                 SceneManager.LoadScene("Level 1");
         }
 
-        if (collision.transform.tag == "CartTravelTrigger")
+        if (collision.transform.tag == "CartTravelTrigger")//when player touches the hovering cart, they are either sent to level 1 or level 2 depending on their current scene
         {
             if(SceneManager.GetActiveScene().name == "Level 1")
                 SceneManager.LoadScene("Level 2");
@@ -23,7 +23,7 @@ public class OnEnterExitTriggers : MonoBehaviour
                 SceneManager.LoadScene("Level 1");
         }
 
-        if (collision.transform.tag == "CaveTravelTrigger")
+        if (collision.transform.tag == "CaveTravelTrigger")//when player touches the cave enterance, they are either sent to level 2 or volcano areana depending on their current scene
         {
             if (SceneManager.GetActiveScene().name == "Level 2")
                 SceneManager.LoadScene("Volcano");
