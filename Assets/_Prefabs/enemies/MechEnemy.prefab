@@ -5645,7 +5645,7 @@ MonoBehaviour:
   lockOnTransform: {fileID: 3417367308486921592}
   isAlive: 1
   isHostile: 1
-  enemyHealth: 1500
+  enemyHealth: 3000
   expOnDeath: 2000
   enemyDamage: 50
   walkSpeed: 1
