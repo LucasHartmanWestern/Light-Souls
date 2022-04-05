@@ -10,6 +10,7 @@ public class GetChar : MonoBehaviour
 
     void Awake()
     {
+        #region Only have 1 instance of this object at a time
         if (Instance == null)
         {
             Instance = gameObject;
@@ -20,27 +21,30 @@ public class GetChar : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        #endregion
 
-        int getCharacter = Selector_Script.refInt;
+        int getCharacter = Selector_Script.refInt; // Get the refInt
 
-        if (getCharacter == 0)
+        #region Spawn in correct character based on what player selected
+        if (getCharacter == 1) // Gunman
         {
             Gun.SetActive(true);
             Sword.SetActive(false);
             Snipe.SetActive(false);
         }
-        if (getCharacter == 2)
+        if (getCharacter == 2) // Battlebot
         {
             Snipe.SetActive(true);
             Gun.SetActive(false);
             Sword.SetActive(false);
         }
-        if (getCharacter == 3)
+        if (getCharacter == 3) // Psionic student
         {
             Gun.SetActive(false);
             Sword.SetActive(true);
             Snipe.SetActive(false);
         }
+        #endregion
     }
 }
 

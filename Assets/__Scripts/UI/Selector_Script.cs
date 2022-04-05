@@ -10,7 +10,7 @@ public class Selector_Script : MonoBehaviour
    public GameObject Book;
    private Vector3 CharacterPosition;
    private Vector3 OffScreen;
-   private int CharacterInt = 1;
+   public int CharacterInt = 1;
    public static int refInt;
    private SpriteRenderer GunnerRender, SnipsRender, BookRender;
    private readonly string selectChar = "SelectedCharacter";
@@ -26,92 +26,72 @@ public class Selector_Script : MonoBehaviour
 
    public void NextCharacter()
    {
-         switch(CharacterInt)
+        #region Cycle through character ints in the upwards direction
+        switch (CharacterInt)
          {
             case 1:
-               PlayerPrefs.SetInt(selectChar,1);
                GunnerRender.enabled = false;
                Gunner.transform.position = OffScreen;
                Snips.transform.position = CharacterPosition;
                SnipsRender.enabled = true;
-               CharacterInt++;
+               CharacterInt = 2;
                break;
             case 2:
-               PlayerPrefs.SetInt(selectChar,2);
                SnipsRender.enabled = false;
                Snips.transform.position = OffScreen;
                Book.transform.position = CharacterPosition;
                BookRender.enabled = true;
-               CharacterInt++;
+               CharacterInt = 3;
                break;
             case 3:
-               PlayerPrefs.SetInt(selectChar,3);
                BookRender.enabled = false;
                Book.transform.position = OffScreen;
                Gunner.transform.position = CharacterPosition;
                GunnerRender.enabled = true;
-               CharacterInt++;
-               ResetInt();
-               break;
-            default:
-               ResetInt();
-               break;         
-
+               CharacterInt = 1;
+               break;      
          }
-         refInt = CharacterInt;
+        #endregion
+
+        refInt = CharacterInt; // Set the refInt based on the newly selected CharacterInt
    }
 
    public void PreviousCharacter()
    {
-      switch(CharacterInt)
+        #region Cycle through character ints in the downwards direction
+        switch (CharacterInt)
          {
             case 1:
-               PlayerPrefs.SetInt(selectChar,2);
                GunnerRender.enabled = false;
                Gunner.transform.position = OffScreen;
                Book.transform.position = CharacterPosition;
                BookRender.enabled = true;
-               CharacterInt--;
-               ResetInt();
+               CharacterInt = 3;
                break;
             case 2:
-               PlayerPrefs.SetInt(selectChar,3);
                SnipsRender.enabled = false;
                Snips.transform.position = OffScreen;
                Gunner.transform.position = CharacterPosition;
                GunnerRender.enabled = true;
-               CharacterInt--;
+               CharacterInt = 1;
                break;
             case 3:
-               PlayerPrefs.SetInt(selectChar,1);
                BookRender.enabled = false;
                Book.transform.position = OffScreen;
                Snips.transform.position = CharacterPosition;
                SnipsRender.enabled = true;
-               CharacterInt--;
+               CharacterInt = 2;
                break;
-            default:
-               ResetInt();
-               break;         
-
          }
-   }
+        #endregion
 
-   private void ResetInt()
-   {
-      if(CharacterInt >= 3 )
-      {
-         CharacterInt = 1;
-      }
-      else
-      {
-         CharacterInt = 3;
-      }
-   }
+        refInt = CharacterInt; // Set the refInt based on the newly selected CharacterInt
+    }
 
-   public void startGame()
+    public void startGame()
    {
-      SceneManager.LoadScene("Level 1");
+        PlayerPrefs.SetInt(selectChar, CharacterInt); // Set the int
+        SceneManager.LoadScene("Level 1");
    }
    public void instructions()
    {
