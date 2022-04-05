@@ -51,6 +51,11 @@ public class CameraManager : MonoBehaviour
         playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to PlayerGeneral script
     }
 
+    void Update()
+    {
+        if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to PlayerGeneral script
+    }
+
     // Public method to handle the camera movement
     public void HandleAllCameraMovement()
     {
