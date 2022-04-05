@@ -43,9 +43,12 @@ public class GenericEnemyAI : MonoBehaviour
     public GameObject GruntDialogue;
     public GameObject BossDialogue;
 
+    Vector3 startingPoint;
+
     // Called after Awake()
     private void Start()
     {
+        startingPoint = transform.position;
         enemyGeneral = GetComponent<EnemyGeneral>(); // Get EnemyGeneral script attached to the same object as this
         animator = GetComponent<Animator>(); // Get reference of animator attached to enemy
         playerTargetTransform = GameObject.Find("PlayerTarget").transform; // Get reference to player instance transform
@@ -120,12 +123,14 @@ public class GenericEnemyAI : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ); // Get new position to go to
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround) && Vector3.Distance(spawnPoint, walkPoint) <= 3) walkPointSet = true; // Make sure new walk point is in range
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround) && Vector3.Distance(startingPoint, walkPoint) <= 15) walkPointSet = true; // Make sure new walk point is in range
+        else print("No point set");
     }
 
     // Make enemy wander around the arena
     private void Patrolling()
     {
+        print("Patrolling");
         if (bossAI) transform.Find("EnemyModel").transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0)); // Rotate boss model slightly
 
         animator.SetFloat("MovingAmount", 0.5f); // Set the isMoving float in the animator
