@@ -31,7 +31,6 @@ public class OnEnterExitTriggers : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Volcano") 
             {
                 SceneManager.LoadScene("Level 2");
-                transform.position = new Vector3(51.11f, 20.32f, -142.27f);
             }
                 
         }
