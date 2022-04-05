@@ -39,6 +39,9 @@ public class GenericEnemyAI : MonoBehaviour
     public float sightRange, attackRange; // How far away player needs to be to be seen or attacked
     public bool playerInSightRange, playerInAttackRange; // Check if player is in the range to be seen or attacked
 
+    public GameObject GruntDialogue;
+    public GameObject BossDialogue;
+
     // Called after Awake()
     private void Start()
     {
@@ -92,6 +95,28 @@ public class GenericEnemyAI : MonoBehaviour
         else
         {
             // TODO -- Handle non-hostile behavior
+            if(playerInAttackRange && Input.GetKeyDown(KeyCode.T) && !bossAI)
+            {
+                GruntDialogue.SetActive(true);
+                if(Input.GetKeyDown(KeyCode.B))
+                {
+                    GruntDialogue.SetActive(false);
+                }
+                
+            }
+            else if(playerInAttackRange && Input.GetKeyDown(KeyCode.T) && bossAI)
+            {
+                BossDialogue.SetActive(true);
+                if(Input.GetKeyDown(KeyCode.B))
+                {
+                    BossDialogue.SetActive(false);
+                }
+            }
+            else
+            {
+                GruntDialogue.SetActive(false);
+                BossDialogue.SetActive(false);
+            }
         }
     }
 
