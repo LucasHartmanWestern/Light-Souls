@@ -28,8 +28,12 @@ public class OnEnterExitTriggers : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Level 2")
                 SceneManager.LoadScene("Volcano");
 
-            if (SceneManager.GetActiveScene().name == "Volcano")
+            if (SceneManager.GetActiveScene().name == "Volcano") 
+            {
                 SceneManager.LoadScene("Level 2");
+                transform.position = new Vector3(51.11f, 20.32f, -142.27f);
+            }
+                
         }
 
         if(collision.transform.tag == "DeathTrigger")//if the player clips and falls out of bounds: load the current scene again
