@@ -3371,8 +3371,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You new here? Head to the tavern up there to get an assignment and prove
-    you are worth the weapons you carry
+  m_Text: You new here? Go talk to the bossman in the tavern and prove you're worthy
+    to hold the weapons you weidl.
 --- !u!1 &4123780386875162303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3898,8 +3898,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '''Ello greenie. You wanna join the most profitable guild? Let''s see if
-    you got what it takes. Head past those gates and kill everyone from the rival
-    guild.'
+    you got what it takes. Head to that rocket cart outside and kill everyone from
+    the rival guild.'
 --- !u!1 &4920902242254412875
 GameObject:
   m_ObjectHideFlags: 0
