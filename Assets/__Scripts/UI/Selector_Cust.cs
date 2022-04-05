@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Selector_Cust : MonoBehaviour
 {
@@ -287,5 +288,10 @@ public class Selector_Cust : MonoBehaviour
         #endregion
 
         equipItems.ApplyEffects(); // Apply the effects only after modifying them
+    }
+    public void exitToMain()
+    {
+        SceneManager.LoadScene("MainMenu");
+        UIItemsContainer.SetActive(false);
     }
 }
