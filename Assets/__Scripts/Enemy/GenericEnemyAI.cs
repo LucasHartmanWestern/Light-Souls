@@ -124,13 +124,11 @@ public class GenericEnemyAI : MonoBehaviour
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ); // Get new position to go to
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround) && Vector3.Distance(startingPoint, walkPoint) <= 15) walkPointSet = true; // Make sure new walk point is in range
-        else print("No point set");
     }
 
     // Make enemy wander around the arena
     private void Patrolling()
     {
-        print("Patrolling");
         if (bossAI) transform.Find("EnemyModel").transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0)); // Rotate boss model slightly
 
         animator.SetFloat("MovingAmount", 0.5f); // Set the isMoving float in the animator

@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     // Handles the movement for the player in the x and z axes
     private void HandlePlayerMovement()
     {
-        if (isJumping || !isGrounded) return; // Don't move in the air while jumping
+        if (isJumping || !isGrounded || cameraTransform == null) return; // Don't move in the air while jumping
 
         moveDirection = cameraTransform.forward * inputManager.verticalInput; // Get direction of vertical movement
         moveDirection = moveDirection + cameraTransform.right * inputManager.horizontalInput; // Get direction of horizontal movement

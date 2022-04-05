@@ -58,6 +58,7 @@ public class PlayerGeneral : MonoBehaviour
     {
         if (cameraManager == null) cameraManager = FindObjectOfType<CameraManager>(); // Reference to the object with the CameraManager script attached to it
         if (cameraTransform == null) cameraTransform = Camera.main.transform; // Get transform of the main camera
+        if (combatUI == null) combatUI = FindObjectOfType<CombatUI>(); // Get CombatUI instance
 
         inputManager.HandleAllInputs(); // Call the HandleAllInputs method in the InputManager
         if (isAlive)

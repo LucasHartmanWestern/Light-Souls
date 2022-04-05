@@ -25,13 +25,13 @@ public class OnEnterExitTriggers : MonoBehaviour
             if(SceneManager.GetActiveScene().name == "Level 1")
             {
                 SceneManager.LoadScene("Level 2");
-
+                FindObjectOfType<PlayerGeneral>().transform.position = new Vector3(40.3600006f, 20.6970005f, 78.5550003f);
             }
 
             if (SceneManager.GetActiveScene().name == "Level 2")
             {
                 SceneManager.LoadScene("Level 1");
-
+                FindObjectOfType<PlayerGeneral>().transform.position = new Vector3(52.875f, -3.43000007f, -123.492996f);
             }
         }
 
@@ -40,13 +40,13 @@ public class OnEnterExitTriggers : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Level 2")
             {
                 SceneManager.LoadScene("Volcano");
-
+                FindObjectOfType<PlayerGeneral>().transform.position = new Vector3(-17.8700008f, -7.76999998f, -2.32999992f);
             }
 
             if (SceneManager.GetActiveScene().name == "Volcano") 
             {
                 SceneManager.LoadScene("Level 2");
-                
+                FindObjectOfType<PlayerGeneral>().transform.position = new Vector3(40.3600006f, 22.3299999f, -115.889999f);
             }
                 
         }

@@ -178,7 +178,7 @@ public class CameraManager : MonoBehaviour
         for(int i = 0; i < colliders.Length; i++)
         {
             EnemyGeneral enemy = colliders[i].GetComponent<EnemyGeneral>(); // Search through colliders for an EnemyGeneral script
-            if (enemy != null)
+            if (enemy != null && cameraTransform != null)
             {
                 Vector3 lockTargetDirection = enemy.transform.position - targetTransform.position; // Get Vector3 to hold the direction of the target compared to the player
                 float distanceFromTarget = Vector3.Distance(targetTransform.position, enemy.transform.position); // Get distance from player to target

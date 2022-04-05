@@ -43,6 +43,11 @@ public class InputManager : MonoBehaviour
         cameraManager = FindObjectOfType<CameraManager>(); // Get the CameraManager script
     }
 
+    void Update()
+    {
+        if (cameraManager == null) cameraManager = FindObjectOfType<CameraManager>(); // Get the CameraManager script
+    }
+
     // Run when object script is attached to becomes enabled
     private void OnEnable()
     {
