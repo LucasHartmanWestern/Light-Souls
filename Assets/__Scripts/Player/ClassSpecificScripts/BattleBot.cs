@@ -7,6 +7,8 @@ public class BattleBot : PlayerGeneral
     public float dashForce = 1f; // Force the player dashes with
     public ParticleSystem rocketTrail; // Rocket trail particle system
 
+    public Transform quickRigCharacterNeck;
+
     // Handles the special movement the player can perform
     protected override void HandleMovementAbility()
     {
@@ -75,6 +77,21 @@ public class BattleBot : PlayerGeneral
             combatUI.sniperCrosshair.SetActive(false); // Make sure sniper crosshair is disabled
         }
         #endregion
+
+        Transform rangedWeapon = FindObjectOfType<PlayerAttack>().rangedWeapon;
+
+        if (inputManager.aimInput)
+        {
+            rangedWeapon.parent = FindObjectOfType<PlayerAttack>().handTransform; // Assign where sniper is
+            rangedWeapon.localPosition = new Vector3(0.0860000029f, 0.149000004f, -0.0500000007f);
+            rangedWeapon.localRotation = Quaternion.Euler(new Vector3(69.2688675f, 78.3881454f, 168.848633f));
+        }
+        else
+        {
+            rangedWeapon.parent = quickRigCharacterNeck; // Assign where sniper is
+            rangedWeapon.localPosition = new Vector3(0.185405925f, -0.0782811269f, 0.13339451f);
+            rangedWeapon.localRotation = Quaternion.Euler(new Vector3(6.96158028f, 156.074982f, 261.977722f));
+        }
     }
 
     IEnumerator FinishDash()

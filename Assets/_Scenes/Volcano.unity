@@ -123,72 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &19985260
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1748212436}
-    m_Modifications:
-    - target: {fileID: 8574697571531349557, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_Name
-      value: DroidPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349557, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b92bb6c11001a91489606b6d207040db, type: 3}
---- !u!4 &19985261 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8574697571531349559, guid: b92bb6c11001a91489606b6d207040db, type: 3}
-  m_PrefabInstance: {fileID: 19985260}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &41238503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,6 +1026,68 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: e27a691ec361f884a87f86b9ee2179e5, type: 3}
+--- !u!1001 &939007553
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1748212436}
+    m_Modifications:
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6353656343670918739, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+      propertyPath: m_Name
+      value: 'DroidPlayer '
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+--- !u!4 &939007554 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6353656343670918737, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+  m_PrefabInstance: {fileID: 939007553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &971633217
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1879,6 +1875,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JetPackPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 2866423813802726694, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
 --- !u!4 &1685550294 stripped
@@ -2107,8 +2107,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1685550294}
-  - {fileID: 19985261}
   - {fileID: 1812519777}
+  - {fileID: 939007554}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2269,7 +2269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7636709166405659878, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7636709166405659878, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
       propertyPath: m_LocalPosition.x

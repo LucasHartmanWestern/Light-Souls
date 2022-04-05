@@ -107,7 +107,7 @@ RectTransform:
   m_GameObject: {fileID: 3849517186609794045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 6224282309998362295}
   m_Father: {fileID: 0}
@@ -335,5 +335,5 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '''Ello greenie. You wanna join the most profitable guild? Let''s see if
-    you got what it takes. Head past those gates and kill everyone from the rival
+    you got what it takes. Head to that rocket cart and kill everyone from the rival
     guild.'
