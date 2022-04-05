@@ -50,6 +50,8 @@ public class PlayerGeneral : MonoBehaviour
         playerSpecial = playerStartingSpecial; // Set the player's starting special meter
         playerAmmo = playerMaganizeCapacity; // Set player's starting ammo to the capacity
         combatUI = FindObjectOfType<CombatUI>(); // Get CombatUI instance
+
+        DontDestroyOnLoad(transform.parent); // Don't destroy this object
     }
 
     // Called once a frame

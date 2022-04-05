@@ -48,6 +48,7 @@ public class EquipableItems : MonoBehaviour
     private void Update()
     {
         HandleAimBot(); // Handle the aimbot feature
+        if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to instance of playerGeneral object
     }
 
     // Finds which items are equipped and applies their effect

@@ -43,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
         playerGeneral = FindObjectOfType<PlayerGeneral>(); // Reference to PlayerGeneral script attached to player
     }
 
+    void Update()
+    {
+        if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneral>(); // Reference to PlayerGeneral script attached to player
+    }
+
     // Public method to call the other movement functions
     public void HandleAllPlayerMovement()
     {
