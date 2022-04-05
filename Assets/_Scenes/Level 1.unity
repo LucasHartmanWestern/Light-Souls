@@ -8660,6 +8660,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5507310676222254243, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_Text
+      value: You new here? Go talk to the bossman in the tavern and prove you're
+        worthy to hold the weapons you weidl.
+      objectReference: {fileID: 0}
     - target: {fileID: 6734744911550419681, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
       propertyPath: m_Pivot.x
       value: 0

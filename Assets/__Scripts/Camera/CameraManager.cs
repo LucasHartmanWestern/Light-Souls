@@ -105,8 +105,6 @@ public class CameraManager : MonoBehaviour
         }
         else // Player is locked on
         {
-            float velocity = 0;
-
             Vector3 direction = currentLockOnTarget.position - transform.position; // Get direction to point camera
             direction.Normalize(); // Normalize direction
             direction.y = 0; // Set y value to 0
