@@ -148,6 +148,7 @@ public class PlayerGeneral : MonoBehaviour
         yield return new WaitForSeconds(5f); // Wait 5 seconds before destroying the object
         Debug.Log("You Died"); // Destroy the game object
         yield return new WaitForSeconds(2f); // Wait 2 seconds before respawning
+        Destroy(FindObjectOfType<GetChar>().gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); //loads the current scene again
     }
 }

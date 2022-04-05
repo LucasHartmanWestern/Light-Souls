@@ -41,6 +41,9 @@ public class EnemyGeneral : MonoBehaviour
     // Called once a frame
     private void Update()
     {
+        if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to Player General instance
+        if (inputManager == null) inputManager = FindObjectOfType<InputManager>(); // Get reference to Input Manager instance
+
         if (isHostile) // Enemy cannot be damaged or killed when they are not hostile
         {
             if (isAlive) HandleFireDamage(); // Handles the fire damage effect
