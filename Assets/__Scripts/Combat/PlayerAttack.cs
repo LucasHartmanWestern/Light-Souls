@@ -56,7 +56,7 @@ public class PlayerAttack : MonoBehaviour
         // Only have 1 weapon enabled at a time and have it switch depending on the player's input
         if (inputManager.aimInput || playerGeneral.isReloading || FindObjectOfType<BattleBot>() != null)
         {
-            meleeWeapon.gameObject.SetActive(false);
+            if (FindObjectOfType<BattleBot>() == null) meleeWeapon.gameObject.SetActive(false);
             rangedWeapon.gameObject.SetActive(true);
         }
         else
