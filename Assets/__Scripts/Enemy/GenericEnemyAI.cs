@@ -75,7 +75,7 @@ public class GenericEnemyAI : MonoBehaviour
             // Start coroutines based on changing the states
             if (GetComponent<NavMeshAgent>().enabled == true) // Only perform if the NavMeshAgent is on
             {
-                if (!playerInSightRange && !playerInAttackRange) StartCoroutine(ChangeState("Wannder"));
+                if (!playerInSightRange && !playerInAttackRange) StartCoroutine(ChangeState("Wander"));
                 else if (playerInSightRange && !playerInAttackRange) StartCoroutine(ChangeState("Chasing"));
                 else if (playerInSightRange && playerInAttackRange) StartCoroutine(ChangeState("Attacking"));
 

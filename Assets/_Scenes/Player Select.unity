@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -230,7 +230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609040400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -224.38, y: -3.89, z: 727.61487}
+  m_LocalPosition: {x: -284.3, y: -3.89, z: 727.61487}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1943454430}
@@ -524,7 +524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707508752}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -224.32297, y: -4.9400005, z: 727.61487}
+  m_LocalPosition: {x: -289.9, y: -4.9400005, z: 727.61487}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1943454430}
@@ -1709,6 +1709,7 @@ MonoBehaviour:
   Gunner: {fileID: 2489947}
   Snips: {fileID: 609040400}
   Book: {fileID: 707508752}
+  CharacterInt: 1
 --- !u!4 &2074058077
 Transform:
   m_ObjectHideFlags: 0
