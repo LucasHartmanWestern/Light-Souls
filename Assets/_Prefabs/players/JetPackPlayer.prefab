@@ -2174,6 +2174,7 @@ GameObject:
   - component: {fileID: 1003724301886729741}
   - component: {fileID: 2866423813802726695}
   - component: {fileID: -783429098062696421}
+  - component: {fileID: 2190315020702933433}
   m_Layer: 6
   m_Name: JetPackPlayer
   m_TagString: Untagged
@@ -2716,6 +2717,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf9900b2a53ad74ab82e94d2caacd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2190315020702933433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866423813802726694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981645f7ba24f4642b3760e934c3011f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: 'name: Player1, ip: 127.0.0.1'
 --- !u!1 &2866423813994093001
 GameObject:
   m_ObjectHideFlags: 0

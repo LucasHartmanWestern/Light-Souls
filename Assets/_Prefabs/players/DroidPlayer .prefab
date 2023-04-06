@@ -13742,6 +13742,7 @@ GameObject:
   - component: {fileID: 8216496886910399864}
   - component: {fileID: 6353656343670918738}
   - component: {fileID: 8851131626011071306}
+  - component: {fileID: 4505537391748402750}
   m_Layer: 6
   m_Name: 'DroidPlayer '
   m_TagString: Untagged
@@ -14285,6 +14286,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf9900b2a53ad74ab82e94d2caacd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4505537391748402750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6353656343670918739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981645f7ba24f4642b3760e934c3011f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: 'name: Player1, ip: 127.0.0.1'
 --- !u!1 &6353656344802614671
 GameObject:
   m_ObjectHideFlags: 0

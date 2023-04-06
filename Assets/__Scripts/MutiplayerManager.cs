@@ -11,24 +11,39 @@ public class MutiplayerManager : MonoBehaviour
     string ipAddress = "127.0.0.1";
     int port = 3000;
 
-    public string message = "player 1, test 1, test 2";
+    public Transform playerTransform;
+    public string message = "";
+    public string serverRes = "";
     byte[] data;
     byte[] lengthPrefix;
-    byte[] finalData;
+    public byte[] finalData;
 
     Thread socketThread;
 
     void Start()
     {
+        playerTransform = FindObjectOfType<MutiplayerManager>().gameObject.transform;
+
+        // Create a new thread for the socket communication
+        socketThread = new Thread(SocketThreadFunc);
+        socketThread.Start();
+    }
+
+    private void Update()
+    {
+        message = "Player1," + playerTransform.position.x +
+                "," + playerTransform.position.y + "," + playerTransform.position.z;
+
         data = System.Text.Encoding.ASCII.GetBytes(message);
         lengthPrefix = BitConverter.GetBytes(data.Length); // Add length prefix
         finalData = new byte[lengthPrefix.Length + data.Length];
         lengthPrefix.CopyTo(finalData, 0);
         data.CopyTo(finalData, lengthPrefix.Length);
 
-        // Create a new thread for the socket communication
-        socketThread = new Thread(SocketThreadFunc);
-        socketThread.Start();
+/*        // Remove first element of array
+        byte[] newArray = new byte[finalData.Length - 1];
+        Array.Copy(finalData, 1, newArray, 0, newArray.Length);
+        finalData = newArray;*/
     }
 
     void OnDestroy()
@@ -48,6 +63,8 @@ public class MutiplayerManager : MonoBehaviour
 
         while (true)
         {
+            if (finalData?.Length < 1) continue;
+
             // Send data to the server
             socket.Send(finalData);
 
@@ -57,7 +74,7 @@ public class MutiplayerManager : MonoBehaviour
             // Convert the received bytes into a string
             string response = System.Text.Encoding.UTF8.GetString(buffer, 0, receivedLength);
 
-            Debug.Log("Response: " + response);
+            serverRes = response;
 
             // Wait for a short period before sending more data
             Thread.Sleep(100);

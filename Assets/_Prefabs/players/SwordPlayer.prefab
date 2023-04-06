@@ -14305,6 +14305,7 @@ GameObject:
   - component: {fileID: 4886808207333791695}
   - component: {fileID: 7636709166405659889}
   - component: {fileID: -4790835860960060518}
+  - component: {fileID: 6884383949074104500}
   m_Layer: 6
   m_Name: SwordPlayer
   m_TagString: Untagged
@@ -14847,6 +14848,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf9900b2a53ad74ab82e94d2caacd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6884383949074104500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7636709166405659876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981645f7ba24f4642b3760e934c3011f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  message: 'name: Player1, ip: 127.0.0.1'
 --- !u!1 &7636709167018835768
 GameObject:
   m_ObjectHideFlags: 0
