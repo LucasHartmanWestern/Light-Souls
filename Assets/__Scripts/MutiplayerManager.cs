@@ -74,22 +74,22 @@ public class MutiplayerManager : MonoBehaviour
 
         //player stats
         cType = playerTransform.gameObject.name;
-        startHealth = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().playerStartingHealth;
-        currentHealth = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().playerHealth;
-        level = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().playerLevel;
-        rangedDamage = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().rangedDamage;
-        meleeDamage = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().meleeDamage;
-        resistance = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().resistance;
-        magCapacity = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().playerMaganizeCapacity;
-        ammo = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().playerAmmo;
-        fireRate = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().playerFireRate;
-        dashForce = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().dashForce;
-        jumpStrength = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().jumpStrenth;
-        moveSpeed = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().playerMoveSpeed;
-        lookSpeed = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().playerLookSpeed;
+        startHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerStartingHealth;
+        currentHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerHealth;
+        level = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerLevel;
+        rangedDamage = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().rangedDamage;
+        meleeDamage = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().meleeDamage;
+        resistance = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().resistance;
+        magCapacity = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerMaganizeCapacity;
+        ammo = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerAmmo;
+        fireRate = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerFireRate;
+        //dashForce = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().dashForce;
+        jumpStrength = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().jumpStrenth;
+        moveSpeed = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerMoveSpeed;
+        lookSpeed = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerLookSpeed;
 
         //player events
-        isReloading = FindObjectOfType<BattleBot>().gameObject.GetComponent<BattleBot>().isReloading;
+        isReloading = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().isReloading;
         isJumping = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
         //isAttacking = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
 
@@ -105,7 +105,7 @@ public class MutiplayerManager : MonoBehaviour
                + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + ","  + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
                + cType + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + "," + lookSpeed + "," //Player stats
                + isAttacking + "," + isJumping + "," + isReloading;
-
+     
         
         data = System.Text.Encoding.ASCII.GetBytes(message);
         lengthPrefix = BitConverter.GetBytes(data.Length); // Add length prefix
@@ -141,7 +141,7 @@ public class MutiplayerManager : MonoBehaviour
             // Send data to the server
             socket.Send(finalData);
 
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[16384];
             int receivedLength = socket.Receive(buffer);
 
             // Convert the received bytes into a string
