@@ -100,7 +100,7 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
-        message = "Player1,IP,Port" + playerTransform.position.x +
+        message = "Player1,IP,Port," + playerTransform.position.x +
                 "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.x + "," + playerTransform.rotation.y + "," + playerTransform.rotation.z + "," //Position Info
                + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + ","  + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
                + cType + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + "," + lookSpeed + "," //Player stats
