@@ -12,6 +12,42 @@ public class MutiplayerManager : MonoBehaviour
     int port = 2001;
 
     public Transform playerTransform;
+
+    //player Items
+    bool bigMag;
+    bool gas;
+    bool rocketBoots;
+    bool hiCalBullets;
+    bool energyDrink;
+    bool specialSerum;
+    bool bodyArmor;
+    bool aimChip;
+    bool loCalBullet;
+    bool fourLeaf;
+
+    //player stats
+    String cType;
+    float startHealth;
+    float currentHealth;
+    float level;
+    float rangedDamage;
+    float meleeDamage;
+    float resistance;
+    float magCapacity;
+    float ammo;
+    float fireRate;
+    float dashForce;
+    float jumpStrength;
+    float moveSpeed;
+    float lookSpeed;
+
+    //player events
+    bool isAttacking;
+    bool isJumping;
+    bool isReloading;
+
+    
+
     public string message = "";
     public string serverRes = "";
     byte[] data;
@@ -24,6 +60,39 @@ public class MutiplayerManager : MonoBehaviour
     {
         playerTransform = FindObjectOfType<MutiplayerManager>().gameObject.transform;
 
+        //player items
+         bigMag = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().bigMagazine;
+         gas = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().gasoline;
+         rocketBoots = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().rocketBoots;
+         hiCalBullets = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().highCalBullets;
+         energyDrink = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().energyDrink;
+         specialSerum = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().specialSerum;
+         bodyArmor = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().bodyArmor;
+         aimChip = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().aimbotChip;
+         loCalBullet = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().lowCalBullet;
+         fourLeaf = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().fourLeafClover;
+
+        //player stats
+        cType = playerTransform.gameObject.name;
+        startHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerStartingHealth;
+        currentHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerHealth;
+        level = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerLevel;
+        rangedDamage = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().rangedDamage;
+        meleeDamage = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().meleeDamage;
+        resistance = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().resistance;
+        magCapacity = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerMaganizeCapacity;
+        ammo = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerAmmo;
+        fireRate = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerFireRate;
+        //dashForce = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().dashForce;
+        jumpStrength = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().jumpStrenth;
+        moveSpeed = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerMoveSpeed;
+        lookSpeed = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerLookSpeed;
+
+        //player events
+        isReloading = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().isReloading;
+        isJumping = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
+        //isAttacking = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
+
         // Create a new thread for the socket communication
         socketThread = new Thread(SocketThreadFunc);
         socketThread.Start();
@@ -31,9 +100,13 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
-        message = "Player1," + playerTransform.position.x +
-                "," + playerTransform.position.y + "," + playerTransform.position.z;
-
+        message = "Player1,IP,Port," + playerTransform.position.x +
+                "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.x + "," + playerTransform.rotation.y + "," + playerTransform.rotation.z + "," //Position Info
+               + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + ","  + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
+               + cType + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + "," + lookSpeed + "," //Player stats
+               + isAttacking + "," + isJumping + "," + isReloading;
+     
+        
         data = System.Text.Encoding.ASCII.GetBytes(message);
         lengthPrefix = BitConverter.GetBytes(data.Length); // Add length prefix
         finalData = new byte[lengthPrefix.Length + data.Length];
@@ -68,7 +141,7 @@ public class MutiplayerManager : MonoBehaviour
             // Send data to the server
             socket.Send(finalData);
 
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[16384];
             int receivedLength = socket.Receive(buffer);
 
             // Convert the received bytes into a string
