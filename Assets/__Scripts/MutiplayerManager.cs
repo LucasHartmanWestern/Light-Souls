@@ -8,8 +8,9 @@ using System.Text;
 
 public class MutiplayerManager : MonoBehaviour
 {
-    string ipAddress = "54.196.231.67";
-    int port = 2001;
+    string userName;
+    string ipAddress = "127.0.0.1";
+    int port = 3000;
 
     public Transform playerTransform;
 
@@ -60,6 +61,10 @@ public class MutiplayerManager : MonoBehaviour
     {
         playerTransform = FindObjectOfType<MutiplayerManager>().gameObject.transform;
 
+        //Unique info
+         userName = FindObjectOfType<MutiplayerManager>().gameObject.name;
+
+
         //player items
          bigMag = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().bigMagazine;
          gas = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().gasoline;
@@ -73,7 +78,7 @@ public class MutiplayerManager : MonoBehaviour
          fourLeaf = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().fourLeafClover;
 
         //player stats
-        cType = playerTransform.gameObject.name;
+        cType = playerTransform.root.gameObject.name;
         startHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerStartingHealth;
         currentHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerHealth;
         level = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerLevel;
@@ -100,14 +105,17 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
-        message = "Player1,IP,Port," + playerTransform.position.x +
+
+        message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
                 "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.x + "," + playerTransform.rotation.y + "," + playerTransform.rotation.z + "," //Position Info
-               + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + ","  + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
+               + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + "," + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
                + cType + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + "," + lookSpeed + "," //Player stats
                + isAttacking + "," + isJumping + "," + isReloading;
-     
-        
+       
+
         data = System.Text.Encoding.ASCII.GetBytes(message);
+
+        
         lengthPrefix = BitConverter.GetBytes(data.Length); // Add length prefix
         finalData = new byte[lengthPrefix.Length + data.Length];
         lengthPrefix.CopyTo(finalData, 0);
@@ -148,6 +156,7 @@ public class MutiplayerManager : MonoBehaviour
             string response = System.Text.Encoding.UTF8.GetString(buffer, 0, receivedLength);
 
             serverRes = response;
+            Debug.Log("Server Response:" + serverRes);
 
             // Wait for a short period before sending more data
             Thread.Sleep(100);
