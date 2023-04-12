@@ -7,7 +7,7 @@ public class GameBegin : MonoBehaviour
 {
    public void startGame()
    {
-        SceneManager.LoadScene("Player Select");
+        SceneManager.LoadScene("Select Mode");
    }
    public void exitGame()
    {
