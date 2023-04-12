@@ -24,11 +24,10 @@ public class UserSelector : MonoBehaviour
     }
     public void startGame()
     {
-        SceneManager.LoadScene("Player Select");
+        SceneManager.LoadScene("multiplayerselect");
     }
-
-    public void SelectLevel()
+    public void startsingle()
     {
-        SceneManager.LoadScene("Level Select");
+        SceneManager.LoadScene("Player Select");
     }
 }

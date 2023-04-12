@@ -100,5 +100,25 @@ public class Selector_Script : MonoBehaviour
    {
       SceneManager.LoadScene("HowToPlay");
    }
+   public void startdesert()
+   {
+         PlayerPrefs.SetInt(selectChar, CharacterInt); // Set the int
+         SceneManager.LoadScene("DessertMulti");
+   }
+   public void starttavern()
+   {
+         PlayerPrefs.SetInt(selectChar, CharacterInt); // Set the int
+         SceneManager.LoadScene("TavernMulti");
+   }
+   public void startvolcano()
+   {
+         PlayerPrefs.SetInt(selectChar, CharacterInt); // Set the int
+         SceneManager.LoadScene("VolcanoMulti");
+   }
+   public void startjungle()
+   {
+         PlayerPrefs.SetInt(selectChar, CharacterInt); // Set the int
+         SceneManager.LoadScene("JungleMulti");
+   }
    
 }
