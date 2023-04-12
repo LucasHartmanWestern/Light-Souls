@@ -34,6 +34,7 @@ public class OnlinePlayerHandler : MonoBehaviour
         //seperate players by |
         string[] dataByPlayer = stringData.Split('|');
         Debug.Log("Player Count: " + dataByPlayer.Length);
+
         // add line for seperating at certain length for each player? 
 
         getData(dataByPlayer);
@@ -51,7 +52,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             // Position Info
             Vector3 position = new Vector3(float.Parse(data[3]), float.Parse(data[4]), float.Parse(data[5]));
             Quaternion rotation = Quaternion.Euler(int.Parse(data[6]), int.Parse(data[7]), int.Parse(data[8]));
-
+            Debug.Log("Test Position");
             // Items
             bool bigMag = bool.Parse(data[9]);
             bool gas = bool.Parse(data[10]);
@@ -63,7 +64,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             bool aimChip = bool.Parse(data[16]);
             bool loCalBullet = bool.Parse(data[17]);
             bool fourLeaf = bool.Parse(data[18]);
-
+            Debug.Log("Test items");
             // Player Stats
             string cType = data[19];
             float startHealth = float.Parse(data[20]);
@@ -79,11 +80,12 @@ public class OnlinePlayerHandler : MonoBehaviour
             float jumpStrength = float.Parse(data[30]);
             float moveSpeed = float.Parse(data[31]);
             float lookSpeed = float.Parse(data[32]);
-
+            Debug.Log("Test stats");
             // Player Actions
             bool isAttacking = bool.Parse(data[33]);
             bool isJumping = bool.Parse(data[34]);
             bool isReloading = bool.Parse(data[35]);
+            Debug.Log("Test events");
 
             //  Debug.Log("Player Name: " + playerName);
             //  Debug.Log("IP: " + ip);
