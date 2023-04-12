@@ -124,5 +124,9 @@ public class Selector_Script : MonoBehaviour
          PlayerPrefs.SetInt(selectChar, CharacterInt); // Set the int
          SceneManager.LoadScene("JungleMulti");
    }
+   public void backback()
+   {
+         SceneManager.LoadScene("Select Mode");
+   }
    
 }

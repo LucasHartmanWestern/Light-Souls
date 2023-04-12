@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/multiplayerselect.unity
     guid: a9025b0022759b643a7db03046466e8d
+  - enabled: 1
+    path: Assets/_Scenes/multihowtoplay.unity
+    guid: d182188cbad75334ba6bf1b97b6c017c
   m_configObjects: {}
