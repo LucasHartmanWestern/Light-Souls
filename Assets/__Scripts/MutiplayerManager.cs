@@ -8,11 +8,11 @@ using System.Text;
 
 public class MutiplayerManager : MonoBehaviour
 {
-   // string ipAddress = "54.196.231.67";
-   // int port = 2001;
+    string ipAddress = "54.196.231.67";
+    int port = 2001;
 
-    string ipAddress = "127.0.0.1";
-    int port = 3000;
+   // string ipAddress = "127.0.0.1";
+    //int port = 3000;
 
     public Transform playerTransform;
 
@@ -29,7 +29,6 @@ public class MutiplayerManager : MonoBehaviour
     bool fourLeaf;
 
     //player stats
-    String cType;
     float startHealth;
     float currentHealth;
     float level;
@@ -51,7 +50,7 @@ public class MutiplayerManager : MonoBehaviour
 
 
     public string userName = "";
-    public string PreFabName = "";
+    public string preFabName = "";
     public string message = "";
     public string serverRes = "";
     byte[] data;
@@ -77,7 +76,7 @@ public class MutiplayerManager : MonoBehaviour
          fourLeaf = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().fourLeafClover;
 
         //player stats
-        cType = PreFabName;
+
         startHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerStartingHealth;
         currentHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerHealth;
         level = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerLevel;
@@ -108,7 +107,7 @@ public class MutiplayerManager : MonoBehaviour
         message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
                 "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.x + "," + playerTransform.rotation.y + "," + playerTransform.rotation.z + "," //Position Info
                + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + "," + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
-               + cType + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + "," + lookSpeed + "," //Player stats
+               + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + "," + lookSpeed + "," //Player stats
                + isAttacking + "," + isJumping + "," + isReloading;
        
 
