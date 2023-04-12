@@ -8,9 +8,11 @@ using System.Text;
 
 public class MutiplayerManager : MonoBehaviour
 {
-    string userName;
-    string ipAddress = "54.196.231.67";
-    int port = 2001;
+   // string ipAddress = "54.196.231.67";
+   // int port = 2001;
+
+    string ipAddress = "127.0.0.1";
+    int port = 3000;
 
     public Transform playerTransform;
 
@@ -47,8 +49,9 @@ public class MutiplayerManager : MonoBehaviour
     bool isJumping;
     bool isReloading;
 
-    
 
+    public string userName = "";
+    public string PreFabName = "";
     public string message = "";
     public string serverRes = "";
     byte[] data;
@@ -60,10 +63,6 @@ public class MutiplayerManager : MonoBehaviour
     void Start()
     {
         playerTransform = FindObjectOfType<MutiplayerManager>().gameObject.transform;
-
-        //Unique info
-         userName = FindObjectOfType<MutiplayerManager>().gameObject.name;
-
 
         //player items
          bigMag = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().bigMagazine;
@@ -78,7 +77,7 @@ public class MutiplayerManager : MonoBehaviour
          fourLeaf = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().fourLeafClover;
 
         //player stats
-        cType = playerTransform.root.gameObject.name;
+        cType = PreFabName;
         startHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerStartingHealth;
         currentHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerHealth;
         level = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerLevel;

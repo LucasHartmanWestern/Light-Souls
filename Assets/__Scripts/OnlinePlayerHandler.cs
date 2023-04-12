@@ -8,9 +8,9 @@ public class OnlinePlayerHandler : MonoBehaviour
     public MutiplayerManager mainPlayer;
 
     //prefabs for instatiating the players
-    public GameObject DroidPlayerP;
-    public GameObject JetPackPlayerP;
-    public GameObject SwordPlayerP;
+    public GameObject DroidPlayer;
+    public GameObject JetPackPlayer;
+    public GameObject SwordPlayer;
     public GameObject MultiplayerObject;
     
     public List<GameObject> players = new List<GameObject>();
@@ -33,7 +33,7 @@ public class OnlinePlayerHandler : MonoBehaviour
         string stringData = mainPlayer.serverRes;
         //seperate players by |
         string[] dataByPlayer = stringData.Split('|');
-        Debug.Log("Player Count:" + dataByPlayer.Length);
+        Debug.Log("Player Count: " + dataByPlayer.Length);
         // add line for seperating at certain length for each player? 
 
         getData(dataByPlayer);
@@ -107,12 +107,35 @@ public class OnlinePlayerHandler : MonoBehaviour
             if (playerToUpdate == null)
             {
                 //for now new player is just a droidplayer
-                GameObject newPlayer = Instantiate(DroidPlayerP, MultiplayerObject.transform);
-                newPlayer.name = playerName;
+                if (cType == "DroidPlayer")
+                {
+                    GameObject newPlayer = Instantiate(DroidPlayer, MultiplayerObject.transform);
+                    newPlayer.name = playerName;
 
-                players.Add(newPlayer);
+                    players.Add(newPlayer);
 
-                playerToUpdate = newPlayer;
+                    playerToUpdate = newPlayer;
+                }
+                else if (cType == "JetPackPlayer")
+                {
+                    GameObject newPlayer = Instantiate(JetPackPlayer, MultiplayerObject.transform);
+                    newPlayer.name = playerName;
+
+                    players.Add(newPlayer);
+
+                    playerToUpdate = newPlayer;
+                }
+                else if (cType == "SwordPlayer")
+                {                
+                    GameObject newPlayer = Instantiate(SwordPlayer, MultiplayerObject.transform);
+                    newPlayer.name = playerName;
+
+                    players.Add(newPlayer);
+
+                    playerToUpdate = newPlayer;
+                }
+
+
             }
 
             //logic for updating player info
