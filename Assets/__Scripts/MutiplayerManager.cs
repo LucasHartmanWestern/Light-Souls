@@ -49,6 +49,31 @@ public class MutiplayerManager : MonoBehaviour
     bool isJumping;
     bool isReloading;
 
+    //input manager variables
+    
+     Vector2 movementInput; // 2D vector tracking where the player is trying to move
+
+     float verticalInput; // Track vertical input
+     float horizontalInput; // Track horizontal input
+     float cameraInputX; // Track camera input on the x axes
+     float cameraInputY; // Track the camera input on the y axes
+
+   
+     float moveAmount; // Determine the amount to move
+     bool sprintInput; // Check if player is trying to sprint
+     bool jumpInput; // Check if player is trying to jump
+     bool aimInput; // Check if player is trying to aim
+     bool attackInput; // Check sif player is trying to attack
+     bool specialMoveInput; // Check if player is trying to use their special moving abilitiy
+     bool lockOnInput; // Check if player is trying to lock onto an enemy
+     bool lockOnLeftInput; // Check if player is trying to lock onto a different enemy
+     bool lockOnRightInput; // Check if player is trying to lock onto a different enemy
+     bool specialAbilityInput; // Check if player is trying to use their special ability
+     bool reloadInput; // Check if player is trying to reload
+
+    
+     bool lockOnFlag; // Check if player should be locked on
+
 
     public string userName = "";
     public string preFabName = "";
@@ -97,6 +122,30 @@ public class MutiplayerManager : MonoBehaviour
         isJumping = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
         //isAttacking = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
 
+        //input manager variables
+        movementInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().movementInput;
+
+
+
+        verticalInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().verticalInput;
+        horizontalInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().horizontalInput; // Track horizontal input
+        cameraInputX = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputX;
+        cameraInputY = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputY;
+
+
+        moveAmount = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().moveAmount;
+        sprintInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().sprintInput;
+        jumpInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().jumpInput;
+        aimInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().aimInput;
+        attackInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().attackInput;
+        specialMoveInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().specialMoveInput;
+        lockOnInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().lockOnInput;
+        lockOnLeftInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().lockOnLeftInput;
+        lockOnRightInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().lockOnRightInput;
+        specialAbilityInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().specialAbilityInput;
+        reloadInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().reloadInput;
+        lockOnFlag = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().lockOnFlag;
+
         // Create a new thread for the socket communication
         socketThread = new Thread(SocketThreadFunc);
         socketThread.Start();
@@ -108,8 +157,9 @@ public class MutiplayerManager : MonoBehaviour
         message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
                 "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.x + "," + playerTransform.rotation.y + "," + playerTransform.rotation.z + "," //Position Info
                + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + "," + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
-               + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + "," + lookSpeed + "," //Player stats
-               + isAttacking + "," + isJumping + "," + isReloading;
+               + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + ","  //Player stats
+               + isAttacking + "," + isJumping + "," + isReloading + "," + movementInput.x + "," + movementInput.y + "," + verticalInput + "," + horizontalInput +  "," + moveAmount + "," + sprintInput + "," + jumpInput + "," + aimInput + "," + attackInput + "," + specialMoveInput + "," + specialAbilityInput + "," + reloadInput; //input Manager
+                                                    
        
 
         data = System.Text.Encoding.ASCII.GetBytes(message);
@@ -143,6 +193,7 @@ public class MutiplayerManager : MonoBehaviour
 
         while (true)
         {
+            Debug.Log("Sent1");
             if (finalData?.Length < 1) continue;
 
             // Send data to the server
@@ -154,8 +205,10 @@ public class MutiplayerManager : MonoBehaviour
             // Convert the received bytes into a string
             string response = System.Text.Encoding.UTF8.GetString(buffer, 0, receivedLength);
 
+            Debug.Log("Sent2");
             string[] splitResponse = response.Split('|');
-            for(int i = 0; i < splitResponse.Length; i++)
+            Debug.Log("Sent3");
+            for (int i = 0; i < splitResponse.Length; i++)
             {
                 string serverName = splitResponse[i].Split(',')[0];
                 string hostName = message.Split(',')[0];
@@ -172,11 +225,11 @@ public class MutiplayerManager : MonoBehaviour
 
             serverRes = response;
             Debug.Log("Server Response:" + serverRes);
-
+            
             // Wait for a short period before sending more data
             Thread.Sleep(100);
-
-            if (response.Length == 0) break;
+            Debug.Log("Length: " + response.Length);
+            //if (response.Length == 0) break;
         }
     }
 }

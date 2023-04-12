@@ -57,6 +57,7 @@ public class OnlinePlayerHandler : MonoBehaviour
         for (int i = 0; i < dataByPlayer.Length; i++)
         {
             string[] data = dataByPlayer[i].Split(',');
+            Debug.Log("Data: " + data.ToString());
             string playerName = data[0];
             string ip = data[1];
             string port = data[2];
@@ -92,13 +93,29 @@ public class OnlinePlayerHandler : MonoBehaviour
             float dashForce = float.Parse(data[29]);
             float jumpStrength = float.Parse(data[30]);
             float moveSpeed = float.Parse(data[31]);
-            float lookSpeed = float.Parse(data[32]);
+            
             
             // Player Actions
-            bool isAttacking = bool.Parse(data[33]);
-            bool isJumping = bool.Parse(data[34]);
-            bool isReloading = bool.Parse(data[35]);
-            
+            bool isAttacking = bool.Parse(data[32]);
+            bool isJumping = bool.Parse(data[33]);
+            bool isReloading = bool.Parse(data[34]);
+
+            //input manager
+            Vector2 movementInput = new Vector2 (float.Parse(data[35]), float.Parse(data[36])); // 2D vector tracking where the player is trying to move
+
+            float verticalInput = float.Parse(data[37]);
+            float horizontalInput = float.Parse(data[38]);
+           
+
+
+            float moveAmount = float.Parse(data[39]);
+            bool sprintInput = bool.Parse(data[40]);
+            bool jumpInput = bool.Parse(data[41]);
+            bool aimInput = bool.Parse(data[42]);
+            bool attackInput = bool.Parse(data[43]);
+            bool specialMoveInput = bool.Parse(data[44]);
+            bool specialAbilityInput = bool.Parse(data[45]);
+            bool reloadInput = bool.Parse(data[46]);
 
             //  Debug.Log("Player Name: " + playerName);
             //  Debug.Log("IP: " + ip);
@@ -186,8 +203,23 @@ public class OnlinePlayerHandler : MonoBehaviour
             //Actions
             playerToUpdate.GetComponent<PlayerGeneral>().isReloading = isReloading;
             playerToUpdate.GetComponent<PlayerMovement>().isJumping = isJumping;
-            playerToUpdate.GetComponent<PlayerGeneral>().isReloading = isReloading;
             //isAttacking = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
+
+            //input manager
+            playerToUpdate.GetComponent<InputManager>().movementInput = movementInput;
+            playerToUpdate.GetComponent<InputManager>().verticalInput = verticalInput;
+            playerToUpdate.GetComponent<InputManager>().horizontalInput = horizontalInput;
+
+            playerToUpdate.GetComponent<InputManager>().moveAmount = moveAmount;
+            playerToUpdate.GetComponent<InputManager>().sprintInput = sprintInput;
+            playerToUpdate.GetComponent<InputManager>().jumpInput = jumpInput;
+            playerToUpdate.GetComponent<InputManager>().aimInput = aimInput;
+            playerToUpdate.GetComponent<InputManager>().attackInput = attackInput;
+            playerToUpdate.GetComponent<InputManager>().specialMoveInput = specialMoveInput;
+
+            playerToUpdate.GetComponent<InputManager>().specialAbilityInput = specialAbilityInput;
+            playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
+
         }
        }
 
