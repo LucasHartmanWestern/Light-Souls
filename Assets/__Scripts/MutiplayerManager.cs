@@ -9,8 +9,8 @@ using System.Text;
 public class MutiplayerManager : MonoBehaviour
 {
     string userName;
-    string ipAddress = "127.0.0.1";
-    int port = 3000;
+    string ipAddress = "54.196.231.67";
+    int port = 2001;
 
     public Transform playerTransform;
 
