@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerAttack : MonoBehaviour
 {
     InputManager inputManager; // Reference to InputManager class
-    PlayerGeneral playerGeneral; // Reference to the PlayerGeneral class
+    PlayerGeneralMultiplayer playerGeneral; // Reference to the PlayerGeneral class
     PlayerAnimationManager playerAnimationManager; // Reference to the PlayerAnimationManager class
     CameraManager cameraManager; // Reference to the CameraManager class
     [SerializeField] private LayerMask _aimColliderMask; // All layers that player can aim at
@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         inputManager = FindObjectOfType<InputManager>(); // Get reference to instance of InputManager
-        playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get refernce to instance of PlayerGeneral attached to player
+        playerGeneral = FindObjectOfType<PlayerGeneralMultiplayer>(); // Get refernce to instance of PlayerGeneral attached to player
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Get reference to instance of PlayerAnimationManager
         cameraManager = FindObjectOfType<CameraManager>(); // Get reference to the Camera Manager instance
     }
