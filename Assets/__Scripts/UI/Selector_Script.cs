@@ -100,6 +100,10 @@ public class Selector_Script : MonoBehaviour
    {
       SceneManager.LoadScene("HowToPlay");
    }
+   public void multinstructions()
+   {
+      SceneManager.LoadScene("multihowtoplay");
+   }
    public void startdesert()
    {
          PlayerPrefs.SetInt(selectChar, CharacterInt); // Set the int

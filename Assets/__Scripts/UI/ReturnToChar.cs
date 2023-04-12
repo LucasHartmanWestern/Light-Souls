@@ -8,5 +8,10 @@ public class ReturnToChar : MonoBehaviour
     public void goBack()
     {
         SceneManager.LoadScene("Player Select");
-    }   
+    }
+    public void goBackMulti()
+    {
+        SceneManager.LoadScene("multiplayerselect");
+    }
+
 }
