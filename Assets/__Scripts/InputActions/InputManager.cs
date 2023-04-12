@@ -4,7 +4,7 @@ public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls; // Reference to the Input System PlayerControls
     PlayerMovement playerMovement; // Reference to the PlayerMovement script
-    PlayerGeneral playerGeneral; // Reference to the PlayerGeneral script
+    PlayerGeneralMultiplayer playerGeneral; // Reference to the PlayerGeneral script
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script
     CameraManager cameraManager; // Reference to the CameraManager script
 
@@ -39,7 +39,7 @@ public class InputManager : MonoBehaviour
     {
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Get the PlayerAnimationManager script attached to player
         playerMovement = GetComponent<PlayerMovement>(); // Get the PlayerMovement script attached to player
-        playerGeneral = GetComponent<PlayerGeneral>(); // Get the PlayerGeneral script attached to player
+        playerGeneral = GetComponent<PlayerGeneralMultiplayer>(); // Get the PlayerGeneral script attached to player
         cameraManager = FindObjectOfType<CameraManager>(); // Get the CameraManager script
     }
 

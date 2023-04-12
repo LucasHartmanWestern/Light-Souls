@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Transform cameraTransform; // Transform of the camera the player sees through
     Rigidbody playerRigidBody; // Reference to player's RigidBody component
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script attached to this object
-    PlayerGeneral playerGeneral; // Reference to PlayerGeneral script
+    PlayerGeneralMultiplayer playerGeneral; // Reference to PlayerGeneral script
 
     [Header("Falling Settings")]
     [HideInInspector] public float inAirTimer; // Track how long player is in the air for
@@ -40,12 +40,12 @@ public class PlayerMovement : MonoBehaviour
         playerRigidBody = GetComponent<Rigidbody>(); // Reference to RigidBody attached to player
         cameraTransform = Camera.main.transform; // Get transform of the main camera
         playerAnimationManager = GetComponent<PlayerAnimationManager>(); // Reference to PlayerAnimation script attached to player
-        playerGeneral = FindObjectOfType<PlayerGeneral>(); // Reference to PlayerGeneral script attached to player
+        playerGeneral = FindObjectOfType<PlayerGeneralMultiplayer>(); // Reference to PlayerGeneral script attached to player
     }
 
     void Update()
     {
-        if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneral>(); // Reference to PlayerGeneral script attached to player
+        if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneralMultiplayer>(); // Reference to PlayerGeneral script attached to player
         if (cameraTransform == null) cameraTransform = Camera.main.transform; // Get transform of the main camera
         if (inputManager == null) inputManager = GetComponent<InputManager>(); // Reference to InputManager attached to player
         if (playerRigidBody == null) playerRigidBody = GetComponent<Rigidbody>(); // Reference to RigidBody attached to player

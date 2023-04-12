@@ -4,7 +4,7 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     InputManager inputManager; // Reference to the InputManager
-    PlayerGeneral playerGeneral; // Reference to PlayerGeneral
+    PlayerGeneralMultiplayer playerGeneral; // Reference to PlayerGeneral
     public bool noMenu = true; // Check if menu is showing
 
     private Vector3 _cameraFollowVelocity = Vector3.zero; // Vector3 to track the current velocity
@@ -44,17 +44,17 @@ public class CameraManager : MonoBehaviour
     // Called right after Start() method
     private void Start()
     {
-        targetTransform = FindObjectOfType<PlayerGeneral>().transform; // Get the transform of the player
+        targetTransform = FindObjectOfType<PlayerGeneralMultiplayer>().transform; // Get the transform of the player
         inputManager = FindObjectOfType<InputManager>(); // Get the InputManager
         cameraTransform = Camera.main.transform; // Get the transform of the main camera
         defaultPosition = cameraTransform.localPosition.z; // Get z axis position of the camera's transform
-        playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to PlayerGeneral script
+        playerGeneral = FindObjectOfType<PlayerGeneralMultiplayer>(); // Get reference to PlayerGeneral script
     }
 
     void Update()
     {
-        if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to PlayerGeneral script
-        if (targetTransform == null) targetTransform = FindObjectOfType<PlayerGeneral>().transform; // Get the transform of the player
+        if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneralMultiplayer>(); // Get reference to PlayerGeneral script
+        if (targetTransform == null) targetTransform = FindObjectOfType<PlayerGeneralMultiplayer>().transform; // Get the transform of the player
         if (inputManager == null) inputManager = FindObjectOfType<InputManager>(); // Get the InputManager
         if (cameraTransform == null) cameraTransform = Camera.main.transform; // Get the transform of the main camera
     }

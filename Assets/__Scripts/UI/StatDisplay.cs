@@ -11,14 +11,14 @@ public class StatDisplay : MonoBehaviour
     public Slider specialSlider; // Slider for the player special meter
     int enemyCount, startingEnemyCount;//the running and starting count of enemies
     GameObject enemies;//the enemies
-    PlayerGeneral playerGeneral; // Reference to the PlayerGeneral script
+    PlayerGeneralMultiplayer playerGeneral; // Reference to the PlayerGeneral script
 
     // Start is called before the first frame update
     void Start()
     {
         enemies = GameObject.Find("Enemies");//finds enemies
         enemyCount = startingEnemyCount = enemies.transform.childCount;//equates the initial enemies count to enemyCount and startingEnemyCount
-        playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to PlayerGenral instance
+        playerGeneral = FindObjectOfType<PlayerGeneralMultiplayer>(); // Get reference to PlayerGenral instance
     }
 
     // Update is called once per frame
