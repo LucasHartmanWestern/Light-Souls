@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System;
 using System.Threading;
 using System.Text;
+using System.Linq;
 
 public class MutiplayerManager : MonoBehaviour
 {
@@ -152,6 +153,22 @@ public class MutiplayerManager : MonoBehaviour
 
             // Convert the received bytes into a string
             string response = System.Text.Encoding.UTF8.GetString(buffer, 0, receivedLength);
+
+            string[] splitResponse = response.Split('|');
+            for(int i = 0; i < splitResponse.Length; i++)
+            {
+                string serverName = splitResponse[i].Split(',')[0];
+                string hostName = message.Split(',')[0];
+                
+                if (serverName == hostName)
+                {
+                    Debug.Log("Found");
+                    splitResponse[i] = null;
+                }
+            }
+            
+            splitResponse = splitResponse.Where(x => x != null).ToArray();
+            response = string.Join("|", splitResponse);
 
             serverRes = response;
             Debug.Log("Server Response:" + serverRes);
