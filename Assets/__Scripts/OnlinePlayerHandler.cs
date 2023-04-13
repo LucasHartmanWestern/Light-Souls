@@ -63,6 +63,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             string[] data = dataByPlayer[i].Split(',');
 
             string playerName = data[parseCounter++];
+            string serverName = data[parseCounter++];
             string ip = data[parseCounter++];
             string port = data[parseCounter++];
 

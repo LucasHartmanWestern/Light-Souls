@@ -12,7 +12,7 @@ public class MutiplayerManager : MonoBehaviour
     string ipAddress = "54.196.231.67";
     int port = 2001;
 
-    public string serverName = "Test Server";
+    public string serverName = "Test Server 1";
 
     /*string ipAddress = "127.0.0.1";
     int port = 3000;*/
@@ -143,8 +143,7 @@ public class MutiplayerManager : MonoBehaviour
     private void Update()
     {
         string[] values = {
-            serverName,
-            userName, ipAddress, port.ToString(),
+            userName, serverName, ipAddress, port.ToString(),
             playerTransform.position.x.ToString(), playerTransform.position.y.ToString(), playerTransform.position.z.ToString(),
             playerTransform.rotation.eulerAngles.x.ToString(), playerTransform.rotation.eulerAngles.y.ToString(), playerTransform.rotation.eulerAngles.z.ToString(),
             bigMag.ToString(), gas.ToString(), rocketBoots.ToString(), hiCalBullets.ToString(), energyDrink.ToString(), specialSerum.ToString(), bodyArmor.ToString(), aimChip.ToString(), loCalBullet.ToString(), fourLeaf.ToString(),
