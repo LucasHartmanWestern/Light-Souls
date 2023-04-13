@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Net.Sockets;
+using System;
 
 public class Selector_Cust : MonoBehaviour
 {
@@ -49,6 +51,13 @@ public class Selector_Cust : MonoBehaviour
     public int equipNum3 = 3;
 
     public bool mechDead; // Track if mech boss is dead
+
+    byte[] data;
+    byte[] lengthPrefix;
+    public byte[] finalData;
+
+    string ipAddress = "54.196.231.67";
+    int port = 2001;
 
     void Awake()
     {
@@ -307,8 +316,32 @@ public class Selector_Cust : MonoBehaviour
 
     public void serverShutdown()
     {
+        string message = "KILL";
 
+        data = System.Text.Encoding.ASCII.GetBytes(message);
+
+        lengthPrefix = BitConverter.GetBytes(data.Length); // Add length prefix
+        finalData = new byte[lengthPrefix.Length + data.Length];
+        lengthPrefix.CopyTo(finalData, 0);
+        data.CopyTo(finalData, lengthPrefix.Length);
+
+        // Create the socket and connect to the server
+        Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        socket.Connect(ipAddress, port);
+
+        // Send data to the server
+        socket.Send(finalData);
+
+        GameObject[] objectsToDestroy = GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[];
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            if (obj.transform.parent == null && obj.name != "EventSystem")
+            {
+                Destroy(obj);
+            }
+        }
+
+        SceneManager.LoadScene("MainMenu");
+        UIItemsContainer.SetActive(false);
     }
-
-
 }
