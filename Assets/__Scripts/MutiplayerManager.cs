@@ -12,7 +12,7 @@ public class MutiplayerManager : MonoBehaviour
     string ipAddress = "54.196.231.67";
     int port = 2001;
 
-    public string serverName = "Test Server 1";
+    public string serverName = GameObject.Find("MultiplayerUserInfo").GetComponent<UserSelector>().serveraddy;
 
     /*string ipAddress = "127.0.0.1";
     int port = 3000;*/
@@ -77,7 +77,7 @@ public class MutiplayerManager : MonoBehaviour
      bool lockOnFlag; // Check if player should be locked on
 
 
-    public string userName = "";
+    public string userName = GameObject.Find("MultiplayerUserInfo").GetComponent<UserSelector>().theName;
     public string preFabName = "";
     public string message = "";
     public string serverRes = "";

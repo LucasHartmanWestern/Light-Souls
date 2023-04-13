@@ -8,21 +8,21 @@ using UnityEngine.SceneManagement;
 public class UserSelector : MonoBehaviour
 {
     public string theName;
-    public string IpAddress;
     public string serveraddy;
     public GameObject inputField;
-    public GameObject ipInputField;
     public GameObject sinputField;
     public GameObject textDisplay;
-    public GameObject iptextDisplay;
     public GameObject sTextDisplay;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void StoreName()
     {
         theName = inputField.GetComponent<Text>().text;
         textDisplay.GetComponent<Text>().text = "Username: " + theName;
-        IpAddress = ipInputField.GetComponent<Text>().text;
-        iptextDisplay.GetComponent<Text>().text = "IP: " + IpAddress;
         serveraddy = sinputField.GetComponent<Text>().text;
         sTextDisplay.GetComponent<Text>().text = "Server: " + serveraddy;
 
