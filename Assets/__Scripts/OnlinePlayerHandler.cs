@@ -146,6 +146,7 @@ public class OnlinePlayerHandler : MonoBehaviour
 
                     players.Add(newPlayer);
                     newPlayer.SetActive(true);
+                    Destroy(newPlayer.GetComponent<MutiplayerManager>());
 
                     playerToUpdate = newPlayer;
                 }
@@ -156,6 +157,7 @@ public class OnlinePlayerHandler : MonoBehaviour
 
                     players.Add(newPlayer);
                     newPlayer.SetActive(true);
+                    Destroy(newPlayer.GetComponent<MutiplayerManager>());
 
                     playerToUpdate = newPlayer;
                 }
@@ -166,6 +168,7 @@ public class OnlinePlayerHandler : MonoBehaviour
 
                     players.Add(newPlayer);
                     newPlayer.SetActive(true);
+                    Destroy(newPlayer.GetComponent<MutiplayerManager>());
 
                     playerToUpdate = newPlayer;
                 }
@@ -175,8 +178,8 @@ public class OnlinePlayerHandler : MonoBehaviour
             //logic for updating player info
 
             //Position
-            playerToUpdate.transform.position = position;
-            playerToUpdate.transform.rotation = rotation;
+            playerToUpdate.transform.position = Vector3.Lerp(playerToUpdate.transform.position, position, Time.deltaTime * 1f);
+            playerToUpdate.transform.rotation = Quaternion.Lerp(playerToUpdate.transform.rotation, rotation, Time.deltaTime * 1f);
 
             //Items
             playerToUpdate.GetComponent<EquipableItems>().bigMagazine = bigMag;

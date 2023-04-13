@@ -153,7 +153,7 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
-
+        Debug.Log("x: " + playerTransform.rotation.x + ", y: " + playerTransform.rotation.y + ", z: " + playerTransform.rotation.z);
         message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
                 "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.x + "," + playerTransform.rotation.y + "," + playerTransform.rotation.z + "," //Position Info
                + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + "," + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
@@ -214,6 +214,7 @@ public class MutiplayerManager : MonoBehaviour
             response = string.Join("|", splitResponse);
 
             serverRes = response;
+            Debug.Log(serverRes);
             
             // Wait for a short period before sending more data
             Thread.Sleep(100);
