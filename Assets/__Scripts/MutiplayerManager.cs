@@ -12,6 +12,10 @@ public class MutiplayerManager : MonoBehaviour
 {
     string ipAddress = "54.196.231.67";
     int port = 2001;
+
+    /*string ipAddress = "192.168.2.45";
+    int port = 2001;*/
+
     string sceneName = "";
 
     public string serverName = "";
@@ -223,7 +227,7 @@ public class MutiplayerManager : MonoBehaviour
             // Send data to the server
             socket.Send(finalData);
 
-            byte[] buffer = new byte[16384];
+            byte[] buffer = new byte[32768];
             int receivedLength = socket.Receive(buffer);
 
             // Convert the received bytes into a string
@@ -257,7 +261,7 @@ public class MutiplayerManager : MonoBehaviour
             serverRes = response;
             
             // Wait for a short period before sending more data
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
         }
     }
 }
