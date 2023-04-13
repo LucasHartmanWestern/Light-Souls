@@ -6,11 +6,13 @@ using System;
 using System.Threading;
 using System.Text;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class MutiplayerManager : MonoBehaviour
 {
     string ipAddress = "54.196.231.67";
     int port = 2001;
+    string sceneName = "";
 
     public string serverName = "";
 
@@ -94,6 +96,7 @@ public class MutiplayerManager : MonoBehaviour
     {
         userName = GameObject.Find("MultiplayerUserInfo").GetComponent<UserSelector>().theName;
         serverName = GameObject.Find("MultiplayerUserInfo").GetComponent<UserSelector>().serveraddy;
+        sceneName = SceneManager.GetActiveScene().name;
     }
 
     void Start()
@@ -150,7 +153,7 @@ public class MutiplayerManager : MonoBehaviour
     {
         playerTransform.gameObject.name = userName;
         string[] values = {
-            userName, serverName, ipAddress, port.ToString(),
+            userName, serverName, sceneName, ipAddress, port.ToString(),
             playerTransform.position.x.ToString(), playerTransform.position.y.ToString(), playerTransform.position.z.ToString(),
             playerTransform.rotation.eulerAngles.x.ToString(), playerTransform.rotation.eulerAngles.y.ToString(), playerTransform.rotation.eulerAngles.z.ToString(),
             bigMag.ToString(), gas.ToString(), rocketBoots.ToString(), hiCalBullets.ToString(), energyDrink.ToString(), specialSerum.ToString(), bodyArmor.ToString(), aimChip.ToString(), loCalBullet.ToString(), fourLeaf.ToString(),
@@ -237,7 +240,10 @@ public class MutiplayerManager : MonoBehaviour
                 string serverGameName = splitResponse[i].Split(',')[1];
                 string hostGameName = message.Split(',')[1];
 
-                if (serverName == hostName || serverGameName != hostGameName)
+                string serverSceneName = splitResponse[i].Split(',')[2];
+                string hostSceneName = message.Split(',')[2];
+
+                if (serverName == hostName || serverGameName != hostGameName || serverSceneName != hostSceneName)
                 {
                     splitResponse[i] = null;
                 }

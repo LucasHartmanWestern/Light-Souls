@@ -81,6 +81,7 @@ public class OnlinePlayerHandler : MonoBehaviour
 
             string playerName = data[parseCounter++];
             string serverName = data[parseCounter++];
+            string sceneName = data[parseCounter++];
             string ip = data[parseCounter++];
             string port = data[parseCounter++];
 
