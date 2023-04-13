@@ -54,7 +54,7 @@ public class InputManager : MonoBehaviour
     // Run when object script is attached to becomes enabled
     private void OnEnable()
     {
-        playerTransform = FindObjectOfType<MutiplayerManager>().gameObject.transform;
+        playerTransform = gameObject.transform;
         if (playerTransform.root.name != "Multiplayer 1")
         {
             if (playerControls == null)
