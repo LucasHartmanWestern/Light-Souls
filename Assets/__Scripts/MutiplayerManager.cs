@@ -158,15 +158,11 @@ public class MutiplayerManager : MonoBehaviour
         playerTransform.gameObject.name = userName;
         string[] values = {
             userName, serverName, sceneName, ipAddress, port.ToString(),
-            playerTransform.position.x.ToString(), playerTransform.position.y.ToString(), playerTransform.position.z.ToString(),
-            playerTransform.rotation.eulerAngles.x.ToString(), playerTransform.rotation.eulerAngles.y.ToString(), playerTransform.rotation.eulerAngles.z.ToString(),
+            Math.Round(playerTransform.position.x).ToString(), Math.Round(playerTransform.position.y).ToString(), Math.Round(playerTransform.position.z).ToString(),
+            Math.Round(playerTransform.rotation.eulerAngles.x).ToString(), Math.Round(playerTransform.rotation.eulerAngles.y).ToString(), Math.Round(playerTransform.rotation.eulerAngles.z).ToString(),
             preFabName,
             startHealth.ToString(),
             currentHealth.ToString(),
-            level.ToString(),
-            rangedDamage.ToString(),
-            meleeDamage.ToString(),
-            isJumping.ToString(),
             gameObject.GetComponent<InputManager>().moveAmount.ToString(),
             gameObject.GetComponent<InputManager>().sprintInput.ToString(),
             gameObject.GetComponent<InputManager>().jumpInput.ToString(),

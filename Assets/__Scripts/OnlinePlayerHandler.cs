@@ -120,7 +120,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             
             // Player Actions
 /*            bool isAttacking = bool.Parse(data[parseCounter++]);*/
-            bool isJumping = bool.Parse(data[parseCounter++]);
+            //bool isJumping = bool.Parse(data[parseCounter++]);
 /*            bool isReloading = bool.Parse(data[parseCounter++]);*/
 
             //input manager
