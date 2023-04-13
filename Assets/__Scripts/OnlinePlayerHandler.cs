@@ -117,6 +117,8 @@ public class OnlinePlayerHandler : MonoBehaviour
             bool specialAbilityInput = bool.Parse(data[46]);
             bool reloadInput = bool.Parse(data[47]);
 
+            Debug.Log(data);
+
             //  Debug.Log("Player Name: " + playerName);
             //  Debug.Log("IP: " + ip);
             //  Debug.Log("Port: " + port);
@@ -225,7 +227,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
 
             //moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput)); // Clamp movement between 0 and 1
-            playerToUpdate.GetComponent<PlayerAnimationManager>().UpdateAnimatorValues(horizontalInput, verticalInput, sprintInput); // Update the player's movement animation
+            playerToUpdate.GetComponent<PlayerAnimationManager>().UpdateAnimatorValues(animatorHorizontal, animatorVertical, sprintInput); // Update the player's movement animation
         }
     }
 }
