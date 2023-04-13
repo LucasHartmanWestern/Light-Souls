@@ -14,7 +14,6 @@ public class OnlinePlayerHandler : MonoBehaviour
     public GameObject MultiplayerObject;
     
     public List<GameObject> players = new List<GameObject>();
-    public List<string> userNames = new List<string>();
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +44,8 @@ public class OnlinePlayerHandler : MonoBehaviour
         //seperate players by |
         string[] dataByPlayer = stringData.Split('|');
         //Debug.Log("Player Count: " + dataByPlayer.Length);
+
+        List<string> userNames = new List<string>();
 
         //gets list of usernames in server response
         for (int i = 0; i < dataByPlayer.Length; i++)
@@ -129,7 +130,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             bool attackInput = bool.Parse(data[parseCounter++]);
             bool specialMoveInput = bool.Parse(data[parseCounter++]);
             bool specialAbilityInput = bool.Parse(data[parseCounter++]);
-            bool reloadInput = bool.Parse(data[parseCounter++]);
+            //bool reloadInput = bool.Parse(data[parseCounter++]);
 
             //  Debug.Log("Player Name: " + playerName);
             //  Debug.Log("IP: " + ip);
@@ -231,7 +232,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             playerToUpdate.GetComponent<InputManager>().specialMoveInput = specialMoveInput;
 
             playerToUpdate.GetComponent<InputManager>().specialAbilityInput = specialAbilityInput;
-            playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
+            //playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
 
             playerToUpdate.GetComponent<PlayerAnimationManager>().UpdateAnimatorValues(0, moveAmount, sprintInput); // Update the player's movement animation
         }
