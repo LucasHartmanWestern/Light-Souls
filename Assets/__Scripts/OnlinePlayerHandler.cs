@@ -14,8 +14,8 @@ public class OnlinePlayerHandler : MonoBehaviour
     public GameObject MultiplayerObject;
     
     public List<GameObject> players = new List<GameObject>();
-    
-    
+    public List<string> userNames = new List<string>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,8 +45,23 @@ public class OnlinePlayerHandler : MonoBehaviour
         //seperate players by |
         string[] dataByPlayer = stringData.Split('|');
         //Debug.Log("Player Count: " + dataByPlayer.Length);
-        
 
+        //gets list of usernames in server response
+        for (int i = 0; i < dataByPlayer.Length; i++)
+        {
+            userNames.Add(dataByPlayer[i].Split(',')[0]);
+        }
+
+        // checks if multiplayer user is included in the response, deletes if not
+        for (int i = 0; i < MultiplayerObject.transform.childCount; i++)
+        {
+            string playerName = MultiplayerObject.transform.GetChild(i).name;
+            bool userFound = userNames.Contains(playerName);
+            if (!userFound)
+            {
+                Destroy(MultiplayerObject.transform.GetChild(i).gameObject);
+            }
+        }
         // add line for seperating at certain length for each player? 
 
         getData(dataByPlayer);
