@@ -158,12 +158,29 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
-        message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
+        string[] values = {
+            userName, ipAddress, port.ToString(),
+            playerTransform.position.x.ToString(), playerTransform.position.y.ToString(), playerTransform.position.z.ToString(),
+            playerTransform.rotation.eulerAngles.x.ToString(), playerTransform.rotation.eulerAngles.y.ToString(), playerTransform.rotation.eulerAngles.z.ToString(),
+            bigMag.ToString(), gas.ToString(), rocketBoots.ToString(), hiCalBullets.ToString(), energyDrink.ToString(), specialSerum.ToString(), bodyArmor.ToString(), aimChip.ToString(), loCalBullet.ToString(), fourLeaf.ToString(),
+            preFabName, startHealth.ToString(), currentHealth.ToString(), level.ToString(), rangedDamage.ToString(), meleeDamage.ToString(), resistance.ToString(), magCapacity.ToString(), ammo.ToString(), fireRate.ToString(), dashForce.ToString(), jumpStrength.ToString(), moveSpeed.ToString(),
+            isAttacking.ToString(), isJumping.ToString(), isReloading.ToString(),
+            movementInput.x.ToString(), movementInput.y.ToString(),
+            verticalInput.ToString(), horizontalInput.ToString(),
+            animatorHorizontal.ToString(), animatorVertical.ToString(),
+            sprintInput.ToString(), jumpInput.ToString(), aimInput.ToString(), attackInput.ToString()
+        };
+
+        // , specialMoveInput.ToString(), specialAbilityInput.ToString(), reloadInput.ToString()
+
+        message = string.Join(",", values);
+
+        /*message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
                 "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.eulerAngles.x + "," + playerTransform.rotation.eulerAngles.y + "," + playerTransform.rotation.eulerAngles.z + "," //Position Info
                + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + "," + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
                + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + ","  //Player stats
-               + isAttacking + "," + isJumping + "," + isReloading + "," + movementInput.x + "," + movementInput.y + "," + verticalInput + "," + horizontalInput +  "," + animatorHorizontal + "," + animatorVertical + "," + sprintInput + "," + jumpInput + "," + aimInput + "," + attackInput + "," + specialMoveInput + "," + specialAbilityInput + "," + reloadInput; //input Manager
-                                                    
+               + isAttacking + "," + isJumping + "," + isReloading + "," + movementInput.x + "," + movementInput.y + "," + verticalInput + "," + horizontalInput + "," + animatorHorizontal + "," + animatorVertical + "," + sprintInput + "," + jumpInput + "," + aimInput + "," + attackInput + "," + specialMoveInput + "," + specialAbilityInput + "," + reloadInput; //input Manager*/
+
         data = System.Text.Encoding.ASCII.GetBytes(message);
         
         lengthPrefix = BitConverter.GetBytes(data.Length); // Add length prefix
@@ -199,6 +216,8 @@ public class MutiplayerManager : MonoBehaviour
 
             // Convert the received bytes into a string
             string response = System.Text.Encoding.UTF8.GetString(buffer, 0, receivedLength);
+
+            Debug.Log(response);
 
             if (response.Length == 0) break; // Server is down
 
