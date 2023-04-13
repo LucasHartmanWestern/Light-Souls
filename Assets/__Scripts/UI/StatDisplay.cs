@@ -18,7 +18,7 @@ public class StatDisplay : MonoBehaviour
     {
         enemies = GameObject.Find("Enemies");//finds enemies
         enemyCount = startingEnemyCount = enemies.transform.childCount;//equates the initial enemies count to enemyCount and startingEnemyCount
-        playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to PlayerGenral instance
+        playerGeneral = GameObject.Find("Players").GetComponentInChildren<PlayerGeneral>(); // Get reference to PlayerGenral instance
     }
 
     // Update is called once per frame
