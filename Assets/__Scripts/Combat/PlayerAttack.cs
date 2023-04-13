@@ -69,6 +69,8 @@ public class PlayerAttack : MonoBehaviour
     // Handle the Ranged Combat
     IEnumerator HandleRangedCombat()
     {
+        string parentGameobjectName = gameObject.GetComponent<Transform>().parent.name;
+
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f); // Get position of the center of the screen
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint); // Cast ray from center of the screen forwards
         
@@ -80,9 +82,28 @@ public class PlayerAttack : MonoBehaviour
             {
                 dontAttack = true;
                 playerGeneral.playerAmmo -= 1; // Decrease ammo by 1
-                Vector3 aimDirection = (raycastHit.point - spawnBulletPosition.position).normalized; // Determine where the user is aiming relative to the player
+                Vector3 aimDirection;
+
+                if (parentGameobjectName == "Players") // Player fired bullet
+                {
+                    aimDirection = (raycastHit.point - spawnBulletPosition.position).normalized; // Determine where the user is aiming relative to the player
+                } else // Online player fired bullet
+                {
+                    Transform playerTargetTransform = null;
+                    foreach (Transform child in GameObject.Find("Players").transform)
+                    {
+                        if (child.gameObject.activeSelf)
+                        {
+                            playerTargetTransform = child;
+                            break;
+                        }
+                    }
+                    aimDirection = (playerTargetTransform.position - spawnBulletPosition.position).normalized; // Determine where the user is aiming relative to the player
+                }
+
                 Instantiate(muzzleFlashPS, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Create a yellow muzzle flash
                 Instantiate(projectilePrefab, spawnBulletPosition.position, Quaternion.LookRotation(aimDirection, Vector3.up)); // Spawn in a bullet
+
                 shootSoundEffect.Play(); // Play the shooting sound effect
                 inputManager.attackInput = false; // Make it so player must press the attack button each time (semi-automatic)
                 yield return new WaitForSeconds(playerGeneral.playerFireRate);
