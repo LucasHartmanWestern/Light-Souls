@@ -142,6 +142,7 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
+        playerTransform.gameObject.name = userName;
         string[] values = {
             userName, serverName, ipAddress, port.ToString(),
             playerTransform.position.x.ToString(), playerTransform.position.y.ToString(), playerTransform.position.z.ToString(),
