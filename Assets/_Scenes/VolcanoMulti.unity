@@ -744,9 +744,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainPlayer: {fileID: 0}
-  DroidPlayer: {fileID: 0}
-  JetPackPlayer: {fileID: 0}
-  SwordPlayer: {fileID: 0}
+  DroidPlayer: {fileID: 6353656343670918739, guid: cf00136b7ee8d6746afc460824b7aaa5, type: 3}
+  JetPackPlayer: {fileID: 2866423813802726694, guid: e8cbed15aea8ad44681a66e17b698ebb, type: 3}
+  SwordPlayer: {fileID: 7636709166405659876, guid: 5bd0a149abab8fb48829ae97ad82fee3, type: 3}
   MultiplayerObject: {fileID: 342618819}
   players: []
 --- !u!23 &342618821
