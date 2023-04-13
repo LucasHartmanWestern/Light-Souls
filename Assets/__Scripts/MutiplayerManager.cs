@@ -126,27 +126,18 @@ public class MutiplayerManager : MonoBehaviour
         //isAttacking = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
 
         //input manager variables
-        movementInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().movementInput;
-
-
+        movementInput = gameObject.GetComponent<InputManager>().movementInput;
 
         verticalInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().verticalInput;
         horizontalInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().horizontalInput; // Track horizontal input
         cameraInputX = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputX;
         cameraInputY = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputY;
 
-
-        animatorHorizontal = gameObject.GetComponent<PlayerAnimationManager>().horizontal;
-        animatorVertical = gameObject.GetComponent<PlayerAnimationManager>().vertical;
-
         sprintInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().sprintInput;
         jumpInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().jumpInput;
         aimInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().aimInput;
         attackInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().attackInput;
         specialMoveInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().specialMoveInput;
-        lockOnInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().lockOnInput;
-        lockOnLeftInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().lockOnLeftInput;
-        lockOnRightInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().lockOnRightInput;
         specialAbilityInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().specialAbilityInput;
         reloadInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().reloadInput;
         lockOnFlag = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().lockOnFlag;
@@ -158,6 +149,7 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
+
         string[] values = {
             userName, ipAddress, port.ToString(),
             playerTransform.position.x.ToString(), playerTransform.position.y.ToString(), playerTransform.position.z.ToString(),
@@ -165,10 +157,8 @@ public class MutiplayerManager : MonoBehaviour
             bigMag.ToString(), gas.ToString(), rocketBoots.ToString(), hiCalBullets.ToString(), energyDrink.ToString(), specialSerum.ToString(), bodyArmor.ToString(), aimChip.ToString(), loCalBullet.ToString(), fourLeaf.ToString(),
             preFabName, startHealth.ToString(), currentHealth.ToString(), level.ToString(), rangedDamage.ToString(), meleeDamage.ToString(), resistance.ToString(), magCapacity.ToString(), ammo.ToString(), fireRate.ToString(), dashForce.ToString(), jumpStrength.ToString(), moveSpeed.ToString(),
             isAttacking.ToString(), isJumping.ToString(), isReloading.ToString(),
-            movementInput.x.ToString(), movementInput.y.ToString(),
-            verticalInput.ToString(), horizontalInput.ToString(),
-            animatorHorizontal.ToString(), animatorVertical.ToString(),
-            sprintInput.ToString(), jumpInput.ToString(), aimInput.ToString(), attackInput.ToString()
+            gameObject.GetComponent<InputManager>().moveAmount.ToString(),
+            gameObject.GetComponent<InputManager>().sprintInput.ToString(), gameObject.GetComponent<InputManager>().jumpInput.ToString(), gameObject.GetComponent<InputManager>().aimInput.ToString(), gameObject.GetComponent<InputManager>().attackInput.ToString()
         };
 
         // , specialMoveInput.ToString(), specialAbilityInput.ToString(), reloadInput.ToString()
@@ -217,8 +207,6 @@ public class MutiplayerManager : MonoBehaviour
             // Convert the received bytes into a string
             string response = System.Text.Encoding.UTF8.GetString(buffer, 0, receivedLength);
 
-            Debug.Log(response);
-
             if (response.Length == 0) break; // Server is down
 
             string[] splitResponse = response.Split('|');
@@ -235,6 +223,8 @@ public class MutiplayerManager : MonoBehaviour
             
             splitResponse = splitResponse.Where(x => x != null).ToArray();
             response = string.Join("|", splitResponse);
+
+            //Debug.Log(response);
 
             serverRes = response;
             

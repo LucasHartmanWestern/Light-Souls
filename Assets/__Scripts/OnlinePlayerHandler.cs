@@ -55,7 +55,7 @@ public class OnlinePlayerHandler : MonoBehaviour
     void getData(string[] dataByPlayer)
     {
         if (dataByPlayer.Length == 1 && dataByPlayer[0].Length == 0) return;
-        Debug.Log(dataByPlayer.Length);
+        //Debug.Log(dataByPlayer.Length);
         for (int i = 0; i < dataByPlayer.Length; i++)
         {
             int parseCounter = 0;
@@ -105,13 +105,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             bool isReloading = bool.Parse(data[parseCounter++]);
 
             //input manager
-            Vector2 movementInput = new Vector2 (float.Parse(data[parseCounter++]), float.Parse(data[parseCounter++])); // 2D vector tracking where the player is trying to move
-
-            float verticalInput = float.Parse(data[parseCounter++]);
-            float horizontalInput = float.Parse(data[parseCounter++]);
-           
-            float animatorHorizontal = float.Parse(data[parseCounter++]);
-            float animatorVertical = float.Parse(data[parseCounter++]);
+            float moveAmount = float.Parse(data[parseCounter++]);
 
             bool sprintInput = bool.Parse(data[parseCounter++]);
             bool jumpInput = bool.Parse(data[parseCounter++]);
@@ -214,10 +208,6 @@ public class OnlinePlayerHandler : MonoBehaviour
             playerToUpdate.GetComponent<PlayerMovement>().isJumping = isJumping;
             //isAttacking = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
 
-            //input manager
-            playerToUpdate.GetComponent<InputManager>().movementInput = movementInput;
-            playerToUpdate.GetComponent<InputManager>().verticalInput = verticalInput;
-            playerToUpdate.GetComponent<InputManager>().horizontalInput = horizontalInput;
 
             playerToUpdate.GetComponent<InputManager>().sprintInput = sprintInput;
             playerToUpdate.GetComponent<InputManager>().jumpInput = jumpInput;
@@ -228,8 +218,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             //playerToUpdate.GetComponent<InputManager>().specialAbilityInput = specialAbilityInput;
             //playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
 
-            //moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput)); // Clamp movement between 0 and 1
-            playerToUpdate.GetComponent<PlayerAnimationManager>().UpdateAnimatorValues(animatorHorizontal, animatorVertical, sprintInput); // Update the player's movement animation
+            playerToUpdate.GetComponent<PlayerAnimationManager>().UpdateAnimatorValues(0, moveAmount, sprintInput); // Update the player's movement animation
         }
     }
 }
