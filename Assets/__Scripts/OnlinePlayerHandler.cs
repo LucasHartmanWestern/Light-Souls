@@ -38,13 +38,13 @@ public class OnlinePlayerHandler : MonoBehaviour
                 players.RemoveAt(i);
             }
         }
-        Debug.Log("Server Response:" + mainPlayer.serverRes);
+        //Debug.Log("Server Response:" + mainPlayer.serverRes);
        
         // here we need to parse the string to and seperate by the players
         string stringData = mainPlayer.serverRes;
         //seperate players by |
         string[] dataByPlayer = stringData.Split('|');
-        Debug.Log("Player Count: " + dataByPlayer.Length);
+        //Debug.Log("Player Count: " + dataByPlayer.Length);
         
 
         // add line for seperating at certain length for each player? 
@@ -54,10 +54,10 @@ public class OnlinePlayerHandler : MonoBehaviour
 
     void getData(string[] dataByPlayer)
     {
+        if (dataByPlayer.Length == 1 && dataByPlayer[0].Length == 0) return;
         for (int i = 0; i < dataByPlayer.Length; i++)
         {
             string[] data = dataByPlayer[i].Split(',');
-            Debug.Log("Data: " + data.ToString());
             string playerName = data[0];
             string ip = data[1];
             string port = data[2];
@@ -145,6 +145,7 @@ public class OnlinePlayerHandler : MonoBehaviour
                     newPlayer.name = playerName;
 
                     players.Add(newPlayer);
+                    newPlayer.SetActive(true);
 
                     playerToUpdate = newPlayer;
                 }
@@ -154,6 +155,7 @@ public class OnlinePlayerHandler : MonoBehaviour
                     newPlayer.name = playerName;
 
                     players.Add(newPlayer);
+                    newPlayer.SetActive(true);
 
                     playerToUpdate = newPlayer;
                 }
@@ -163,10 +165,10 @@ public class OnlinePlayerHandler : MonoBehaviour
                     newPlayer.name = playerName;
 
                     players.Add(newPlayer);
-                     
+                    newPlayer.SetActive(true);
+
                     playerToUpdate = newPlayer;
                 }
-
 
             }
 
@@ -219,19 +221,6 @@ public class OnlinePlayerHandler : MonoBehaviour
 
             playerToUpdate.GetComponent<InputManager>().specialAbilityInput = specialAbilityInput;
             playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
-
         }
-       }
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 }

@@ -160,20 +160,12 @@ public class MutiplayerManager : MonoBehaviour
                + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + ","  //Player stats
                + isAttacking + "," + isJumping + "," + isReloading + "," + movementInput.x + "," + movementInput.y + "," + verticalInput + "," + horizontalInput +  "," + moveAmount + "," + sprintInput + "," + jumpInput + "," + aimInput + "," + attackInput + "," + specialMoveInput + "," + specialAbilityInput + "," + reloadInput; //input Manager
                                                     
-       
-
         data = System.Text.Encoding.ASCII.GetBytes(message);
-
         
         lengthPrefix = BitConverter.GetBytes(data.Length); // Add length prefix
         finalData = new byte[lengthPrefix.Length + data.Length];
         lengthPrefix.CopyTo(finalData, 0);
         data.CopyTo(finalData, lengthPrefix.Length);
-
-/*        // Remove first element of array
-        byte[] newArray = new byte[finalData.Length - 1];
-        Array.Copy(finalData, 1, newArray, 0, newArray.Length);
-        finalData = newArray;*/
     }
 
     void OnDestroy()
@@ -193,7 +185,6 @@ public class MutiplayerManager : MonoBehaviour
 
         while (true)
         {
-            Debug.Log("Sent1");
             if (finalData?.Length < 1) continue;
 
             // Send data to the server
@@ -205,9 +196,9 @@ public class MutiplayerManager : MonoBehaviour
             // Convert the received bytes into a string
             string response = System.Text.Encoding.UTF8.GetString(buffer, 0, receivedLength);
 
-            Debug.Log("Sent2");
+            if (response.Length == 0) break; // Server is down
+
             string[] splitResponse = response.Split('|');
-            Debug.Log("Sent3");
             for (int i = 0; i < splitResponse.Length; i++)
             {
                 string serverName = splitResponse[i].Split(',')[0];
@@ -215,7 +206,6 @@ public class MutiplayerManager : MonoBehaviour
                 
                 if (serverName == hostName)
                 {
-                    Debug.Log("Found");
                     splitResponse[i] = null;
                 }
             }
@@ -224,12 +214,9 @@ public class MutiplayerManager : MonoBehaviour
             response = string.Join("|", splitResponse);
 
             serverRes = response;
-            Debug.Log("Server Response:" + serverRes);
             
             // Wait for a short period before sending more data
             Thread.Sleep(100);
-            Debug.Log("Length: " + response.Length);
-            //if (response.Length == 0) break;
         }
     }
 }
