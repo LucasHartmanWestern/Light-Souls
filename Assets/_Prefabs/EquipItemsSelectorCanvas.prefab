@@ -253,6 +253,7 @@ MonoBehaviour:
   Aimbot: {fileID: 1485081558556597925}
   LowCal: {fileID: 1485081558750650438}
   Clover: {fileID: 1485081559093441451}
+  Players: {fileID: 0}
   gasItem: {fileID: 6917775849503447801}
   magItem: {fileID: 4925466826581631951}
   rBootItem: {fileID: 9042417112219518476}

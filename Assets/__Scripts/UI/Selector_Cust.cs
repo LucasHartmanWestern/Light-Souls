@@ -292,10 +292,16 @@ public class Selector_Cust : MonoBehaviour
     }
     public void exitToMain() // function to exit to the home page and change character or exit game
     {
+        GameObject[] objectsToDestroy = GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[];
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            if (obj.transform.parent == null && obj.name != "EventSystem")
+            {
+                Destroy(obj);
+            }
+        }
+
         SceneManager.LoadScene("MainMenu");
         UIItemsContainer.SetActive(false);
-        Destroy(Players);
-        
-
     }
 }
