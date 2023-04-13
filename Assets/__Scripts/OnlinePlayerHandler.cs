@@ -105,7 +105,9 @@ public class OnlinePlayerHandler : MonoBehaviour
             bool isReloading = bool.Parse(data[parseCounter++]);
 
             //input manager
-            float moveAmount = float.Parse(data[parseCounter++]);
+            //float moveAmount = float.Parse(data[parseCounter++]);
+            float moveInputx = float.Parse(data[parseCounter++]);
+            float moveInputy = float.Parse(data[parseCounter++]);
 
             bool sprintInput = bool.Parse(data[parseCounter++]);
             bool jumpInput = bool.Parse(data[parseCounter++]);
@@ -218,7 +220,10 @@ public class OnlinePlayerHandler : MonoBehaviour
             playerToUpdate.GetComponent<InputManager>().specialAbilityInput = specialAbilityInput;
             playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
 
+
+            float moveAmount = Mathf.Clamp01(Mathf.Abs(moveInputx) + Mathf.Abs(moveInputy)); // Clamp movement between 0 and 1
             playerToUpdate.GetComponent<PlayerAnimationManager>().UpdateAnimatorValues(0, moveAmount, sprintInput); // Update the player's movement animation
+            Debug.Log(moveAmount);
         }
     }
 }
