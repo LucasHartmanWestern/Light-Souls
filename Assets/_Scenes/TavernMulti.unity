@@ -58225,6 +58225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipItemsSelectorCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8556919822898402644, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: Players
+      value: 
+      objectReference: {fileID: 1156454590}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
 --- !u!1 &1029704270

@@ -26,6 +26,7 @@ public class Selector_Cust : MonoBehaviour
     public GameObject Aimbot;
     public GameObject LowCal;
     public GameObject Clover;
+    public GameObject Players;
     [Header("Item Images")]
     public Image gasItem;
     public Image magItem;
@@ -293,5 +294,8 @@ public class Selector_Cust : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
         UIItemsContainer.SetActive(false);
+        Destroy(Players);
+        
+
     }
 }

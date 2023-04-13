@@ -5588,7 +5588,6 @@ Transform:
   m_LocalPosition: {x: 42.926834, y: -1.4110364, z: -58.16564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2087624621}
   - {fileID: 398596050}
   - {fileID: 218625953}
   - {fileID: 2131775904}
@@ -5597,6 +5596,7 @@ Transform:
   - {fileID: 1824390162}
   - {fileID: 264560917}
   - {fileID: 2143746507}
+  - {fileID: 2087624621}
   - {fileID: 18503482}
   - {fileID: 118592228}
   - {fileID: 1412733070}
@@ -5998,6 +5998,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8556919822898402644, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: Players
+      value: 
+      objectReference: {fileID: 1665942041}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
 --- !u!1 &567898696
