@@ -12,8 +12,10 @@ public class MutiplayerManager : MonoBehaviour
     string ipAddress = "54.196.231.67";
     int port = 2001;
 
-   // string ipAddress = "127.0.0.1";
-    //int port = 3000;
+    public string serverName = "Test Server";
+
+    /*string ipAddress = "127.0.0.1";
+    int port = 3000;*/
 
     public Transform playerTransform;
 
@@ -140,8 +142,8 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
-
         string[] values = {
+            serverName,
             userName, ipAddress, port.ToString(),
             playerTransform.position.x.ToString(), playerTransform.position.y.ToString(), playerTransform.position.z.ToString(),
             playerTransform.rotation.eulerAngles.x.ToString(), playerTransform.rotation.eulerAngles.y.ToString(), playerTransform.rotation.eulerAngles.z.ToString(),
@@ -203,6 +205,8 @@ public class MutiplayerManager : MonoBehaviour
         Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         socket.Connect(ipAddress, port);
 
+        Debug.Log(ipAddress + " | " + port);
+
         while (true)
         {
             if (finalData?.Length < 1) continue;
@@ -223,8 +227,11 @@ public class MutiplayerManager : MonoBehaviour
             {
                 string serverName = splitResponse[i].Split(',')[0];
                 string hostName = message.Split(',')[0];
-                
-                if (serverName == hostName)
+
+                string serverGameName = splitResponse[i].Split(',')[1];
+                string hostGameName = message.Split(',')[1];
+
+                if (serverName == hostName || serverGameName != hostGameName)
                 {
                     splitResponse[i] = null;
                 }

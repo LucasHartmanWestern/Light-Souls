@@ -208,7 +208,6 @@ public class OnlinePlayerHandler : MonoBehaviour
             playerToUpdate.GetComponent<PlayerMovement>().isJumping = isJumping;
             //isAttacking = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
 
-
             playerToUpdate.GetComponent<InputManager>().sprintInput = sprintInput;
             playerToUpdate.GetComponent<InputManager>().jumpInput = jumpInput;
             playerToUpdate.GetComponent<InputManager>().aimInput = aimInput;
