@@ -99,8 +99,12 @@ public class InputManager : MonoBehaviour
     // Runs when object script is attached to becomes disabled
     private void OnDisable()
     {
-        // Disable the PlayerControls instance
-        playerControls.Disable();
+        playerTransform = gameObject.transform;
+        if (playerTransform.root.name != "Multiplayer 1")
+        {
+            // Disable the PlayerControls instance
+            playerControls.Disable();
+        }
     }
 
     // Handles all inputs for the player

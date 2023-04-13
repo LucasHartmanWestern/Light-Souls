@@ -162,6 +162,9 @@ public class OnlinePlayerHandler : MonoBehaviour
 
                     players.Add(newPlayer);
                     newPlayer.SetActive(true);
+
+                    newPlayer.transform.Find("Username").Find("Name").gameObject.SetActive(true);
+
                     Destroy(newPlayer.GetComponent<MutiplayerManager>());
 
                     playerToUpdate = newPlayer;
@@ -173,6 +176,9 @@ public class OnlinePlayerHandler : MonoBehaviour
 
                     players.Add(newPlayer);
                     newPlayer.SetActive(true);
+
+                    newPlayer.transform.Find("Username").Find("Name").gameObject.SetActive(true);
+
                     Destroy(newPlayer.GetComponent<MutiplayerManager>());
 
                     playerToUpdate = newPlayer;
@@ -184,6 +190,9 @@ public class OnlinePlayerHandler : MonoBehaviour
 
                     players.Add(newPlayer);
                     newPlayer.SetActive(true);
+
+                    newPlayer.transform.Find("Username").Find("Name").gameObject.SetActive(true);
+
                     Destroy(newPlayer.GetComponent<MutiplayerManager>());
 
                     playerToUpdate = newPlayer;
