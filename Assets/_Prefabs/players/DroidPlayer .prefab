@@ -14499,7 +14499,7 @@ MonoBehaviour:
   serverName: 
   playerTransform: {fileID: 0}
   userName: 
-  preFabName: 
+  preFabName: DroidPlayer
   message: 'name: Player1, ip: 127.0.0.1'
   serverRes: 
   finalData: 

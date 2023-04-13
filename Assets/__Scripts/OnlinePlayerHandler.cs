@@ -152,12 +152,19 @@ public class OnlinePlayerHandler : MonoBehaviour
                 }
             }
 
+            Debug.Log("Check");
+            Debug.Log(playerToUpdate == null);
+
             //if player does not exist already, instantiate new player
             if (playerToUpdate == null)
             {
+                Debug.Log(cType);
                 //for now new player is just a droidplayer
                 if (cType == "DroidPlayer")
                 {
+                    Debug.Log("Player Created");
+                    Debug.Log(MultiplayerObject == null);
+
                     GameObject newPlayer = Instantiate(DroidPlayer, MultiplayerObject.transform);
                     newPlayer.name = playerName;
 
@@ -172,6 +179,9 @@ public class OnlinePlayerHandler : MonoBehaviour
                 }
                 else if (cType == "JetPackPlayer")
                 {
+                    Debug.Log("Player Created");
+                    Debug.Log(MultiplayerObject == null);
+
                     GameObject newPlayer = Instantiate(JetPackPlayer, MultiplayerObject.transform);
                     newPlayer.name = playerName;
 
@@ -185,7 +195,10 @@ public class OnlinePlayerHandler : MonoBehaviour
                     playerToUpdate = newPlayer;
                 }
                 else if (cType == "SwordPlayer")
-                {                
+                {
+                    Debug.Log("Player Created");
+                    Debug.Log(MultiplayerObject == null);
+
                     GameObject newPlayer = Instantiate(SwordPlayer, MultiplayerObject.transform);
                     newPlayer.name = playerName;
 

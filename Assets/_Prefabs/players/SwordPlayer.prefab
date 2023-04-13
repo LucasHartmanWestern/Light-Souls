@@ -15060,7 +15060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverName: 
   playerTransform: {fileID: 0}
-  userName: 
+  userName: SwordPlayer
   preFabName: 
   message: 'name: Player1, ip: 127.0.0.1'
   serverRes: 
