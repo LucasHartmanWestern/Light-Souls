@@ -60,6 +60,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             bool userFound = userNames.Contains(playerName);
             if (!userFound)
             {
+                Destroy(MultiplayerObject.transform.GetChild(i).gameObject.GetComponent<InputManager>());
                 Destroy(MultiplayerObject.transform.GetChild(i).gameObject);
             }
         }
