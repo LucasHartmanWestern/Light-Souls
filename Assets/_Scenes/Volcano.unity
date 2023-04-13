@@ -2167,6 +2167,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipItemsSelectorCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7689120286677818502, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8556919822898402644, guid: 691c67e624b843243b4f229f2e63c31b, type: 3}
       propertyPath: Players
       value: 
