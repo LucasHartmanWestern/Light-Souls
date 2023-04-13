@@ -133,15 +133,6 @@ public class MutiplayerManager : MonoBehaviour
         cameraInputX = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputX;
         cameraInputY = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputY;
 
-        sprintInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().sprintInput;
-        jumpInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().jumpInput;
-        aimInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().aimInput;
-        attackInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().attackInput;
-        specialMoveInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().specialMoveInput;
-        specialAbilityInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().specialAbilityInput;
-        reloadInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().reloadInput;
-        lockOnFlag = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().lockOnFlag;
-
         // Create a new thread for the socket communication
         socketThread = new Thread(SocketThreadFunc);
         socketThread.Start();
@@ -155,13 +146,31 @@ public class MutiplayerManager : MonoBehaviour
             playerTransform.position.x.ToString(), playerTransform.position.y.ToString(), playerTransform.position.z.ToString(),
             playerTransform.rotation.eulerAngles.x.ToString(), playerTransform.rotation.eulerAngles.y.ToString(), playerTransform.rotation.eulerAngles.z.ToString(),
             bigMag.ToString(), gas.ToString(), rocketBoots.ToString(), hiCalBullets.ToString(), energyDrink.ToString(), specialSerum.ToString(), bodyArmor.ToString(), aimChip.ToString(), loCalBullet.ToString(), fourLeaf.ToString(),
-            preFabName, startHealth.ToString(), currentHealth.ToString(), level.ToString(), rangedDamage.ToString(), meleeDamage.ToString(), resistance.ToString(), magCapacity.ToString(), ammo.ToString(), fireRate.ToString(), dashForce.ToString(), jumpStrength.ToString(), moveSpeed.ToString(),
-            isAttacking.ToString(), isJumping.ToString(), isReloading.ToString(),
+            preFabName,
+            startHealth.ToString(),
+            currentHealth.ToString(),
+            level.ToString(),
+            rangedDamage.ToString(),
+            meleeDamage.ToString(),
+            resistance.ToString(),
+            magCapacity.ToString(),
+            ammo.ToString(),
+            fireRate.ToString(),
+            dashForce.ToString(),
+            jumpStrength.ToString(),
+            moveSpeed.ToString(),
+            isAttacking.ToString(),
+            isJumping.ToString(),
+            isReloading.ToString(),
             gameObject.GetComponent<InputManager>().moveAmount.ToString(),
-            gameObject.GetComponent<InputManager>().sprintInput.ToString(), gameObject.GetComponent<InputManager>().jumpInput.ToString(), gameObject.GetComponent<InputManager>().aimInput.ToString(), gameObject.GetComponent<InputManager>().attackInput.ToString()
+            gameObject.GetComponent<InputManager>().sprintInput.ToString(),
+            gameObject.GetComponent<InputManager>().jumpInput.ToString(),
+            gameObject.GetComponent<InputManager>().aimInput.ToString(),
+            gameObject.GetComponent<InputManager>().attackInput.ToString(),
+            gameObject.GetComponent<InputManager>().specialMoveInput.ToString(),
+            gameObject.GetComponent<InputManager>().specialAbilityInput.ToString(),
+            gameObject.GetComponent<InputManager>().reloadInput.ToString()
         };
-
-        // , specialMoveInput.ToString(), specialAbilityInput.ToString(), reloadInput.ToString()
 
         message = string.Join(",", values);
 

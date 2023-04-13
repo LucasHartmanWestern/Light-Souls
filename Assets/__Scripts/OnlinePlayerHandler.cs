@@ -111,9 +111,9 @@ public class OnlinePlayerHandler : MonoBehaviour
             bool jumpInput = bool.Parse(data[parseCounter++]);
             bool aimInput = bool.Parse(data[parseCounter++]);
             bool attackInput = bool.Parse(data[parseCounter++]);
-            //bool specialMoveInput = bool.Parse(data[parseCounter++]);
-            //bool specialAbilityInput = bool.Parse(data[parseCounter++]);
-            //bool reloadInput = bool.Parse(data[parseCounter++]);
+            bool specialMoveInput = bool.Parse(data[parseCounter++]);
+            bool specialAbilityInput = bool.Parse(data[parseCounter++]);
+            bool reloadInput = bool.Parse(data[parseCounter++]);
 
             //  Debug.Log("Player Name: " + playerName);
             //  Debug.Log("IP: " + ip);
