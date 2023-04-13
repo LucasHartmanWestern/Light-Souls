@@ -109,6 +109,8 @@ public class PlayerGeneral : MonoBehaviour
     // Called to damage the player
     public void TakeDamage(float damageAmount)
     {
+        Debug.Log("Damage: " + damageAmount);
+
         playerHealth -= damageAmount / resistance; // Decrease inherited script playerHealth too
 
         #region Handle player dying

@@ -5,14 +5,17 @@ using System.Net.Sockets;
 using System;
 using System.Threading;
 using System.Text;
+using System.Linq;
 
 public class MutiplayerManager : MonoBehaviour
 {
     string ipAddress = "54.196.231.67";
     int port = 2001;
 
-   // string ipAddress = "127.0.0.1";
-    //int port = 3000;
+    public string serverName = "Test Server 1";
+
+    /*string ipAddress = "127.0.0.1";
+    int port = 3000;*/
 
     public Transform playerTransform;
 
@@ -48,6 +51,31 @@ public class MutiplayerManager : MonoBehaviour
     bool isJumping;
     bool isReloading;
 
+    //input manager variables
+    
+     Vector2 movementInput; // 2D vector tracking where the player is trying to move
+
+     float verticalInput; // Track vertical input
+     float horizontalInput; // Track horizontal input
+     float cameraInputX; // Track camera input on the x axes
+     float cameraInputY; // Track the camera input on the y axes
+
+   
+     float moveAmount; // Determine the amount to move
+     bool sprintInput; // Check if player is trying to sprint
+     bool jumpInput; // Check if player is trying to jump
+     bool aimInput; // Check if player is trying to aim
+     bool attackInput; // Check sif player is trying to attack
+     bool specialMoveInput; // Check if player is trying to use their special moving abilitiy
+     bool lockOnInput; // Check if player is trying to lock onto an enemy
+     bool lockOnLeftInput; // Check if player is trying to lock onto a different enemy
+     bool lockOnRightInput; // Check if player is trying to lock onto a different enemy
+     bool specialAbilityInput; // Check if player is trying to use their special ability
+     bool reloadInput; // Check if player is trying to reload
+
+    
+     bool lockOnFlag; // Check if player should be locked on
+
 
     public string userName = "";
     public string preFabName = "";
@@ -56,6 +84,9 @@ public class MutiplayerManager : MonoBehaviour
     byte[] data;
     byte[] lengthPrefix;
     public byte[] finalData;
+
+    float animatorHorizontal;
+    float animatorVertical;
 
     Thread socketThread;
 
@@ -96,6 +127,14 @@ public class MutiplayerManager : MonoBehaviour
         isJumping = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
         //isAttacking = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
 
+        //input manager variables
+        movementInput = gameObject.GetComponent<InputManager>().movementInput;
+
+        verticalInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().verticalInput;
+        horizontalInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().horizontalInput; // Track horizontal input
+        cameraInputX = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputX;
+        cameraInputY = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputY;
+
         // Create a new thread for the socket communication
         socketThread = new Thread(SocketThreadFunc);
         socketThread.Start();
@@ -103,26 +142,52 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
+        playerTransform.gameObject.name = userName;
+        string[] values = {
+            userName, serverName, ipAddress, port.ToString(),
+            playerTransform.position.x.ToString(), playerTransform.position.y.ToString(), playerTransform.position.z.ToString(),
+            playerTransform.rotation.eulerAngles.x.ToString(), playerTransform.rotation.eulerAngles.y.ToString(), playerTransform.rotation.eulerAngles.z.ToString(),
+            bigMag.ToString(), gas.ToString(), rocketBoots.ToString(), hiCalBullets.ToString(), energyDrink.ToString(), specialSerum.ToString(), bodyArmor.ToString(), aimChip.ToString(), loCalBullet.ToString(), fourLeaf.ToString(),
+            preFabName,
+            startHealth.ToString(),
+            currentHealth.ToString(),
+            level.ToString(),
+            rangedDamage.ToString(),
+            meleeDamage.ToString(),
+            resistance.ToString(),
+            magCapacity.ToString(),
+            ammo.ToString(),
+            fireRate.ToString(),
+            dashForce.ToString(),
+            jumpStrength.ToString(),
+            moveSpeed.ToString(),
+            isAttacking.ToString(),
+            isJumping.ToString(),
+            isReloading.ToString(),
+            gameObject.GetComponent<InputManager>().moveAmount.ToString(),
+            gameObject.GetComponent<InputManager>().sprintInput.ToString(),
+            gameObject.GetComponent<InputManager>().jumpInput.ToString(),
+            gameObject.GetComponent<InputManager>().aimInput.ToString(),
+            gameObject.GetComponent<InputManager>().attackInput.ToString(),
+            gameObject.GetComponent<InputManager>().specialMoveInput.ToString(),
+            gameObject.GetComponent<InputManager>().specialAbilityInput.ToString(),
+            gameObject.GetComponent<InputManager>().reloadInput.ToString()
+        };
 
-        message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
-                "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.x + "," + playerTransform.rotation.y + "," + playerTransform.rotation.z + "," //Position Info
+        message = string.Join(",", values);
+
+        /*message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
+                "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.eulerAngles.x + "," + playerTransform.rotation.eulerAngles.y + "," + playerTransform.rotation.eulerAngles.z + "," //Position Info
                + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + "," + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
-               + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + "," + lookSpeed + "," //Player stats
-               + isAttacking + "," + isJumping + "," + isReloading;
-       
+               + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + ","  //Player stats
+               + isAttacking + "," + isJumping + "," + isReloading + "," + movementInput.x + "," + movementInput.y + "," + verticalInput + "," + horizontalInput + "," + animatorHorizontal + "," + animatorVertical + "," + sprintInput + "," + jumpInput + "," + aimInput + "," + attackInput + "," + specialMoveInput + "," + specialAbilityInput + "," + reloadInput; //input Manager*/
 
         data = System.Text.Encoding.ASCII.GetBytes(message);
-
         
         lengthPrefix = BitConverter.GetBytes(data.Length); // Add length prefix
         finalData = new byte[lengthPrefix.Length + data.Length];
         lengthPrefix.CopyTo(finalData, 0);
         data.CopyTo(finalData, lengthPrefix.Length);
-
-/*        // Remove first element of array
-        byte[] newArray = new byte[finalData.Length - 1];
-        Array.Copy(finalData, 1, newArray, 0, newArray.Length);
-        finalData = newArray;*/
     }
 
     void OnDestroy()
@@ -140,6 +205,8 @@ public class MutiplayerManager : MonoBehaviour
         Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         socket.Connect(ipAddress, port);
 
+        Debug.Log(ipAddress + " | " + port);
+
         while (true)
         {
             if (finalData?.Length < 1) continue;
@@ -153,13 +220,32 @@ public class MutiplayerManager : MonoBehaviour
             // Convert the received bytes into a string
             string response = System.Text.Encoding.UTF8.GetString(buffer, 0, receivedLength);
 
-            serverRes = response;
-            Debug.Log("Server Response:" + serverRes);
+            if (response.Length == 0) break; // Server is down
 
+            string[] splitResponse = response.Split('|');
+            for (int i = 0; i < splitResponse.Length; i++)
+            {
+                string serverName = splitResponse[i].Split(',')[0];
+                string hostName = message.Split(',')[0];
+
+                string serverGameName = splitResponse[i].Split(',')[1];
+                string hostGameName = message.Split(',')[1];
+
+                if (serverName == hostName || serverGameName != hostGameName)
+                {
+                    splitResponse[i] = null;
+                }
+            }
+            
+            splitResponse = splitResponse.Where(x => x != null).ToArray();
+            response = string.Join("|", splitResponse);
+
+            //Debug.Log(response);
+
+            serverRes = response;
+            
             // Wait for a short period before sending more data
             Thread.Sleep(100);
-
-            if (response.Length == 0) break;
         }
     }
 }

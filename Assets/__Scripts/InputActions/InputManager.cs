@@ -7,6 +7,9 @@ public class InputManager : MonoBehaviour
     PlayerGeneralMultiplayer playerGeneral; // Reference to the PlayerGeneral script
     PlayerAnimationManager playerAnimationManager; // Reference to PlayerAnimationManager script
     CameraManager cameraManager; // Reference to the CameraManager script
+    Transform playerTransform;
+
+
 
     [Header("Input from the Input Controller")]
     public Vector2 movementInput; // 2D vector tracking where the player is trying to move
@@ -51,45 +54,48 @@ public class InputManager : MonoBehaviour
     // Run when object script is attached to becomes enabled
     private void OnEnable()
     {
-        if (playerControls == null)
+        playerTransform = FindObjectOfType<MutiplayerManager>().gameObject.transform;
+        if (playerTransform.root.name != "Multiplayer 1")
         {
-            // Instantiate instance of PlayerControls class
-            playerControls = new PlayerControls();
+            if (playerControls == null)
+            {
+                // Instantiate instance of PlayerControls class
+                playerControls = new PlayerControls();
 
-            // Record player input into the Vector2 movementInput and cameraInput
-            playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
-            playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+                // Record player input into the Vector2 movementInput and cameraInput
+                playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
+                playerControls.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
 
-            #region Action Input Setting
-            playerControls.PlayerActions.SprintButton.performed += i => sprintInput = true; // Set sprintInput to true when the SprintButton is pressed
-            playerControls.PlayerActions.SprintButton.canceled += i => sprintInput = false; // Set sprintInput to false when the SprintButton is no longer pressed
+                #region Action Input Setting
+                playerControls.PlayerActions.SprintButton.performed += i => sprintInput = true; // Set sprintInput to true when the SprintButton is pressed
+                playerControls.PlayerActions.SprintButton.canceled += i => sprintInput = false; // Set sprintInput to false when the SprintButton is no longer pressed
 
-            playerControls.PlayerActions.JumpButton.performed += i => jumpInput = true; // Set jumpInput to true when the JumpButton is pressed
+                playerControls.PlayerActions.JumpButton.performed += i => jumpInput = true; // Set jumpInput to true when the JumpButton is pressed
 
-            playerControls.PlayerActions.AimButton.performed += i => aimInput = true; // Set aimInput to true when the AimButton is pressed
-            playerControls.PlayerActions.AimButton.canceled += i => aimInput = false; // Set aimInput to false when the AimButton is no longer pressed
-            
-            playerControls.PlayerActions.AttackButton.performed += i => attackInput = true; // Set attackInput to true when the AttackButton is pressed
-            playerControls.PlayerActions.AttackButton.canceled += i => attackInput = false; // Set attackInput to false when the AttackButton is no longer pressed
+                playerControls.PlayerActions.AimButton.performed += i => aimInput = true; // Set aimInput to true when the AimButton is pressed
+                playerControls.PlayerActions.AimButton.canceled += i => aimInput = false; // Set aimInput to false when the AimButton is no longer pressed
 
-            playerControls.PlayerActions.SpecialMoveButton.performed += i => specialMoveInput = true; // Set specialMoveInput to true when the SpecialMoveButton is pressed
-            playerControls.PlayerActions.SpecialMoveButton.canceled += i => specialMoveInput = false; // Set specialMoveInput to false when the SpecialMoveButton is no longer pressed
+                playerControls.PlayerActions.AttackButton.performed += i => attackInput = true; // Set attackInput to true when the AttackButton is pressed
+                playerControls.PlayerActions.AttackButton.canceled += i => attackInput = false; // Set attackInput to false when the AttackButton is no longer pressed
 
-            playerControls.PlayerActions.SpecialAbilityButton.performed += i => specialAbilityInput = true; // Set specialAbilityInput to true when the SpecialAbilityButton is pressed
-            playerControls.PlayerActions.SpecialAbilityButton.canceled += i => specialAbilityInput = false; // Set specialAbilityInput to false when the SpecialAbilityButton is no longer pressed
+                playerControls.PlayerActions.SpecialMoveButton.performed += i => specialMoveInput = true; // Set specialMoveInput to true when the SpecialMoveButton is pressed
+                playerControls.PlayerActions.SpecialMoveButton.canceled += i => specialMoveInput = false; // Set specialMoveInput to false when the SpecialMoveButton is no longer pressed
 
-            playerControls.PlayerActions.LockOnButton.performed += i => lockOnInput = true; // Set lockOnInput to true when the lockOnButton is pressed
-            playerControls.PlayerActions.LockOnTargetLeft.performed += i => lockOnLeftInput = true; // Set lockOnLeftInput to true when the LockOnTargetLeft is pressed
-            playerControls.PlayerActions.LockOnTargetRight.performed += i => lockOnRightInput = true; // Set lockOnRightInput to true when the LockOnTargetRight is pressed
+                playerControls.PlayerActions.SpecialAbilityButton.performed += i => specialAbilityInput = true; // Set specialAbilityInput to true when the SpecialAbilityButton is pressed
+                playerControls.PlayerActions.SpecialAbilityButton.canceled += i => specialAbilityInput = false; // Set specialAbilityInput to false when the SpecialAbilityButton is no longer pressed
 
-            playerControls.PlayerActions.ReloadButton.performed += i => reloadInput = true; // Set reloadInput to true when the ReloadButton is pressed
-            #endregion
+                playerControls.PlayerActions.LockOnButton.performed += i => lockOnInput = true; // Set lockOnInput to true when the lockOnButton is pressed
+                playerControls.PlayerActions.LockOnTargetLeft.performed += i => lockOnLeftInput = true; // Set lockOnLeftInput to true when the LockOnTargetLeft is pressed
+                playerControls.PlayerActions.LockOnTargetRight.performed += i => lockOnRightInput = true; // Set lockOnRightInput to true when the LockOnTargetRight is pressed
+
+                playerControls.PlayerActions.ReloadButton.performed += i => reloadInput = true; // Set reloadInput to true when the ReloadButton is pressed
+                #endregion
+            }
+
+            // Enable the PlayerControls instance
+            playerControls.Enable();
         }
-
-        // Enable the PlayerControls instance
-        playerControls.Enable();
     }
-
     // Runs when object script is attached to becomes disabled
     private void OnDisable()
     {

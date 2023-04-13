@@ -92,12 +92,14 @@ public class PlayerMovement : MonoBehaviour
     // Handles the rotation for the player
     private void HandlePlayerRotation()
     {
-        if (isJumping && !isAiming) return; // Don't rotate in the air while jumping and not aiming
+        string parentGameobjectName = gameObject.GetComponent<Transform>().parent.name;
+
+        if (isJumping && !isAiming && parentGameobjectName == "Players") return; // Don't rotate in the air while jumping and not aiming
         if (cameraTransform == null) return; // Safeguard
         Vector3 targetDirection = Vector3.zero; // Start out at (0, 0, 0)
 
         // Face player at what they're aiming if they're aiming
-        if (isAiming)
+        if (isAiming && parentGameobjectName == "Players")
         {
             Vector3 worldAimTarget = Vector3.zero; // Set the worldAimTarget
             Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f); // Get position of the center of the screen
