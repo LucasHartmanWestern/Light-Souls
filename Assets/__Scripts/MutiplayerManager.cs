@@ -257,7 +257,7 @@ public class MutiplayerManager : MonoBehaviour
             serverRes = response;
             
             // Wait for a short period before sending more data
-            Thread.Sleep(100);
+            Thread.Sleep(1000);
         }
     }
 }
