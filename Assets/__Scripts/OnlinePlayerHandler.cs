@@ -91,7 +91,7 @@ public class OnlinePlayerHandler : MonoBehaviour
 
 
             // Items
-            bool bigMag = bool.Parse(data[parseCounter++]);
+/*            bool bigMag = bool.Parse(data[parseCounter++]);
             bool gas = bool.Parse(data[parseCounter++]);
             bool rocketBoots = bool.Parse(data[parseCounter++]);
             bool hiCalBullets = bool.Parse(data[parseCounter++]);
@@ -100,13 +100,13 @@ public class OnlinePlayerHandler : MonoBehaviour
             bool bodyArmor = bool.Parse(data[parseCounter++]);
             bool aimChip = bool.Parse(data[parseCounter++]);
             bool loCalBullet = bool.Parse(data[parseCounter++]);
-            bool fourLeaf = bool.Parse(data[parseCounter++]);
+            bool fourLeaf = bool.Parse(data[parseCounter++]);*/
             
             // Player Stats
             string cType = data[parseCounter++];
             float startHealth = float.Parse(data[parseCounter++]);
             float currentHealth = float.Parse(data[parseCounter++]);
-            int level = int.Parse(data[parseCounter++]);
+/*            int level = int.Parse(data[parseCounter++]);
             float rangedDamage = float.Parse(data[parseCounter++]);
             float meleeDamage = float.Parse(data[parseCounter++]);
             float resistance = float.Parse(data[parseCounter++]);
@@ -115,13 +115,13 @@ public class OnlinePlayerHandler : MonoBehaviour
             float fireRate = float.Parse(data[parseCounter++]);
             float dashForce = float.Parse(data[parseCounter++]);
             float jumpStrength = float.Parse(data[parseCounter++]);
-            float moveSpeed = float.Parse(data[parseCounter++]);
+            float moveSpeed = float.Parse(data[parseCounter++]);*/
             
             
             // Player Actions
-            bool isAttacking = bool.Parse(data[parseCounter++]);
+/*            bool isAttacking = bool.Parse(data[parseCounter++]);*/
             bool isJumping = bool.Parse(data[parseCounter++]);
-            bool isReloading = bool.Parse(data[parseCounter++]);
+/*            bool isReloading = bool.Parse(data[parseCounter++]);*/
 
             //input manager
             float moveAmount = float.Parse(data[parseCounter++]);
@@ -129,9 +129,9 @@ public class OnlinePlayerHandler : MonoBehaviour
             bool sprintInput = bool.Parse(data[parseCounter++]);
             bool jumpInput = bool.Parse(data[parseCounter++]);
             bool aimInput = bool.Parse(data[parseCounter++]);
-            bool attackInput = bool.Parse(data[parseCounter++]);
+/*            bool attackInput = bool.Parse(data[parseCounter++]);
             bool specialMoveInput = bool.Parse(data[parseCounter++]);
-            bool specialAbilityInput = bool.Parse(data[parseCounter++]);
+            bool specialAbilityInput = bool.Parse(data[parseCounter++]);*/
             //bool reloadInput = bool.Parse(data[parseCounter++]);
 
             //  Debug.Log("Player Name: " + playerName);
@@ -221,7 +221,7 @@ public class OnlinePlayerHandler : MonoBehaviour
             playerToUpdate.transform.localRotation= Quaternion.Lerp(playerToUpdate.transform.localRotation, rotation, Time.deltaTime * 5f);
 
             //Items
-            playerToUpdate.GetComponent<EquipableItems>().bigMagazine = bigMag;
+/*            playerToUpdate.GetComponent<EquipableItems>().bigMagazine = bigMag;
             playerToUpdate.GetComponent<EquipableItems>().gasoline = gas;
             playerToUpdate.GetComponent<EquipableItems>().rocketBoots = rocketBoots;
             playerToUpdate.GetComponent<EquipableItems>().highCalBullets = hiCalBullets;
@@ -230,33 +230,33 @@ public class OnlinePlayerHandler : MonoBehaviour
             playerToUpdate.GetComponent<EquipableItems>().bodyArmor = bodyArmor;
             playerToUpdate.GetComponent<EquipableItems>().aimbotChip = aimChip;
             playerToUpdate.GetComponent<EquipableItems>().lowCalBullet = loCalBullet;
-            playerToUpdate.GetComponent<EquipableItems>().bigMagazine = fourLeaf;
+            playerToUpdate.GetComponent<EquipableItems>().bigMagazine = fourLeaf;*/
 
             //Stats
             //cType = playerTransform.gameObject.name;
             playerToUpdate.GetComponent<PlayerGeneral>().playerStartingHealth = startHealth;
             playerToUpdate.GetComponent<PlayerGeneral>().playerHealth = currentHealth;
-            playerToUpdate.GetComponent<PlayerGeneral>().playerLevel = level;
+/*            playerToUpdate.GetComponent<PlayerGeneral>().playerLevel = level;
             playerToUpdate.GetComponent<PlayerGeneral>().rangedDamage = rangedDamage;
             playerToUpdate.GetComponent<PlayerGeneral>().meleeDamage = meleeDamage;
             playerToUpdate.GetComponent<PlayerGeneral>().resistance = resistance;
             playerToUpdate.GetComponent<PlayerGeneral>().playerMaganizeCapacity = magCapacity;
             playerToUpdate.GetComponent<PlayerGeneral>().playerAmmo = ammo;
-            playerToUpdate.GetComponent<PlayerGeneral>().playerFireRate = fireRate;
+            playerToUpdate.GetComponent<PlayerGeneral>().playerFireRate = fireRate;*/
 
             //Actions
-            playerToUpdate.GetComponent<PlayerGeneral>().isReloading = isReloading;
-            playerToUpdate.GetComponent<PlayerMovement>().isJumping = isJumping;
+/*            playerToUpdate.GetComponent<PlayerGeneral>().isReloading = isReloading;
+            playerToUpdate.GetComponent<PlayerMovement>().isJumping = isJumping;*/
             //isAttacking = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
 
             playerToUpdate.GetComponent<InputManager>().sprintInput = sprintInput;
             playerToUpdate.GetComponent<InputManager>().jumpInput = jumpInput;
             playerToUpdate.GetComponent<InputManager>().aimInput = aimInput;
-            playerToUpdate.GetComponent<InputManager>().attackInput = attackInput;
-            playerToUpdate.GetComponent<InputManager>().specialMoveInput = specialMoveInput;
+/*            playerToUpdate.GetComponent<InputManager>().attackInput = attackInput;
+            playerToUpdate.GetComponent<InputManager>().specialMoveInput = specialMoveInput;*/
 
-            playerToUpdate.GetComponent<InputManager>().specialAbilityInput = specialAbilityInput;
-            //playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
+/*            playerToUpdate.GetComponent<InputManager>().specialAbilityInput = specialAbilityInput;
+*/            //playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
 
             playerToUpdate.GetComponent<PlayerAnimationManager>().UpdateAnimatorValues(0, moveAmount, sprintInput); // Update the player's movement animation
         }
