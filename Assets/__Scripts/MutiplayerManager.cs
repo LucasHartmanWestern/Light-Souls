@@ -154,7 +154,7 @@ public class MutiplayerManager : MonoBehaviour
     private void Update()
     {
         message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
-                "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.localRotation.x + "," + playerTransform.localRotation.y + "," + playerTransform.localRotation.z + "," //Position Info
+                "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.eulerAngles.x + "," + playerTransform.rotation.eulerAngles.y + "," + playerTransform.rotation.eulerAngles.z + "," //Position Info
                + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + "," + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
                + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + ","  //Player stats
                + isAttacking + "," + isJumping + "," + isReloading + "," + movementInput.x + "," + movementInput.y + "," + verticalInput + "," + horizontalInput +  "," + moveAmount + "," + sprintInput + "," + jumpInput + "," + aimInput + "," + attackInput + "," + specialMoveInput + "," + specialAbilityInput + "," + reloadInput; //input Manager
