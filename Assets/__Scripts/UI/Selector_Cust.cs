@@ -304,4 +304,11 @@ public class Selector_Cust : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         UIItemsContainer.SetActive(false);
     }
+
+    public void serverShutdown()
+    {
+
+    }
+
+
 }
