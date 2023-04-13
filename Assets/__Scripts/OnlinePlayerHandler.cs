@@ -179,7 +179,7 @@ public class OnlinePlayerHandler : MonoBehaviour
 
             //Position
             playerToUpdate.transform.position = Vector3.Lerp(playerToUpdate.transform.position, position, Time.deltaTime * 1f);
-            playerToUpdate.transform.rotation = Quaternion.Lerp(playerToUpdate.transform.rotation, rotation, Time.deltaTime * 1f);
+            playerToUpdate.transform.localRotation= Quaternion.Lerp(playerToUpdate.transform.localRotation, rotation, Time.deltaTime * 1f);
 
             //Items
             playerToUpdate.GetComponent<EquipableItems>().bigMagazine = bigMag;

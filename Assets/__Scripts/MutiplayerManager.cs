@@ -153,9 +153,8 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("x: " + playerTransform.rotation.x + ", y: " + playerTransform.rotation.y + ", z: " + playerTransform.rotation.z);
         message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
-                "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.x + "," + playerTransform.rotation.y + "," + playerTransform.rotation.z + "," //Position Info
+                "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.localRotation.x + "," + playerTransform.localRotation.y + "," + playerTransform.localRotation.z + "," //Position Info
                + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + "," + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
                + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + ","  //Player stats
                + isAttacking + "," + isJumping + "," + isReloading + "," + movementInput.x + "," + movementInput.y + "," + verticalInput + "," + horizontalInput +  "," + moveAmount + "," + sprintInput + "," + jumpInput + "," + aimInput + "," + attackInput + "," + specialMoveInput + "," + specialAbilityInput + "," + reloadInput; //input Manager
@@ -214,7 +213,6 @@ public class MutiplayerManager : MonoBehaviour
             response = string.Join("|", splitResponse);
 
             serverRes = response;
-            Debug.Log(serverRes);
             
             // Wait for a short period before sending more data
             Thread.Sleep(100);
