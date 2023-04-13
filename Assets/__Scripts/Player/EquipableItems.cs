@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EquipableItems : MonoBehaviour
 {
-    PlayerGeneralMultiplayer playerGeneral; // Reference to PlayerGeneral script
+    PlayerGeneral playerGeneral; // Reference to PlayerGeneral script
     CameraManager cameraManager; // Reference to the CameraManager script
 
     public GameObject fireParticleSystem; // Reference to the fire effect Particle System
@@ -39,7 +39,7 @@ public class EquipableItems : MonoBehaviour
     // Called when script is instantiated
     private void Awake()
     {
-        playerGeneral = FindObjectOfType<PlayerGeneralMultiplayer>(); // Get reference to instance of playerGeneral object
+        playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to instance of playerGeneral object
         cameraManager = FindObjectOfType<CameraManager>(); // Get reference to the CameraManager object
         ApplyEffects(); // Apply the effects
     }
@@ -47,7 +47,7 @@ public class EquipableItems : MonoBehaviour
     // Called once a frame
     private void Update()
     {
-        if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneralMultiplayer>(); // Get reference to instance of playerGeneral object
+        if (playerGeneral == null) playerGeneral = FindObjectOfType<PlayerGeneral>(); // Get reference to instance of playerGeneral object
         if (cameraManager == null) cameraManager = FindObjectOfType<CameraManager>(); // Get reference to the CameraManager object
 
         HandleAimBot(); // Handle the aimbot feature
