@@ -213,10 +213,10 @@ public class OnlinePlayerHandler : MonoBehaviour
             playerToUpdate.GetComponent<InputManager>().jumpInput = jumpInput;
             playerToUpdate.GetComponent<InputManager>().aimInput = aimInput;
             playerToUpdate.GetComponent<InputManager>().attackInput = attackInput;
-            //playerToUpdate.GetComponent<InputManager>().specialMoveInput = specialMoveInput;
+            playerToUpdate.GetComponent<InputManager>().specialMoveInput = specialMoveInput;
 
-            //playerToUpdate.GetComponent<InputManager>().specialAbilityInput = specialAbilityInput;
-            //playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
+            playerToUpdate.GetComponent<InputManager>().specialAbilityInput = specialAbilityInput;
+            playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
 
             playerToUpdate.GetComponent<PlayerAnimationManager>().UpdateAnimatorValues(0, moveAmount, sprintInput); // Update the player's movement animation
         }
