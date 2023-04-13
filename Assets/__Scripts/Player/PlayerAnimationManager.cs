@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerAnimationManager : MonoBehaviour
 {
     [HideInInspector] public Animator animator; // Reference to the players animator
-    int horizontal;
-    int vertical;
+    public int horizontal;
+    public int vertical;
 
     // Called right before Start() method
     private void Awake()

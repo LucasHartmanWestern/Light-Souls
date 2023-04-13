@@ -83,6 +83,9 @@ public class MutiplayerManager : MonoBehaviour
     byte[] lengthPrefix;
     public byte[] finalData;
 
+    float animatorHorizontal;
+    float animatorVertical;
+
     Thread socketThread;
 
     void Start()
@@ -133,7 +136,9 @@ public class MutiplayerManager : MonoBehaviour
         cameraInputY = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputY;
 
 
-        moveAmount = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().moveAmount;
+        animatorHorizontal = gameObject.GetComponent<PlayerAnimationManager>().horizontal;
+        animatorVertical = gameObject.GetComponent<PlayerAnimationManager>().vertical;
+
         sprintInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().sprintInput;
         jumpInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().jumpInput;
         aimInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().aimInput;
@@ -157,7 +162,7 @@ public class MutiplayerManager : MonoBehaviour
                 "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.eulerAngles.x + "," + playerTransform.rotation.eulerAngles.y + "," + playerTransform.rotation.eulerAngles.z + "," //Position Info
                + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + "," + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
                + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + ","  //Player stats
-               + isAttacking + "," + isJumping + "," + isReloading + "," + movementInput.x + "," + movementInput.y + "," + verticalInput + "," + horizontalInput +  "," + moveAmount + "," + sprintInput + "," + jumpInput + "," + aimInput + "," + attackInput + "," + specialMoveInput + "," + specialAbilityInput + "," + reloadInput; //input Manager
+               + isAttacking + "," + isJumping + "," + isReloading + "," + movementInput.x + "," + movementInput.y + "," + verticalInput + "," + horizontalInput +  "," + animatorHorizontal + "," + animatorVertical + "," + sprintInput + "," + jumpInput + "," + aimInput + "," + attackInput + "," + specialMoveInput + "," + specialAbilityInput + "," + reloadInput; //input Manager
                                                     
         data = System.Text.Encoding.ASCII.GetBytes(message);
         

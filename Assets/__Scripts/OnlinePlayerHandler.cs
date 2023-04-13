@@ -106,16 +106,16 @@ public class OnlinePlayerHandler : MonoBehaviour
             float verticalInput = float.Parse(data[37]);
             float horizontalInput = float.Parse(data[38]);
            
+            float animatorHorizontal = float.Parse(data[39]);
+            float animatorVertical = float.Parse(data[40]);
 
-
-            float moveAmount = float.Parse(data[39]);
-            bool sprintInput = bool.Parse(data[40]);
-            bool jumpInput = bool.Parse(data[41]);
-            bool aimInput = bool.Parse(data[42]);
-            bool attackInput = bool.Parse(data[43]);
-            bool specialMoveInput = bool.Parse(data[44]);
-            bool specialAbilityInput = bool.Parse(data[45]);
-            bool reloadInput = bool.Parse(data[46]);
+            bool sprintInput = bool.Parse(data[41]);
+            bool jumpInput = bool.Parse(data[42]);
+            bool aimInput = bool.Parse(data[43]);
+            bool attackInput = bool.Parse(data[44]);
+            bool specialMoveInput = bool.Parse(data[45]);
+            bool specialAbilityInput = bool.Parse(data[46]);
+            bool reloadInput = bool.Parse(data[47]);
 
             //  Debug.Log("Player Name: " + playerName);
             //  Debug.Log("IP: " + ip);
@@ -178,8 +178,8 @@ public class OnlinePlayerHandler : MonoBehaviour
             //logic for updating player info
 
             //Position
-            playerToUpdate.transform.position = Vector3.Lerp(playerToUpdate.transform.position, position, Time.deltaTime * 1f);
-            playerToUpdate.transform.localRotation= Quaternion.Lerp(playerToUpdate.transform.localRotation, rotation, Time.deltaTime * 1f);
+            playerToUpdate.transform.position = Vector3.Lerp(playerToUpdate.transform.position, position, Time.deltaTime * 5f);
+            playerToUpdate.transform.localRotation= Quaternion.Lerp(playerToUpdate.transform.localRotation, rotation, Time.deltaTime * 5f);
 
             //Items
             playerToUpdate.GetComponent<EquipableItems>().bigMagazine = bigMag;
@@ -215,7 +215,6 @@ public class OnlinePlayerHandler : MonoBehaviour
             playerToUpdate.GetComponent<InputManager>().verticalInput = verticalInput;
             playerToUpdate.GetComponent<InputManager>().horizontalInput = horizontalInput;
 
-            playerToUpdate.GetComponent<InputManager>().moveAmount = moveAmount;
             playerToUpdate.GetComponent<InputManager>().sprintInput = sprintInput;
             playerToUpdate.GetComponent<InputManager>().jumpInput = jumpInput;
             playerToUpdate.GetComponent<InputManager>().aimInput = aimInput;
@@ -224,6 +223,9 @@ public class OnlinePlayerHandler : MonoBehaviour
 
             playerToUpdate.GetComponent<InputManager>().specialAbilityInput = specialAbilityInput;
             playerToUpdate.GetComponent<InputManager>().reloadInput = reloadInput;
+
+            //moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput)); // Clamp movement between 0 and 1
+            playerToUpdate.GetComponent<PlayerAnimationManager>().UpdateAnimatorValues(horizontalInput, verticalInput, sprintInput); // Update the player's movement animation
         }
     }
 }
