@@ -13,31 +13,13 @@ public class MutiplayerManager : MonoBehaviour
     string ipAddress = "54.196.231.67";
     int port = 2001;
 
-    /*string ipAddress = "192.168.2.45";
-    int port = 2001;*/
-
     string sceneName = "";
 
     public string serverName = "";
 
-    /*string ipAddress = "127.0.0.1";
-    int port = 3000;*/
-
     public Transform playerTransform;
 
-    //player Items
-    bool bigMag;
-    bool gas;
-    bool rocketBoots;
-    bool hiCalBullets;
-    bool energyDrink;
-    bool specialSerum;
-    bool bodyArmor;
-    bool aimChip;
-    bool loCalBullet;
-    bool fourLeaf;
-
-    //player stats
+    // Player stats
     float startHealth;
     float currentHealth;
     float level;
@@ -52,12 +34,12 @@ public class MutiplayerManager : MonoBehaviour
     float moveSpeed;
     float lookSpeed;
 
-    //player events
+    // Player events
     bool isAttacking;
     bool isJumping;
     bool isReloading;
 
-    //input manager variables
+    // Input manager variables
     
      Vector2 movementInput; // 2D vector tracking where the player is trying to move
 
@@ -107,20 +89,7 @@ public class MutiplayerManager : MonoBehaviour
     {
         playerTransform = FindObjectOfType<MutiplayerManager>().gameObject.transform;
 
-        //player items
-         bigMag = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().bigMagazine;
-         gas = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().gasoline;
-         rocketBoots = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().rocketBoots;
-         hiCalBullets = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().highCalBullets;
-         energyDrink = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().energyDrink;
-         specialSerum = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().specialSerum;
-         bodyArmor = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().bodyArmor;
-         aimChip = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().aimbotChip;
-         loCalBullet = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().lowCalBullet;
-         fourLeaf = FindObjectOfType<EquipableItems>().gameObject.GetComponent<EquipableItems>().fourLeafClover;
-
-        //player stats
-
+        // Player stats
         startHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerStartingHealth;
         currentHealth = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerHealth;
         level = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerLevel;
@@ -130,21 +99,19 @@ public class MutiplayerManager : MonoBehaviour
         magCapacity = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerMaganizeCapacity;
         ammo = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerAmmo;
         fireRate = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerFireRate;
-        //dashForce = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().dashForce;
         jumpStrength = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().jumpStrenth;
         moveSpeed = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerMoveSpeed;
         lookSpeed = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().playerLookSpeed;
 
-        //player events
+        // Player events
         isReloading = FindObjectOfType<PlayerGeneral>().gameObject.GetComponent<PlayerGeneral>().isReloading;
         isJumping = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
-        //isAttacking = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<PlayerMovement>().isJumping;
 
-        //input manager variables
+        // Input manager variables
         movementInput = gameObject.GetComponent<InputManager>().movementInput;
 
         verticalInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().verticalInput;
-        horizontalInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().horizontalInput; // Track horizontal input
+        horizontalInput = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().horizontalInput;
         cameraInputX = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputX;
         cameraInputY = FindObjectOfType<InputManager>().gameObject.GetComponent<InputManager>().cameraInputY;
 
@@ -155,6 +122,7 @@ public class MutiplayerManager : MonoBehaviour
 
     private void Update()
     {
+        // Gather and format data for request to server
         playerTransform.gameObject.name = userName;
         string[] values = {
             userName, serverName, sceneName, ipAddress, port.ToString(),
@@ -170,12 +138,6 @@ public class MutiplayerManager : MonoBehaviour
         };
 
         message = string.Join(",", values);
-
-        /*message = userName + "," + ipAddress + "," + port + "," + playerTransform.position.x +
-                "," + playerTransform.position.y + "," + playerTransform.position.z + "," + playerTransform.rotation.eulerAngles.x + "," + playerTransform.rotation.eulerAngles.y + "," + playerTransform.rotation.eulerAngles.z + "," //Position Info
-               + bigMag + "," + gas + "," + rocketBoots + "," + hiCalBullets + "," + energyDrink + "," + specialSerum + "," + bodyArmor + "," + aimChip + "," + loCalBullet + "," + fourLeaf + "," //items
-               + preFabName + "," + startHealth + "," + currentHealth + "," + level + "," + rangedDamage + "," + meleeDamage + "," + resistance + "," + magCapacity + "," + ammo + "," + fireRate + "," + dashForce + "," + jumpStrength + "," + moveSpeed + ","  //Player stats
-               + isAttacking + "," + isJumping + "," + isReloading + "," + movementInput.x + "," + movementInput.y + "," + verticalInput + "," + horizontalInput + "," + animatorHorizontal + "," + animatorVertical + "," + sprintInput + "," + jumpInput + "," + aimInput + "," + attackInput + "," + specialMoveInput + "," + specialAbilityInput + "," + reloadInput; //input Manager*/
 
         data = System.Text.Encoding.ASCII.GetBytes(message);
         
@@ -200,8 +162,6 @@ public class MutiplayerManager : MonoBehaviour
         Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         socket.Connect(ipAddress, port);
 
-        Debug.Log(ipAddress + " | " + port);
-
         while (true)
         {
             if (finalData?.Length < 1) continue;
@@ -217,6 +177,7 @@ public class MutiplayerManager : MonoBehaviour
 
             if (response.Length == 0) break; // Server is down
 
+            // Filter out specific players
             string[] splitResponse = response.Split('|');
             for (int i = 0; i < splitResponse.Length; i++)
             {
@@ -237,8 +198,6 @@ public class MutiplayerManager : MonoBehaviour
             
             splitResponse = splitResponse.Where(x => x != null).ToArray();
             response = string.Join("|", splitResponse);
-
-            //Debug.Log(response);
 
             serverRes = response;
             
